@@ -17,11 +17,11 @@ struct WelcomeScreen: View {
         VStack(alignment: .leading, spacing: 20) {
             Text(viewModel.title)
                 .font(.body)
-                .padding([.leading], 24)
+                .padding([.leading, .trailing], 24)
             Text(viewModel.subtitle)
                 .bold()
                 .font(.largeTitle)
-                .padding([.leading], 24)
+                .padding([.leading, .trailing], 24)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(Rectangle().foregroundColor(.clear))
         .opacity(opacity)

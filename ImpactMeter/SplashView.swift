@@ -16,10 +16,15 @@ struct SplashView: View {
     @State private var titleOpacity = 0.0
     @State private var currentPage = 0
     @State private var wasButtonAnimated = false
+    @State private var letsGoButtonTapped = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            if self.isShowingSplash {
+        VStack(alignment: .leading) {
+            if letsGoButtonTapped {
+                let viewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",
+                                                                  description: "This is to determine the average for your region. None of your personal data will be shared.")
+                TitleAndDescriptionView(viewModel: viewModel)
+            } else if isShowingSplash {
                 VStack(alignment: .leading) {
                     Text("Impact")
                         .bold()
@@ -28,20 +33,13 @@ struct SplashView: View {
                         .multilineTextAlignment(.leading)
                         .opacity(titleOpacity)
                         .onAppear {
-                            withAnimation(.easeInOut(duration: 0.3)) {
-                                titleOpacity = 1.0
-                            }
+                            titleOpacity = 1.0
                         }
                     Text("Meter")
                         .bold()
                         .font(.largeTitle)
                         .frame(alignment: .leading)
                         .opacity(titleOpacity)
-                        .onAppear {
-                            withAnimation(.easeInOut(duration: 1.0)) {
-                                titleOpacity = 1.0
-                            }
-                        }
                 }.padding([.leading, .trailing], 24)
             } else {
                 VStack {
@@ -70,22 +68,23 @@ struct SplashView: View {
                         .isHidden(wasButtonAnimated)
                         if currentPage == viewModel.welcomeScreenViewModels.count - 1 {
                             Button(action: {
-                                print("less goo")
+                                letsGoButtonTapped.toggle()
                             }, label: {
                                 Text("Let's Go")
                                     .font(.callout).bold()
                                     .foregroundColor(.white)
-                            }).frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
-                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.blue))
-                            .padding([.leading, .trailing], 24)
-                            .onAppear(perform: {
-                                wasButtonAnimated.toggle()
+                                    .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
+                                    .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.blue))
+                                    .padding([.leading, .trailing], 24)
+                                    .onAppear(perform: {
+                                        wasButtonAnimated.toggle()
+                                    })
+                                    .onDisappear(perform: {
+                                        wasButtonAnimated.toggle()
+                                    })
+                                    .animation(.easeInOut)
+                                    .offset(x: 0, y: wasButtonAnimated ? 0 : 150)
                             })
-                            .onDisappear(perform: {
-                                wasButtonAnimated.toggle()
-                            })
-                            .animation(.easeInOut)
-                            .offset(x: 0, y: wasButtonAnimated ? 0 : 150)
                         }
 
                     }.padding([.bottom], 24)
@@ -93,7 +92,7 @@ struct SplashView: View {
 
             }
 
-        }.frame(maxWidth: .infinity, minHeight: 250, alignment: .leading)
+        }.frame(maxWidth: .infinity, alignment: .leading)
         .edgesIgnoringSafeArea(.all)
         .onAppear{
             switchToWelcomeScreens()
@@ -128,33 +127,5 @@ extension SplashView {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
-    }
-}
-
-extension View {
-
-    /// Hide or show the view based on a boolean value.
-    ///
-    /// Example for visibility:
-    ///
-    ///     Text("Label")
-    ///         .isHidden(true)
-    ///
-    /// Example for complete removal:
-    ///
-    ///     Text("Label")
-    ///         .isHidden(true, remove: true)
-    ///
-    /// - Parameters:
-    ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
-    ///   - remove: Boolean value indicating whether or not to remove the view.
-    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
-        if hidden {
-            if !remove {
-                self.hidden()
-            }
-        } else {
-            self
-        }
     }
 }

@@ -1,0 +1,8 @@
+app_identifier("com.jesus-rod.ImpactMeter") # The bundle identifier of your app
+apple_id("jarrbiz@gmail.com") # Your Apple email address
+
+itc_team_id("122761417") # App Store Connect Team ID
+team_id("8MT7DH3FAZ") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
