@@ -25,30 +25,28 @@ struct PageManager<Content: View>: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                self.content.frame(width: geometry.size.width, height: geometry.size.height)
+                self.content.frame(width: geometry.size.width,
+                                   height: geometry.size.height)
+
             }.frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
-            .background(Rectangle().foregroundColor(.clear))
-            .onTapGesture {
-                let newIndex = self.currentIndex + 1
-                self.currentIndex = min(max(Int(newIndex) , 0),  self.pageCount - 1)
-            }
+            .contentShape(Rectangle())
             .gesture(
                 DragGesture()
-                    .updating($currentPage, body: { (value, state, transaction) in
-                        // Do something while updating
-                        // If needed.
+                    .onChanged({ (gesture) in
+
                     })
-                    .onEnded({ (value) in
-                        print("onEnded value translation \(value.translation)")
-                        let translationWidth = value.translation.width
-                        let geometryWidth = geometry.size.width
-                        let offset = translationWidth / geometryWidth
-                        print("offset \(offset)")
-                        let unroundedIndex = (CGFloat(self.currentIndex) - offset)
-                        print("unroundedIndex \(unroundedIndex)")
-                        let newIndex = (CGFloat(self.currentIndex) - offset).rounded()
-                        print("newIndex \(newIndex)")
-                        self.currentIndex = min(max(Int(newIndex) , 0),  self.pageCount - 1)
+                    .onEnded({ (gesture) in
+                        let translationWidth = gesture.translation.width
+
+                        if translationWidth > 20 {
+                            // move to left
+                            let newIndex = self.currentIndex - 1
+                            self.currentIndex = min(max(Int(newIndex) , 0),  self.pageCount - 1)
+                        } else if translationWidth < -20 {
+                            // move to right
+                            let newIndex = self.currentIndex + 1
+                            self.currentIndex = min(max(Int(newIndex) , 0),  self.pageCount - 1)
+                        }
                     })
             )
 
