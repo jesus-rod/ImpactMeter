@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct ImpactMeterApp: App {
+
+    @StateObject var user = User()
+
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            SplashView().environmentObject(user)
+//            CountryInputView()
         }
     }
 }
+
+
+

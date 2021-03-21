@@ -17,12 +17,13 @@ struct TitleAndDescriptionView: View {
                 .font(.largeTitle).bold()
                 .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing], 24)
+                .padding([.top], 24) 
             Text(viewModel.description)
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing], 24)
         }.frame(maxWidth: .infinity,
-                maxHeight: .infinity,
+                maxHeight: .none,
                 alignment: .leading)
         .animation(.easeIn)
     }

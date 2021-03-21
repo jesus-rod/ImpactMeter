@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct PrimaryTextView: View {
 
-    @State private var textFieldData = ""
+    @EnvironmentObject var user: User
     let viewModel: ViewModel
 
     var body: some View {
@@ -18,11 +19,11 @@ struct PrimaryTextView: View {
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .foregroundColor(IMColors.gray)
-            TextField(viewModel.bottomPlaceholder, text: $textFieldData)
+            TextField(viewModel.bottomPlaceholder, text: $user.country)
                 .font(Font.system(size: 24, weight: .bold, design: .default))
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
         }.frame(maxWidth: .infinity,
-                maxHeight: .infinity,
+                maxHeight: .none,
                 alignment: .leading)
         .padding([.leading, .trailing], 24)
     }

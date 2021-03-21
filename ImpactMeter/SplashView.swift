@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SplashView: View {
 
+    @EnvironmentObject var user: User
+
     let viewModel = ViewModel.init()
     private let animationDuration = 1.0
 
@@ -21,9 +23,8 @@ struct SplashView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if letsGoButtonTapped {
-                let viewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",
-                                                                  description: "This is to determine the average for your region. None of your personal data will be shared.")
-                TitleAndDescriptionView(viewModel: viewModel)
+                // Call here the country input view
+                CountryInputView()
             } else if isShowingSplash {
                 VStack(alignment: .leading) {
                     Text("Impact")
