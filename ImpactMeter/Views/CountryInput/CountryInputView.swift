@@ -20,7 +20,7 @@ struct CountryInputView: View {
     func makeCountryTilewall() -> TileWallView.ViewModel {
         let countries: [Country] = CountriesGenerator().getCountries()
         let filteredCountries = countries.filter({
-            $0.name.contains(user.country)
+            $0.name.contains(user.country.capitalized)
         })
         let tilesVm: [TileView.ViewModel] = filteredCountries.map { (country) in
             return TileView.ViewModel(text: country.name, emoji: country.flag)
@@ -29,15 +29,15 @@ struct CountryInputView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             TitleAndDescriptionView(viewModel: titleViewModel)
                 .padding([.top], 80)
             PrimaryTextView(viewModel: textInputViewModel)
                 .padding([.top], 44)
             TileWallView(viewModel: makeCountryTilewall())
                 .padding([.top], 24)
+            Spacer()
         }.edgesIgnoringSafeArea(.all)
-
     }
 }
 

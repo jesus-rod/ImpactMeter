@@ -10,20 +10,41 @@ import SwiftUI
 struct TileWallView: View {
 
     let viewModel: ViewModel
+    let selectionType: SelectionType = .single
+
+    @State var selectedTiles = [TileView]()
+
+    enum SelectionType {
+        case single
+        case multiple
+    }
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(alignment: .leading) {
-                ForEach(viewModel.tiles, id: \.self) { tileInfo in
-                    TileView(viewModel: tileInfo)
-
-                }
-            }.padding([.leading, .trailing, .bottom], 16)
+            FlexibleView(
+              data: viewModel.tiles,
+              spacing: 10,
+            alignment: .leading
+            ) { tileInfo in
+                TileView(viewModel: tileInfo)
+            }
+        }.padding([.leading, .trailing, .bottom], 16)
             .frame(maxWidth: .infinity,
-                   maxHeight: .infinity,
                     alignment: .leading)
+
+    }
+
+    private var anyTileIsSelected: Bool {
+        return selectedTiles.count > 0
+    }
+
+    private func getSelectedTiles() {
+        if selectionType == .single {
+
         }
     }
+
+
 
 
 }

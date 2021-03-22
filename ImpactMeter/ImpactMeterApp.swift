@@ -15,7 +15,6 @@ struct ImpactMeterApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView().environmentObject(user)
-//            CountryInputView()
         }
     }
 }

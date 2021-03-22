@@ -11,6 +11,7 @@ struct TitleAndDescriptionView: View {
 
     let viewModel: ViewModel
 
+
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text(viewModel.title)
@@ -37,6 +38,7 @@ extension TitleAndDescriptionView {
     }
 }
 
+//Preview
 struct TitleAndDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?", description: "This is to determine the average for your region. None of your personal data will be shared.")

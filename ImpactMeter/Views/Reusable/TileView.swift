@@ -10,7 +10,8 @@ import SwiftUI
 struct TileView: View {
 
     let viewModel: ViewModel
-    @State private var isActive: Bool = false
+
+    @State var isActive: Bool = false
 
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
@@ -25,7 +26,6 @@ struct TileView: View {
         .onTapGesture(perform: {
             isActive.toggle()
         })
-
     }
 }
 
@@ -43,6 +43,6 @@ extension TileView {
 struct TileView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = TileView.ViewModel(text: "Netherlands", emoji: "🇳🇱")
-        TileView(viewModel: vm)
+        TileView(viewModel: vm, isActive: false)
     }
 }
