@@ -33,7 +33,7 @@ struct _FlexibleView<Data: Collection, Content: View>: View where Data.Element: 
     }
   }
 
-  func computeRows() -> [[Data.Element]] {
+  private func computeRows() -> [[Data.Element]] {
     var rows: [[Data.Element]] = [[]]
     var currentRow = 0
     var remainingWidth = availableWidth

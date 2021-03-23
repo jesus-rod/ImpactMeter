@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Introspect
 
 struct PrimaryTextView: View {
 
@@ -19,9 +20,17 @@ struct PrimaryTextView: View {
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .foregroundColor(IMColors.gray)
-            TextField(viewModel.bottomPlaceholder, text: $user.country)
-                .font(Font.system(size: 24, weight: .bold, design: .default))
-                .foregroundColor(.primary)
+            TextField(viewModel.bottomPlaceholder, text: $user.country) { (changed) in
+                // do something here when text changes
+            } onCommit: {
+                print("done tapped")
+                // Go to the next screen
+            }.font(Font.system(size: 24, weight: .bold, design: .default))
+            .foregroundColor(.primary)
+            .keyboardType(.webSearch)
+            .introspectTextField { (textfield) in
+                textfield.becomeFirstResponder()
+            }
         }.frame(maxWidth: .infinity,
                 maxHeight: .none,
                 alignment: .leading)

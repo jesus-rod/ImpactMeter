@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		95BA32212608CEEA007CAF4F /* View+readSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA32202608CEEA007CAF4F /* View+readSize.swift */; };
 		95BA32242608D01F007CAF4F /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA32232608D01F007CAF4F /* FlexibleView.swift */; };
 		95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA32262608D045007CAF4F /* _FlexibleView.swift */; };
+		95BA322C2609C53D007CAF4F /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 95BA322B2609C53D007CAF4F /* Introspect */; };
 		95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DACDA126072EFA0026EEE4 /* PrimaryTextView.swift */; };
 		95DACDA5260738B00026EEE4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DACDA4260738B00026EEE4 /* Colors.swift */; };
 		95DACDA9260772880026EEE4 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DACDA8260772880026EEE4 /* TileView.swift */; };
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95BA322C2609C53D007CAF4F /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +177,9 @@
 			dependencies = (
 			);
 			name = ImpactMeter;
+			packageProductDependencies = (
+				95BA322B2609C53D007CAF4F /* Introspect */,
+			);
 			productName = ImpactMeter;
 			productReference = 956E5A2F25EC21990029E59A /* ImpactMeter.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +207,9 @@
 				Base,
 			);
 			mainGroup = 956E5A2625EC21980029E59A;
+			packageReferences = (
+				95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 956E5A3025EC21990029E59A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -438,6 +446,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95BA322B2609C53D007CAF4F /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 956E5A2725EC21980029E59A /* Project object */;
 }
