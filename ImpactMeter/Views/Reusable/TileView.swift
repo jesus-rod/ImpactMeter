@@ -10,22 +10,39 @@ import SwiftUI
 struct TileView: View {
 
     let viewModel: ViewModel
-
-    @State var isActive: Bool = false
+    @Binding var selectedTag: String
+    @State var isSelected: Bool
 
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             Text(viewModel.text)
                 .font(.callout)
                 .fontWeight(.semibold)
-                .foregroundColor(isActive ? .white : .black)
+                .foregroundColor(isSelected ? .white : .black)
             Text(viewModel.emoji)
         }.padding([.leading, .trailing], 10)
         .padding([.top, .bottom], 8)
-        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(isActive ? .blue : IMColors.blueishGray))
+        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(isSelected ? .blue : IMColors.blueishGray))
         .onTapGesture(perform: {
-            isActive.toggle()
+
+            // Deselect Tag
+            if isSelected {
+                deselectTag()
+                return
+            }
+
+            // 
+            print("Selected", viewModel.text)
+            // Update "selectedTag binding to inform TileWall what is selected"
+            selectedTag = viewModel.text
+            isSelected = selectedTag == viewModel.text
+            print("is it Active? \(isSelected)")
         })
+    }
+
+    private func deselectTag() {
+        selectedTag = ""
+        isSelected = false
     }
 }
 
@@ -43,6 +60,6 @@ extension TileView {
 struct TileView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = TileView.ViewModel(text: "Netherlands", emoji: "🇳🇱")
-        TileView(viewModel: vm, isActive: false)
+        TileView(viewModel: vm, selectedTag: .constant(""), isSelected: false)
     }
 }

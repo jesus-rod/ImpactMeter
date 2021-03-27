@@ -14,7 +14,7 @@ struct ImpactMeterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SplashView().environmentObject(user)
+            StartupCoordinator().environmentObject(user)
         }
     }
 }

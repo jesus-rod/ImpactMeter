@@ -10,9 +10,9 @@ import SwiftUI
 struct TileWallView: View {
 
     let viewModel: ViewModel
-    let selectionType: SelectionType = .single
+    @Binding var selectedValue: String
 
-    @State var selectedTiles = [TileView]()
+    let selectionType: SelectionType = .single
 
     enum SelectionType {
         case single
@@ -26,7 +26,9 @@ struct TileWallView: View {
               spacing: 10,
             alignment: .leading
             ) { tileInfo in
-                TileView(viewModel: tileInfo)
+                TileView(viewModel: tileInfo,
+                         selectedTag: $selectedValue,
+                         isSelected: isSelected(tileText: tileInfo.text))
             }
         }.padding([.leading, .trailing, .bottom], 16)
             .frame(maxWidth: .infinity,
@@ -34,15 +36,20 @@ struct TileWallView: View {
 
     }
 
-    private var anyTileIsSelected: Bool {
-        return selectedTiles.count > 0
+    private func isSelected(tileText: String) -> Bool {
+        return selectedValue == tileText
     }
 
-    private func getSelectedTiles() {
-        if selectionType == .single {
 
-        }
-    }
+//    private var anyTileIsSelected: Bool {
+//        return selectedValues.count > 0
+//    }
+//
+//    private func getSelectedTiles() {
+//        if selectionType == .single {
+//
+//        }
+//    }
 
 
 
@@ -63,6 +70,6 @@ struct TileWallView_Previews: PreviewProvider {
             return TileView.ViewModel(text: country.name, emoji: country.flag)
         }
         let vm = TileWallView.ViewModel(tiles: tilesVm)
-        TileWallView(viewModel: vm)
+        TileWallView(viewModel: vm, selectedValue: .constant(""))
     }
 }

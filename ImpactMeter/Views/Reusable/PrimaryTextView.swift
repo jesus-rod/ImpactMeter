@@ -11,8 +11,8 @@ import Introspect
 
 struct PrimaryTextView: View {
 
-    @EnvironmentObject var user: User
     let viewModel: ViewModel
+    @Binding var currentText: String
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,8 +20,8 @@ struct PrimaryTextView: View {
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .foregroundColor(IMColors.gray)
-            TextField(viewModel.bottomPlaceholder, text: $user.country) { (changed) in
-                // do something here when text changes
+            TextField(viewModel.bottomPlaceholder, text: $currentText) { (changed) in
+                print("new text is", $currentText)
             } onCommit: {
                 print("done tapped")
                 // Go to the next screen
@@ -50,7 +50,7 @@ extension PrimaryTextView {
 struct PrimaryTextView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
-        PrimaryTextView(viewModel: vm)
+        PrimaryTextView(viewModel: vm, currentText: .constant(""))
             .previewDevice("iPhone 11")
     }
 }

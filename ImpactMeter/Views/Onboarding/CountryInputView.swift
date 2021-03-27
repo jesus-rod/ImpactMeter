@@ -10,18 +10,19 @@ import SwiftUI
 struct CountryInputView: View {
 
     @EnvironmentObject var user: User
+    private let allCountries: [Country] = CountriesGenerator().getCountries()
+
 
     let titleViewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",
-                                                      description: "This is to determine the average for your region. None of your personal data will be shared.")
+                                                           description: "This is to determine the average for your region. None of your personal data will be shared.")
     let textInputViewModel = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
 
 
-
-    func makeCountryTilewall() -> TileWallView.ViewModel {
-        let countries: [Country] = CountriesGenerator().getCountries()
-        let filteredCountries = countries.filter({
-            $0.name.contains(user.country.capitalized)
+    private func makeCountryTilewall() -> TileWallView.ViewModel {
+        let filteredCountries = allCountries.filter({
+            $0.name.contains(user.country)
         })
+
         let tilesVm: [TileView.ViewModel] = filteredCountries.map { (country) in
             return TileView.ViewModel(text: country.name, emoji: country.flag)
         }
@@ -32,9 +33,9 @@ struct CountryInputView: View {
         VStack(alignment: .leading, spacing: 0) {
             TitleAndDescriptionView(viewModel: titleViewModel)
                 .padding([.top], 80)
-            PrimaryTextView(viewModel: textInputViewModel)
+            PrimaryTextView(viewModel: textInputViewModel, currentText: $user.country)
                 .padding([.top], 44)
-            TileWallView(viewModel: makeCountryTilewall())
+            TileWallView(viewModel: makeCountryTilewall(), selectedValue: $user.country)
                 .padding([.top], 24)
             Spacer()
         }.edgesIgnoringSafeArea(.all)
