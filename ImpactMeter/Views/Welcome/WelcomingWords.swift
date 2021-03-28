@@ -32,7 +32,6 @@ struct WelcomingWords: View {
                 .isHidden(wasButtonAnimated)
                 if currentPage == viewModel.welcomeScreenViewModels.count - 1 {
                     Button(action: {
-                        print("verga \(self.letsGoButtonTapped)")
                         self.letsGoButtonTapped.toggle()
                     }, label: {
                         Text("Let's Go")

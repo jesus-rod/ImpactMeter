@@ -38,7 +38,7 @@ struct CountryInputView: View {
             TileWallView(viewModel: makeCountryTilewall(), selectedValue: $user.country)
                 .padding([.top], 24)
             Spacer()
-        }.edgesIgnoringSafeArea(.all)
+        }
     }
 }
 
