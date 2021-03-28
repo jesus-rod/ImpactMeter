@@ -19,7 +19,7 @@ class User: ObservableObject {
         print("are we skipping ONBOARDING?")
         print(ProcessInfo.processInfo.environment["shouldSkipOnboarding"] ?? "Fix this after MVP yo")
         if ProcessInfo.processInfo.environment["shouldSkipOnboarding"] == "YES" {
-            self.didFinishOnboarding = false
+            self.didFinishOnboarding = true
         } else {
             self.didFinishOnboarding = defaults.bool(forKey: finishedOnboardingKey)
         }

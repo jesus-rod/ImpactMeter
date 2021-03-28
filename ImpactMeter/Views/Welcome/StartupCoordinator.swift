@@ -36,7 +36,7 @@ struct StartupCoordinator: View {
                 }
                 .padding([.leading, .trailing], 24)
             } else if user.didFinishOnboarding {
-                Text("Dashboard")
+                MainTabView()
             } else if !isShowingSplash && !onboardingStarted {
                 WelcomingWords(letsGoButtonTapped: $onboardingStarted)
             } else if onboardingStarted {

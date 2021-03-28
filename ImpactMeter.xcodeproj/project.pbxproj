@@ -30,6 +30,7 @@
 		95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DACDAC260781810026EEE4 /* TileWallView.swift */; };
 		95DACDB1260784700026EEE4 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DACDB0260784700026EEE4 /* Country.swift */; };
 		95F0DE87260FBD030087B3F7 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DE86260FBD030087B3F7 /* Onboarding.swift */; };
+		95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DE9326106F0D0087B3F7 /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		95DACDAC260781810026EEE4 /* TileWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileWallView.swift; sourceTree = "<group>"; };
 		95DACDB0260784700026EEE4 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		95F0DE86260FBD030087B3F7 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		95F0DE9326106F0D0087B3F7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				956E5A3225EC21990029E59A /* ImpactMeterApp.swift */,
+				95F0DE9326106F0D0087B3F7 /* MainTabView.swift */,
 				95DACDAF260784430026EEE4 /* Models */,
 				9566AAAB25FE2332000F1A61 /* Extensions */,
 				95DACD9F26072EBC0026EEE4 /* Views */,
@@ -281,6 +284,7 @@
 				956E5A4725ECCAAB0029E59A /* PageManager.swift in Sources */,
 				95DACDA9260772880026EEE4 /* TileView.swift in Sources */,
 				956E5A4325EC21A90029E59A /* WelcomeScreen.swift in Sources */,
+				95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */,
 				9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */,
 				95BA32212608CEEA007CAF4F /* View+readSize.swift in Sources */,
 				9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */,
