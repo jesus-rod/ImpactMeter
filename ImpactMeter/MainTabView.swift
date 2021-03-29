@@ -13,14 +13,12 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             //Screen one
-            VStack {
-                Text("Screen 1")
-            }.tabItem {
+            TrackIntro().tabItem {
                 selectedTab == 1 ? Image("PlusActive") : Image("Plus")
             }.tag(1)
             //Screen Two
             VStack {
-                Text("Screen 2")
+                DashboardSummaryView()
             }.tabItem {
                 selectedTab == 2 ? Image("MeterActive") : Image("Meter")
             }.tag(2)

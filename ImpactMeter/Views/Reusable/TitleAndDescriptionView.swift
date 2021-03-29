@@ -11,20 +11,20 @@ struct TitleAndDescriptionView: View {
 
     let viewModel: ViewModel
 
-
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text(viewModel.title)
                 .font(.largeTitle).bold()
                 .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing], 24)
-                .padding([.top], 24) 
+                .padding([.top], 52)
+                .fixedSize(horizontal: false, vertical: true)
             Text(viewModel.description)
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing], 24)
+                .fixedSize(horizontal: false, vertical: true)
         }.frame(maxWidth: .infinity,
-                maxHeight: .none,
                 alignment: .leading)
         .animation(.easeIn)
     }
