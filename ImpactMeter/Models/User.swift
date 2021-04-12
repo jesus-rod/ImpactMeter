@@ -13,15 +13,21 @@ class User: ObservableObject {
 
     private let defaults = UserDefaults.standard
     private let finishedOnboardingKey: String = "finishedOnboarding"
-    private let shouldShowCountryOverviewKey: String = "shouldShowCountry"
+    private let finishedTrackingOnboardingKey: String = "finishedTrackingOnboarding"
 
     init() {
         print("are we skipping ONBOARDING?")
         print(ProcessInfo.processInfo.environment["shouldSkipOnboarding"] ?? "Fix this after MVP yo")
         if ProcessInfo.processInfo.environment["shouldSkipOnboarding"] == "YES" {
-            self.didFinishOnboarding = true
+            didFinishOnboarding = true
         } else {
-            self.didFinishOnboarding = defaults.bool(forKey: finishedOnboardingKey)
+            didFinishOnboarding = defaults.bool(forKey: finishedOnboardingKey)
+        }
+
+        if ProcessInfo.processInfo.environment["shouldSkipTrackingOnboarding"] == "YES" {
+            didFinishTrackingOnboarding = true
+        } else {
+            didFinishTrackingOnboarding = defaults.bool(forKey: finishedTrackingOnboardingKey)
         }
     }
 
@@ -36,7 +42,12 @@ class User: ObservableObject {
             // Save user country to user/defaults
             print("Valid country selected, lets save it")
             shouldShowCountrySummary = true
-            // Finish onboarding and set variable
+        }
+    }
+
+    @Published var peopleInHouse: String = "" {
+        didSet {
+            print("Selected # of people")
         }
     }
 
@@ -51,4 +62,12 @@ class User: ObservableObject {
         let countryNames = allCountries.map { $0.name }
         return countryNames.contains(selectedCountry)
     }
+
+
+    // Tracking Onboarding 📗🚀
+    @Published var didFinishTrackingOnboarding: Bool {
+        didSet { defaults.set(didFinishOnboarding, forKey: finishedTrackingOnboardingKey) }
+    }
+
+
 }

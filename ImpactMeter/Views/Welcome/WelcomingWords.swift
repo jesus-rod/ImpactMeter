@@ -16,8 +16,8 @@ struct WelcomingWords: View {
 
     var body: some View {
         VStack {
-            let screenCounnt = viewModel.welcomeScreenViewModels.count
-            PageManager(pageCount: screenCounnt, currentIndex: $currentPage) {
+            let screenCount = viewModel.welcomeScreenViewModels.count
+            PageManager(pageCount: screenCount, currentIndex: $currentPage) {
                 ForEach(viewModel.welcomeScreenViewModels.indices, id: \.self) { index in
                     WelcomeScreen(viewModel: viewModel.welcomeScreenViewModels[index])
                         .isHidden(index != currentPage)

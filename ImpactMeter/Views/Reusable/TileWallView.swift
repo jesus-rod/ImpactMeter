@@ -40,20 +40,6 @@ struct TileWallView: View {
         return selectedValue == tileText
     }
 
-
-//    private var anyTileIsSelected: Bool {
-//        return selectedValues.count > 0
-//    }
-//
-//    private func getSelectedTiles() {
-//        if selectionType == .single {
-//
-//        }
-//    }
-
-
-
-
 }
 
 extension TileWallView {

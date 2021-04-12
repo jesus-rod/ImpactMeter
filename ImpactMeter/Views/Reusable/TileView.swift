@@ -31,9 +31,7 @@ struct TileView: View {
                 return
             }
 
-            // 
             print("Selected", viewModel.text)
-            // Update "selectedTag binding to inform TileWall what is selected"
             selectedTag = viewModel.text
             isSelected = selectedTag == viewModel.text
             print("is it Active? \(isSelected)")

@@ -17,7 +17,7 @@ struct TitleAndDescriptionView: View {
                 .font(.largeTitle).bold()
                 .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing], 24)
-                .padding([.top], 52)
+                .padding([.top], 12)
                 .fixedSize(horizontal: false, vertical: true)
             Text(viewModel.description)
                 .font(.subheadline)

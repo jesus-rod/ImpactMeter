@@ -35,6 +35,9 @@
 		95F0DE9B261100510087B3F7 /* CircleWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DE9A261100510087B3F7 /* CircleWithText.swift */; };
 		95F0DE9F2611A5C80087B3F7 /* TrackIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */; };
 		95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DEA12611A6C60087B3F7 /* TrackIntroSquareTile.swift */; };
+		95F8C3C626233D6300070784 /* TrackIntroTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3C526233D6300070784 /* TrackIntroTiles.swift */; };
+		95F8C3C9262344B200070784 /* PeopleInHouseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */; };
+		95F8C3CC2623753B00070784 /* NumberOfPeopleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3CB2623753B00070784 /* NumberOfPeopleScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,9 @@
 		95F0DE9A261100510087B3F7 /* CircleWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWithText.swift; sourceTree = "<group>"; };
 		95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIntro.swift; sourceTree = "<group>"; };
 		95F0DEA12611A6C60087B3F7 /* TrackIntroSquareTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIntroSquareTile.swift; sourceTree = "<group>"; };
+		95F8C3C526233D6300070784 /* TrackIntroTiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIntroTiles.swift; sourceTree = "<group>"; };
+		95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInHouseScreen.swift; sourceTree = "<group>"; };
+		95F8C3CB2623753B00070784 /* NumberOfPeopleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfPeopleScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */,
+				95F8C3C526233D6300070784 /* TrackIntroTiles.swift */,
+				95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */,
+				95F8C3CB2623753B00070784 /* NumberOfPeopleScreen.swift */,
 			);
 			path = Track;
 			sourceTree = "<group>";
@@ -301,12 +310,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F8C3CC2623753B00070784 /* NumberOfPeopleScreen.swift in Sources */,
 				95F0DE982610FFCA0087B3F7 /* DashboardSummaryView.swift in Sources */,
 				9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */,
 				954350722607A722001DA4D5 /* User.swift in Sources */,
 				95F0DE9B261100510087B3F7 /* CircleWithText.swift in Sources */,
 				95F0DE87260FBD030087B3F7 /* Onboarding.swift in Sources */,
 				9543FB68260F959F0017C023 /* WelcomingWords.swift in Sources */,
+				95F8C3C626233D6300070784 /* TrackIntroTiles.swift in Sources */,
+				95F8C3C9262344B200070784 /* PeopleInHouseScreen.swift in Sources */,
 				95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */,
 				95DACDA5260738B00026EEE4 /* Colors.swift in Sources */,
 				95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */,
@@ -455,7 +467,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"ImpactMeter/Preview Content\"";
 				DEVELOPMENT_TEAM = 8MT7DH3FAZ;
 				ENABLE_PREVIEWS = YES;
@@ -489,7 +501,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"ImpactMeter/Preview Content\"";
 				DEVELOPMENT_TEAM = 8MT7DH3FAZ;
 				ENABLE_PREVIEWS = YES;
