@@ -6,3 +6,13 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - WoodPeckeriOS.framework
   - fastlane
   - target
+
+line_length: 300
+
+type_name:
+  min_length: 4 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+  excluded: iPhone # excluded via string
+  allowed_symbols: ["_"] 

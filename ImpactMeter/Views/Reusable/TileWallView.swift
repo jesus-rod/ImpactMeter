@@ -53,7 +53,7 @@ struct TileWallView_Previews: PreviewProvider {
         let tilesVm = countries.map { country in
             TileView<AnyHashable>.ViewModel(text: country.name, emoji: country.flag, underylingValue: AnyHashable(country.name))
         }
-        let vm = TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
-        TileWallView(viewModel: vm, selectedValue: .constant(""), selectedUnderlyingValue: .constant(""))
+        let tileWallViewModel = TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
+        TileWallView(viewModel: tileWallViewModel, selectedValue: .constant(""), selectedUnderlyingValue: .constant(""))
     }
 }

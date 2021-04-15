@@ -17,9 +17,8 @@ struct CountriesGenerator {
         var countries: [Country] = []
 
         for code in NSLocale.isoCountryCodes as [String] {
-            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            let name = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: id)
-            guard let countryName = name else { continue }
+            let countryId = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            guard let countryName = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: countryId) else { continue }
             countries.append(Country(name: countryName, flag: emojiFlag(for: code)))
         }
 
@@ -28,10 +27,10 @@ struct CountriesGenerator {
 
     private func emojiFlag(for countryCode: String) -> String {
         let base: UInt32 = 127_397
-        var s = ""
-        for v in countryCode.uppercased().unicodeScalars {
-            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        var finalEmojiFlag = ""
+        for val in countryCode.uppercased().unicodeScalars {
+            finalEmojiFlag.unicodeScalars.append(UnicodeScalar(base + val.value)!)
         }
-        return s
+        return finalEmojiFlag
     }
 }

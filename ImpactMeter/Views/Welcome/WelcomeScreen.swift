@@ -35,7 +35,7 @@ struct WelcomeScreen: View {
 
 extension WelcomeScreen {
     struct ViewModel: Hashable {
-        let id = UUID()
+        let idenditifer = UUID()
         let title: String
         let subtitle: String
     }

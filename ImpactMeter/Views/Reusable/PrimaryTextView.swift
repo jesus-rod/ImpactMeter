@@ -58,8 +58,8 @@ extension PrimaryTextView {
 
 struct PrimaryTextView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
-        PrimaryTextView(viewModel: vm, currentText: .constant(""), stickyText: "x")
+        let textViewVm = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
+        PrimaryTextView(viewModel: textViewVm, currentText: .constant(""), stickyText: "x")
             .previewDevice("iPhone 11")
     }
 }

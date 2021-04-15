@@ -59,25 +59,19 @@ struct TileView<T: Hashable>: View {
 extension TileView {
     struct ViewModel<T: Hashable>: Hashable {
         static func == (lhs: TileView.ViewModel<T>, rhs: TileView.ViewModel<T>) -> Bool {
-            lhs.id == rhs.id
+            lhs.identifier == rhs.identifier
         }
 
-        let id = UUID()
+        let identifier = UUID()
         let text: String
         let emoji: String
         let underylingValue: T
-
-//        init(text: String, emoji: String, underylingValue: T) {
-//            self.text = text
-//            self.emoji = emoji
-//            self.underylingValue = T.self
-//        }
     }
 }
 
 struct TileView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = TileView<String>.ViewModel(text: "Netherlands", emoji: "🇳🇱", underylingValue: "Netherlands")
-        TileView(viewModel: vm, selectedTag: .constant(""), isSelected: false, selectedUnderlyingValue: .constant(""))
+        let tileViewVm = TileView<String>.ViewModel(text: "Netherlands", emoji: "🇳🇱", underylingValue: "Netherlands")
+        TileView(viewModel: tileViewVm, selectedTag: .constant(""), isSelected: false, selectedUnderlyingValue: .constant(""))
     }
 }
