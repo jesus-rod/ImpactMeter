@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WelcomeScreen: View {
-
     let viewModel: ViewModel
 
     @State private var opacity = 0.0
@@ -23,14 +22,14 @@ struct WelcomeScreen: View {
                 .font(.largeTitle)
                 .padding([.leading, .trailing], 24)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(Rectangle().foregroundColor(.clear))
-        .opacity(opacity)
-        .edgesIgnoringSafeArea(.all)
-        .onAppear{
-            withAnimation(.easeInOut(duration: 1.0)) {
-                opacity = 1.0
+            .background(Rectangle().foregroundColor(.clear))
+            .opacity(opacity)
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1.0)) {
+                    opacity = 1.0
+                }
             }
-        }
     }
 }
 

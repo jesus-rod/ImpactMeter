@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StartupCoordinator: View {
-    
     private let animationDuration = 1.0
     @State private var titleOpacity = 0.0
     @State private var isShowingSplash: Bool = true
@@ -45,10 +44,10 @@ struct StartupCoordinator: View {
                 fatalError("we fked up")
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
-        .edgesIgnoringSafeArea(.all)
-        .onAppear {
-            switchToWelcomeScreens()
-        }
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                switchToWelcomeScreens()
+            }
     }
 
     private func switchToWelcomeScreens() {

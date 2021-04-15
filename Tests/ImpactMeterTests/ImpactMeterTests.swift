@@ -1,5 +1,5 @@
-import XCTest
 @testable import ImpactMeter
+import XCTest
 
 final class ImpactMeterTests: XCTestCase {
     func testExample() {

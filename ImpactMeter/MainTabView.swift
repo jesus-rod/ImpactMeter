@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct MainTabView: View {
-
     @State var selectedTab = 1
     var body: some View {
         TabView(selection: $selectedTab) {
-            //Screen one
+            // Screen one
             TrackIntro().tabItem {
                 selectedTab == 1 ? Image("PlusActive") : Image("Plus")
             }.tag(1)
-            //Screen Two
+            // Screen Two
             VStack {
                 DashboardSummaryView()
             }.tabItem {
                 selectedTab == 2 ? Image("MeterActive") : Image("Meter")
             }.tag(2)
-            //Screen Three
+            // Screen Three
             VStack {
                 Text("Screen 3")
             }.tabItem {

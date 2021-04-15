@@ -12,6 +12,7 @@
 		9543FB68260F959F0017C023 /* WelcomingWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB67260F959F0017C023 /* WelcomingWords.swift */; };
 		9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6A260F9DDC0017C023 /* CountrySummary.swift */; };
 		9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6E260FA2C80017C023 /* IMPageControl.swift */; };
+		954D32EA26280FE7008E8B41 /* CarbonTrackingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */; };
 		9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAAD25FE236D000F1A61 /* View+isHidden.swift */; };
 		9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */; };
 		956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E5A3225EC21990029E59A /* ImpactMeterApp.swift */; };
@@ -37,7 +38,7 @@
 		95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0DEA12611A6C60087B3F7 /* TrackIntroSquareTile.swift */; };
 		95F8C3C626233D6300070784 /* TrackIntroTiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3C526233D6300070784 /* TrackIntroTiles.swift */; };
 		95F8C3C9262344B200070784 /* PeopleInHouseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */; };
-		95F8C3CC2623753B00070784 /* NumberOfPeopleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3CB2623753B00070784 /* NumberOfPeopleScreen.swift */; };
+		95F8C3CC2623753B00070784 /* SizeOfPropertyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		9543FB67260F959F0017C023 /* WelcomingWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomingWords.swift; sourceTree = "<group>"; };
 		9543FB6A260F9DDC0017C023 /* CountrySummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySummary.swift; sourceTree = "<group>"; };
 		9543FB6E260FA2C80017C023 /* IMPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMPageControl.swift; sourceTree = "<group>"; };
+		954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonTrackingData.swift; sourceTree = "<group>"; };
 		9566AAAD25FE236D000F1A61 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescriptionView.swift; sourceTree = "<group>"; };
 		956E5A2F25EC21990029E59A /* ImpactMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImpactMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,7 +74,7 @@
 		95F0DEA12611A6C60087B3F7 /* TrackIntroSquareTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIntroSquareTile.swift; sourceTree = "<group>"; };
 		95F8C3C526233D6300070784 /* TrackIntroTiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIntroTiles.swift; sourceTree = "<group>"; };
 		95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInHouseScreen.swift; sourceTree = "<group>"; };
-		95F8C3CB2623753B00070784 /* NumberOfPeopleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfPeopleScreen.swift; sourceTree = "<group>"; };
+		95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeOfPropertyScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			children = (
 				95DACDB0260784700026EEE4 /* Country.swift */,
 				954350712607A722001DA4D5 /* User.swift */,
+				954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,7 +211,7 @@
 				95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */,
 				95F8C3C526233D6300070784 /* TrackIntroTiles.swift */,
 				95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */,
-				95F8C3CB2623753B00070784 /* NumberOfPeopleScreen.swift */,
+				95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */,
 			);
 			path = Track;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 956E5A3E25EC21990029E59A /* Build configuration list for PBXNativeTarget "ImpactMeter" */;
 			buildPhases = (
+				954D32EC26281683008E8B41 /* Swiftlint Script */,
 				956E5A2B25EC21990029E59A /* Sources */,
 				956E5A2C25EC21990029E59A /* Frameworks */,
 				956E5A2D25EC21990029E59A /* Resources */,
@@ -285,6 +289,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		954D32EC26281683008E8B41 /* Swiftlint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swiftlint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		95F0DE9126105E7C0087B3F7 /* Integrate Woodpecker */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,7 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F8C3CC2623753B00070784 /* NumberOfPeopleScreen.swift in Sources */,
+				95F8C3CC2623753B00070784 /* SizeOfPropertyScreen.swift in Sources */,
 				95F0DE982610FFCA0087B3F7 /* DashboardSummaryView.swift in Sources */,
 				9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */,
 				954350722607A722001DA4D5 /* User.swift in Sources */,
@@ -329,6 +351,7 @@
 				956E5A4325EC21A90029E59A /* WelcomeScreen.swift in Sources */,
 				95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */,
 				9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */,
+				954D32EA26280FE7008E8B41 /* CarbonTrackingData.swift in Sources */,
 				95BA32212608CEEA007CAF4F /* View+readSize.swift in Sources */,
 				9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */,
 				95DACDB1260784700026EEE4 /* Country.swift in Sources */,

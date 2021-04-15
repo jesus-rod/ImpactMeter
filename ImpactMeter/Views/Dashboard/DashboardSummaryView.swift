@@ -5,13 +5,11 @@
 //  Created by Jesus Rodriguez on 28.03.21.
 //
 
-import SwiftUI
 import Introspect
+import SwiftUI
 
 struct DashboardSummaryView: View {
-
     var body: some View {
-
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 DashboardSummaryHeader()
@@ -27,17 +25,14 @@ struct DashboardSummaryView: View {
                     .padding([.bottom], 16)
             }
         }
-
     }
 }
 
 struct SummaryList: View {
     var body: some View {
-
         VStack(spacing: 16) {
             Divider()
             HStack {
-
                 Text("✈️")
                 Text("Travel")
                     .font(.body)
@@ -99,19 +94,16 @@ struct SummaryList: View {
 }
 
 struct DashboardSummaryHeader: View {
-
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-
         let bigCircleVm = CircleWithText
-            .ViewModel(diameter: 208, color: .primary, textColor: colorScheme == .dark ?  Color.black : Color.white,
+            .ViewModel(diameter: 208, color: .primary, textColor: colorScheme == .dark ? Color.black : Color.white,
                        topText: "Expenses", bottomText: "1,844 kg CO2", isBigCircle: true)
         let smallCircleVm = CircleWithText
             .ViewModel(diameter: 115, color: .green, textColor: Color.white, topText: "Savings", bottomText: "372 kg CO2", isBigCircle: false)
 
         VStack(alignment: .leading, spacing: 88) {
-
             Text("Your footprint is decreasing 👌")
                 .font(.largeTitle)
                 .bold()

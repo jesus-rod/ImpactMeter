@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct WelcomingWords: View {
-
     @State private var currentPage = 0
     @State private var wasButtonAnimated = false
     @Binding var letsGoButtonTapped: Bool
-    let viewModel = ViewModel.init()
+    let viewModel = ViewModel()
 
     var body: some View {
         VStack {
@@ -22,14 +21,13 @@ struct WelcomingWords: View {
                     WelcomeScreen(viewModel: viewModel.welcomeScreenViewModels[index])
                         .isHidden(index != currentPage)
                         .animation(.easeInOut)
-
                 }
             }
             Spacer()
             VStack {
                 IMPageControl(currentPage: $currentPage)
-                .animation(.easeInOut)
-                .isHidden(wasButtonAnimated)
+                    .animation(.easeInOut)
+                    .isHidden(wasButtonAnimated)
                 if currentPage == viewModel.welcomeScreenViewModels.count - 1 {
                     Button(action: {
                         self.letsGoButtonTapped.toggle()
@@ -57,7 +55,6 @@ struct WelcomingWords: View {
 }
 
 extension WelcomingWords {
-
     struct ViewModel {
         let welcomeScreenViewModels: [WelcomeScreen.ViewModel]
 

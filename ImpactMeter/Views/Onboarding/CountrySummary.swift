@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CountrySummary: View {
-
-
     private let pageCount: Int = 2
     @EnvironmentObject var user: User
     @State private var currentPage = 0
@@ -19,12 +17,12 @@ struct CountrySummary: View {
                                                            description: "The CO2 emission level for the Netherlands has been on the decline since 2008.")
 
     let titleViewModel2 = TitleAndDescriptionView.ViewModel(title: "Your emissions",
-                                                           description: "Calculating your personal footprint is done automatically and it will be compared to average levels in your area.")
+                                                            description: "Calculating your personal footprint is done automatically and it will be compared to average levels in your area.")
 
     var body: some View {
         VStack {
             PageManager(pageCount: pageCount, currentIndex: $currentPage) {
-                //Country Summary Page One
+                // Country Summary Page One
                 VStack(alignment: .center, spacing: 80) {
                     TitleAndDescriptionView(viewModel: titleViewModel)
                         .padding([.top], 80)
@@ -59,8 +57,8 @@ struct CountrySummary: View {
                     })
 
                 }.isHidden(currentPage != 0)
-                .animation(.easeInOut)
-                //Country Summary Page Two
+                    .animation(.easeInOut)
+                // Country Summary Page Two
                 VStack(alignment: .center, spacing: 80) {
                     TitleAndDescriptionView(viewModel: titleViewModel2)
                         .padding([.top], 120)
@@ -92,12 +90,12 @@ struct CountrySummary: View {
                     })
 
                 }.isHidden(currentPage != 1)
-                .animation(.easeInOut)
+                    .animation(.easeInOut)
             }
             Spacer()
             IMPageControl(currentPage: $currentPage)
-            .animation(.easeInOut)
-            .isHidden(wasButtonAnimated)
+                .animation(.easeInOut)
+                .isHidden(wasButtonAnimated)
             if currentPage == pageCount - 1 {
                 Button(action: {
                     user.didFinishOnboarding = true
@@ -120,8 +118,7 @@ struct CountrySummary: View {
             }
 
         }.padding([.bottom], 24)
-        .animation(.easeIn)
-
+            .animation(.easeIn)
     }
 }
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TitleAndDescriptionView: View {
-
     let viewModel: ViewModel
 
     var body: some View {
@@ -26,19 +25,18 @@ struct TitleAndDescriptionView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }.frame(maxWidth: .infinity,
                 alignment: .leading)
-        .animation(.easeIn)
+            .animation(.easeIn)
     }
 }
 
 extension TitleAndDescriptionView {
-
     struct ViewModel {
         let title: String
         let description: String
     }
 }
 
-//Preview
+// Preview
 struct TitleAndDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?", description: "This is to determine the average for your region. None of your personal data will be shared.")

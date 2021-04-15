@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TrackIntroTiles: View {
-
     private let trackOne = ["🚗", "✈️", "🍕", "🥗", "♻️", "🥝", "🛒"]
     private let trackTwo = ["🍳", "💡", "🛒", "🍌", "⚡️", "⛴"]
     private let trackThree = ["♻️", "🔥", "🍱", "☕️", "💧", "🎄", "✈️"]
@@ -17,10 +16,9 @@ struct TrackIntroTiles: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 24) {
-
             // Track One
             HStack(spacing: 16) {
-                ForEach(trackOne, id: \.self) { (item) in
+                ForEach(trackOne, id: \.self) { item in
                     TrackIntroSquareTile(icon: item)
                 }
             }.offset(x: 45, y: 0)
@@ -28,34 +26,33 @@ struct TrackIntroTiles: View {
             // Track Two
 
             HStack(spacing: 16) {
-                ForEach(trackTwo, id: \.self) { (item) in
+                ForEach(trackTwo, id: \.self) { item in
                     TrackIntroSquareTile(icon: item)
                 }
             }.offset(x: -5, y: 0)
 
             // Track Three
             HStack(spacing: 16) {
-                ForEach(trackThree, id: \.self) { (item) in
+                ForEach(trackThree, id: \.self) { item in
                     TrackIntroSquareTile(icon: item)
                 }
             }.offset(x: -15, y: 0)
 
             // Track Four
             HStack(spacing: 16) {
-                ForEach(trackFour, id: \.self) { (item) in
+                ForEach(trackFour, id: \.self) { item in
                     TrackIntroSquareTile(icon: item)
                 }
             }.offset(x: 45, y: 0)
 
             // Track Five
             HStack(spacing: 16) {
-                ForEach(trackFive, id: \.self) { (item) in
+                ForEach(trackFive, id: \.self) { item in
                     TrackIntroSquareTile(icon: item)
                 }
             }.offset(x: 10, y: 0)
         }
     }
-
 }
 
 struct TrackIntroTiles_Previews: PreviewProvider {

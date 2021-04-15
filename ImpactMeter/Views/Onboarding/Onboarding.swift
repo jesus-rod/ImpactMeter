@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Onboarding: View {
-
     @EnvironmentObject var user: User
 
     var body: some View {
@@ -17,7 +16,6 @@ struct Onboarding: View {
         } else {
             CountryInputView()
         }
-
     }
 }
 

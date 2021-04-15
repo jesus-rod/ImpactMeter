@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CircleWithText: View {
-
     let viewModel: ViewModel
 
     var body: some View {
@@ -30,7 +29,6 @@ struct CircleWithText: View {
 }
 
 extension CircleWithText {
-
     struct ViewModel {
         let diameter: CGFloat
         let color: Color

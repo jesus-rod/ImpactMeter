@@ -9,8 +9,6 @@ import Combine
 import Foundation
 
 class User: ObservableObject {
-
-
     private let defaults = UserDefaults.standard
     private let finishedOnboardingKey: String = "finishedOnboarding"
     private let finishedTrackingOnboardingKey: String = "finishedTrackingOnboarding"
@@ -30,7 +28,6 @@ class User: ObservableObject {
             didFinishTrackingOnboarding = defaults.bool(forKey: finishedTrackingOnboardingKey)
         }
     }
-
 
     @Published var country: String = "" {
         didSet {
@@ -63,11 +60,8 @@ class User: ObservableObject {
         return countryNames.contains(selectedCountry)
     }
 
-
     // Tracking Onboarding 📗🚀
     @Published var didFinishTrackingOnboarding: Bool {
         didSet { defaults.set(didFinishOnboarding, forKey: finishedTrackingOnboardingKey) }
     }
-
-
 }

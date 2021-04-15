@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct TrackIntroSquareTile: View {
-
     let icon: String
 
     var body: some View {
-
         RoundedRectangle(cornerRadius: 10)
             .frame(width: 36, height: 32, alignment: .center)
             .foregroundColor(IMColors.blueishGray)

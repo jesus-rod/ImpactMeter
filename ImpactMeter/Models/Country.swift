@@ -13,9 +13,7 @@ struct Country {
 }
 
 struct CountriesGenerator {
-
     func getCountries() -> [Country] {
-
         var countries: [Country] = []
 
         for code in NSLocale.isoCountryCodes as [String] {
@@ -29,11 +27,11 @@ struct CountriesGenerator {
     }
 
     private func emojiFlag(for countryCode: String) -> String {
-        let base : UInt32 = 127397
-            var s = ""
-            for v in countryCode.uppercased().unicodeScalars {
-                s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
-            }
-            return s
+        let base: UInt32 = 127_397
+        var s = ""
+        for v in countryCode.uppercased().unicodeScalars {
+            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        }
+        return s
     }
 }

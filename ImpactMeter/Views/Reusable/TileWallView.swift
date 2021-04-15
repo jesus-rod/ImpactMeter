@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct TileWallView: View {
-
+struct TileWallView<T: Hashable>: View {
     let viewModel: ViewModel
     @Binding var selectedValue: String
+    @Binding var selectedUnderlyingValue: T
 
     let selectionType: SelectionType = .single
 
@@ -22,40 +22,38 @@ struct TileWallView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             FlexibleView(
-              data: viewModel.tiles,
-              spacing: 10,
-            alignment: .leading
+                data: viewModel.tiles,
+                spacing: 10,
+                alignment: .leading
             ) { tileInfo in
                 TileView(viewModel: tileInfo,
                          selectedTag: $selectedValue,
-                         isSelected: isSelected(tileText: tileInfo.text))
+                         isSelected: isSelected(tileText: tileInfo.text),
+                         selectedUnderlyingValue: $selectedUnderlyingValue)
             }
         }.padding([.leading, .trailing, .bottom], 16)
             .frame(maxWidth: .infinity,
-                    alignment: .leading)
-
+                   alignment: .leading)
     }
 
     private func isSelected(tileText: String) -> Bool {
         return selectedValue == tileText
     }
-
 }
 
 extension TileWallView {
-
     struct ViewModel {
-        let tiles: [TileView.ViewModel]
+        let tiles: [TileView<T>.ViewModel<T>]
     }
 }
 
 struct TileWallView_Previews: PreviewProvider {
     static var previews: some View {
         let countries = CountriesGenerator().getCountries()
-        let tilesVm = countries.map { (country) in
-            return TileView.ViewModel(text: country.name, emoji: country.flag)
+        let tilesVm = countries.map { country in
+            TileView<AnyHashable>.ViewModel(text: country.name, emoji: country.flag, underylingValue: AnyHashable(country.name))
         }
-        let vm = TileWallView.ViewModel(tiles: tilesVm)
-        TileWallView(viewModel: vm, selectedValue: .constant(""))
+        let vm = TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
+        TileWallView(viewModel: vm, selectedValue: .constant(""), selectedUnderlyingValue: .constant(""))
     }
 }

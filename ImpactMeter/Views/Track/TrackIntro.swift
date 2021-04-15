@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TrackIntro: View {
-    var body: some View {
+    @StateObject var carbonTrackingData = CarbonTrackingData()
 
+    var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Track your first activity", description: "Your footprint is currently not displaying anything because you haven’t tracked any activity yet.")
         NavigationView {
             VStack(alignment: .leading, spacing: 88) {
@@ -18,8 +19,8 @@ struct TrackIntro: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 TrackIntroTiles()
 
-                VStack() {
-                    NavigationLink(destination: PeopleInHouseScreen()) {
+                VStack {
+                    NavigationLink(destination: PeopleInHouseScreen().environmentObject(carbonTrackingData)) {
                         HStack(spacing: 14) {
                             Text("Track Now")
                                 .foregroundColor(.blue)
@@ -34,15 +35,13 @@ struct TrackIntro: View {
                                 )
                         }
                     }.padding([.leading, .trailing], 24)
-                    .padding([.bottom], 20)
+                        .padding([.bottom], 20)
                 }
             }
             .navigationBarHidden(true)
             .ignoresSafeArea(edges: .all)
             .navigationBarTitle("")
         }
-
-
     }
 }
 
