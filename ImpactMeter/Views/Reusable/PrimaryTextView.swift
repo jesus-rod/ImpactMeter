@@ -12,15 +12,7 @@ import SwiftUI
 struct PrimaryTextView: View {
     let viewModel: ViewModel
     @Binding var currentText: String
-    private let keyboardType: UIKeyboardType
-    private let stickyText: String
-
-    init(viewModel: ViewModel, currentText: Binding<String>, keyboardType: UIKeyboardType = .webSearch, stickyText: String = "") {
-        self.viewModel = viewModel
-        _currentText = currentText
-        self.keyboardType = keyboardType
-        self.stickyText = stickyText
-    }
+    let keyboardType: UIKeyboardType
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,17 +27,15 @@ struct PrimaryTextView: View {
                     print("done tapped")
 
                 }.font(Font.system(size: 24, weight: .bold, design: .default))
-                    .foregroundColor(.primary)
-                    .keyboardType(keyboardType)
-                    .introspectTextField { textfield in
-                        textfield.becomeFirstResponder()
-                        textfield.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-                    }
+                .foregroundColor(.primary)
+                .keyboardType(keyboardType)
+                .introspectTextField { textfield in
+                    textfield.becomeFirstResponder()
+                }
             }
         }.frame(maxWidth: .infinity,
-                maxHeight: .none,
                 alignment: .leading)
-            .padding([.leading, .trailing], 24)
+        .padding([.horizontal], 24)
     }
 }
 
@@ -59,7 +49,7 @@ extension PrimaryTextView {
 struct PrimaryTextView_Previews: PreviewProvider {
     static var previews: some View {
         let textViewVm = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
-        PrimaryTextView(viewModel: textViewVm, currentText: .constant(""), stickyText: "x")
+        PrimaryTextView(viewModel: textViewVm, currentText: .constant(""), keyboardType: .webSearch)
             .previewDevice("iPhone 11")
     }
 }

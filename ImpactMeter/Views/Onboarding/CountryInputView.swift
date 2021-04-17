@@ -30,7 +30,7 @@ struct CountryInputView: View {
         VStack(alignment: .leading, spacing: 0) {
             TitleAndDescriptionView(viewModel: titleViewModel)
                 .padding([.top], 80)
-            PrimaryTextView(viewModel: textInputViewModel, currentText: $user.country)
+            PrimaryTextView(viewModel: textInputViewModel, currentText: $user.country, keyboardType: .webSearch)
                 .padding([.top], 44)
             TileWallView(viewModel: makeCountryTilewall(), selectedValue: $user.country, selectedUnderlyingValue: .constant(""))
                 .padding([.top], 24)

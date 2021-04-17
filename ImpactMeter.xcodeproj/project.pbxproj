@@ -13,6 +13,10 @@
 		9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6A260F9DDC0017C023 /* CountrySummary.swift */; };
 		9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6E260FA2C80017C023 /* IMPageControl.swift */; };
 		954D32EA26280FE7008E8B41 /* CarbonTrackingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */; };
+		954D32EF26294D5C008E8B41 /* SuffixableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */; };
+		954D32F226294F6D008E8B41 /* PrimaryResizableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */; };
+		954D32F5262950C5008E8B41 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F4262950C5008E8B41 /* String+Length.swift */; };
+		954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F726295C04008E8B41 /* PrimaryButton.swift */; };
 		9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAAD25FE236D000F1A61 /* View+isHidden.swift */; };
 		9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */; };
 		956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E5A3225EC21990029E59A /* ImpactMeterApp.swift */; };
@@ -48,6 +52,10 @@
 		9543FB6A260F9DDC0017C023 /* CountrySummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySummary.swift; sourceTree = "<group>"; };
 		9543FB6E260FA2C80017C023 /* IMPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMPageControl.swift; sourceTree = "<group>"; };
 		954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonTrackingData.swift; sourceTree = "<group>"; };
+		954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixableTextField.swift; sourceTree = "<group>"; };
+		954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryResizableTextField.swift; sourceTree = "<group>"; };
+		954D32F4262950C5008E8B41 /* String+Length.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
+		954D32F726295C04008E8B41 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		9566AAAD25FE236D000F1A61 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescriptionView.swift; sourceTree = "<group>"; };
 		956E5A2F25EC21990029E59A /* ImpactMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImpactMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				95DACDA126072EFA0026EEE4 /* PrimaryTextView.swift */,
+				954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */,
 				9543FB6E260FA2C80017C023 /* IMPageControl.swift */,
 				95DACDAC260781810026EEE4 /* TileWallView.swift */,
 				9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */,
@@ -122,6 +131,8 @@
 				95BA32262608D045007CAF4F /* _FlexibleView.swift */,
 				95F0DE9A261100510087B3F7 /* CircleWithText.swift */,
 				95F0DEA12611A6C60087B3F7 /* TrackIntroSquareTile.swift */,
+				954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */,
+				954D32F726295C04008E8B41 /* PrimaryButton.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -132,6 +143,7 @@
 				95DACDA4260738B00026EEE4 /* Colors.swift */,
 				9566AAAD25FE236D000F1A61 /* View+isHidden.swift */,
 				95BA32202608CEEA007CAF4F /* View+readSize.swift */,
+				954D32F4262950C5008E8B41 /* String+Length.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -344,11 +356,14 @@
 				95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */,
 				95DACDA5260738B00026EEE4 /* Colors.swift in Sources */,
 				95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */,
+				954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */,
 				9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */,
 				956E5A4725ECCAAB0029E59A /* PageManager.swift in Sources */,
 				95DACDA9260772880026EEE4 /* TileView.swift in Sources */,
+				954D32EF26294D5C008E8B41 /* SuffixableTextField.swift in Sources */,
 				95F0DE9F2611A5C80087B3F7 /* TrackIntro.swift in Sources */,
 				956E5A4325EC21A90029E59A /* WelcomeScreen.swift in Sources */,
+				954D32F5262950C5008E8B41 /* String+Length.swift in Sources */,
 				95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */,
 				9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */,
 				954D32EA26280FE7008E8B41 /* CarbonTrackingData.swift in Sources */,
@@ -360,6 +375,7 @@
 				956E5A3525EC21990029E59A /* StartupCoordinator.swift in Sources */,
 				95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */,
 				95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */,
+				954D32F226294F6D008E8B41 /* PrimaryResizableTextField.swift in Sources */,
 				956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
