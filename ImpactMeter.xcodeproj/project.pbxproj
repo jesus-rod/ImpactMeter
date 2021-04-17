@@ -17,6 +17,7 @@
 		954D32F226294F6D008E8B41 /* PrimaryResizableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */; };
 		954D32F5262950C5008E8B41 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F4262950C5008E8B41 /* String+Length.swift */; };
 		954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F726295C04008E8B41 /* PrimaryButton.swift */; };
+		9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */; };
 		9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAAD25FE236D000F1A61 /* View+isHidden.swift */; };
 		9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */; };
 		956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E5A3225EC21990029E59A /* ImpactMeterApp.swift */; };
@@ -56,6 +57,7 @@
 		954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryResizableTextField.swift; sourceTree = "<group>"; };
 		954D32F4262950C5008E8B41 /* String+Length.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
 		954D32F726295C04008E8B41 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfPropertyScreen.swift; sourceTree = "<group>"; };
 		9566AAAD25FE236D000F1A61 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescriptionView.swift; sourceTree = "<group>"; };
 		956E5A2F25EC21990029E59A /* ImpactMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImpactMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,7 @@
 				95F8C3C526233D6300070784 /* TrackIntroTiles.swift */,
 				95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */,
 				95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */,
+				9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */,
 			);
 			path = Track;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				95F0DE982610FFCA0087B3F7 /* DashboardSummaryView.swift in Sources */,
 				9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */,
 				954350722607A722001DA4D5 /* User.swift in Sources */,
+				9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */,
 				95F0DE9B261100510087B3F7 /* CircleWithText.swift in Sources */,
 				95F0DE87260FBD030087B3F7 /* Onboarding.swift in Sources */,
 				9543FB68260F959F0017C023 /* WelcomingWords.swift in Sources */,

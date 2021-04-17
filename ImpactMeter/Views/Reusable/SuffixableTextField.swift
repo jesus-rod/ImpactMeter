@@ -7,49 +7,60 @@
 
 import SwiftUI
 
+
+//class ModifiedTextField: UITextField {
+//
+//    let placeholderLength: Int
+//
+//    init(placeholderLength: Int) {
+//        self.placeholderLength = placeholderLength
+//        super.init(frame: CGRect.zero)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+//        false
+//    }
+//
+//}
+
 // A textfield that supports a suffix that the user can't edit
-
-class ModifiedTextField: UITextField {
-
-    let placeholderLength: Int
-
-    init(placeholderLength: Int) {
-        self.placeholderLength = placeholderLength
-        super.init(frame: CGRect.zero)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        false
-    }
-
-}
-
 struct SuffixableTextField: UIViewRepresentable {
 
     let placeholderText: String
-    @Binding var text: String
+    @Binding var text: String {
+        didSet {
+            print("binding text var is: \(text)")
+        }
+    }
     let suffixText: String
+    let modifiedTf = UITextField() // ModifiedTextField(placeholderLength: 3)
+    let onEditingChanged: (String) -> Void
 
     private let usedFont: UIFont = UIFont.boldSystemFont(ofSize: 24)
 
-    init(placeholderText: String, text: Binding<String>, suffixText: String) {
+    init(placeholderText: String,
+         text: Binding<String>,
+         suffixText: String,
+         onEditingChanged: @escaping (String) -> Void = { _ in }) {
         self.placeholderText = placeholderText
         self._text = text
         self.suffixText = " \(suffixText)"
+        self.onEditingChanged = onEditingChanged
     }
 
     func makeUIView(context: UIViewRepresentableContext<SuffixableTextField>) -> UITextField {
-        let textField = ModifiedTextField(placeholderLength: 3)
 
-        textField.font = usedFont
-        textField.keyboardType = UIKeyboardType.decimalPad
-        textField.text = placeholderText
-        textField.textColor = .placeholderText
-        textField.allowsEditingTextAttributes = false
+        modifiedTf.addTarget(self, action: #selector(Coordinator.textFieldDidChange(_:)), for: .editingChanged)
+
+        modifiedTf.font = usedFont
+        modifiedTf.keyboardType = UIKeyboardType.decimalPad
+        modifiedTf.text = placeholderText
+        modifiedTf.textColor = .placeholderText
+        modifiedTf.allowsEditingTextAttributes = false
 
         let attributedString = NSMutableAttributedString(string: placeholderText)
 
@@ -59,27 +70,21 @@ struct SuffixableTextField: UIViewRepresentable {
 
         let suffix = NSMutableAttributedString(string: suffixText)
         suffix.addAttribute(NSAttributedString.Key.foregroundColor,
-                            value: UIColor.black,
+                            value: UIColor.label,
                             range: NSRange(location: 0, length: suffix.length))
 
         attributedString.append(suffix)
 
-        textField.attributedText = attributedString
+        modifiedTf.attributedText = attributedString
 
-//        textField.becomeFirstResponder()
+        //        textField.becomeFirstResponder()
 
-        return textField
+        modifiedTf.delegate = context.coordinator
+
+        return modifiedTf
     }
 
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<SuffixableTextField>) {
-
-        if text != "" || uiView.textColor == .label {
-            uiView.text = text
-            uiView.textColor = .label
-        }
-
-        uiView.delegate = context.coordinator
-    }
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<SuffixableTextField>) {}
 
     func makeCoordinator() -> SuffixableTextField.Coordinator {
         Coordinator(self)
@@ -90,6 +95,22 @@ struct SuffixableTextField: UIViewRepresentable {
 
         init(_ parent: SuffixableTextField) {
             self.parent = parent
+            super.init()
+            parent.modifiedTf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        }
+
+        @objc func textFieldDidChange(_ textField: UITextField) {
+//            print("value is \(text)")
+            print("value is --> \(textField.text)")
+            print("value is \(parent.text)")
+
+            let updatedValue = textField.text ?? ""
+            parent.text = "VERGANO"
+
+            DispatchQueue.main.async {
+//                self.parent._text.wrappedValue = textField.text ?? ""
+            }
+            self.parent.onEditingChanged(updatedValue)
         }
 
         func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -108,20 +129,18 @@ struct SuffixableTextField: UIViewRepresentable {
             }
         }
 
-        func textFieldDidEndEditing(_ textField: UITextField) { }
+        func textFieldDidEndEditing(_ textField: UITextField) {}
 
         /// Allow a maximum length of 5 for property size
         /// Allow numbers only
         /// dont allow to change the last part (sticky text at the end)
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-            print("range Location \(range.location)")
-            print("range Length \(range.length)")
             let maximumLength: Int = 7
             let placeholderLength: Int = parent.suffixText.count
 
             // This makes the new text black.
-            textField.typingAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            textField.typingAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
 
             // should never be optional ... add some logging here
             guard let typedTextLength = textField.text?.count else {

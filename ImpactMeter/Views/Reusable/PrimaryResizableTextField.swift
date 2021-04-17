@@ -19,14 +19,17 @@ struct PrimarySuffixableTextView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(IMColors.gray)
 
-            SuffixableTextField(placeholderText: viewModel.bottomPlaceholder, text: $currentText, suffixText: viewModel.stickyText)
-                .frame(height: 45, alignment: .topLeading)
-            Spacer()
-            PrimaryButton(title: "Confirm", action: {
-                print("go to structure")
-            })
-        }
-        //            .background(Rectangle().foregroundColor(.purple))
+            SuffixableTextField(placeholderText: viewModel.bottomPlaceholder,
+                                text: $currentText,
+                                suffixText: viewModel.stickyText) { (changed) in
+                print("this work? \(changed)")
+            }
+            .frame(height: 45, alignment: .topLeading)
+        }.onChange(of: currentText, perform: { (value) in
+            print("Something changed")
+        })
+
+
         .padding([.horizontal], 24)
         .edgesIgnoringSafeArea(.all)
     }

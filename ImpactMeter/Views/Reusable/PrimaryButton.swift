@@ -20,8 +20,9 @@ struct PrimaryButton: View {
             Text(title)
                 .font(.callout).bold()
                 .foregroundColor(.white)
-                .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
+                .frame(maxWidth: .infinity, minHeight: 48)
                 .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.blue))
+                .padding([.leading, .trailing], 24)
                 .onAppear(perform: {
                     wasButtonAnimated.toggle()
                 })
