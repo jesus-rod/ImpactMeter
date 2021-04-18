@@ -54,7 +54,7 @@ struct SuffixableTextField: UIViewRepresentable {
         modifiedTf.addTarget(self, action: #selector(Coordinator.textFieldDidChange(_:)), for: .editingChanged)
 
         modifiedTf.font = usedFont
-        modifiedTf.keyboardType = UIKeyboardType.decimalPad
+        modifiedTf.keyboardType = UIKeyboardType.phonePad
         modifiedTf.text = placeholderText
         modifiedTf.textColor = .placeholderText
         modifiedTf.allowsEditingTextAttributes = false

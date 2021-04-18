@@ -35,7 +35,8 @@ struct PeopleInHouseScreen: View {
             carbonTrackingData.peepsInHouse = selectedPeepsInHouse.base as? Int ?? 0
             // Go to next tracking onboarding screen
             goToNextScreen.toggle()
-        }.navigationTitle("")
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 

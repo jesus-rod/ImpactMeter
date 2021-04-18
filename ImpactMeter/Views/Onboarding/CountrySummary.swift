@@ -15,10 +15,6 @@ struct CountrySummary: View {
 
     let titleViewModel = TitleAndDescriptionView.ViewModel(title: "Footprint overview",
                                                            description: "The CO2 emission level for the Netherlands has been on the decline since 2008.")
-
-    let titleViewModel2 = TitleAndDescriptionView.ViewModel(title: "Your emissions",
-                                                            description: "Calculating your personal footprint is done automatically and it will be compared to average levels in your area.")
-
     var body: some View {
         VStack {
             PageManager(pageCount: pageCount, currentIndex: $currentPage) {
@@ -59,37 +55,11 @@ struct CountrySummary: View {
                 }.isHidden(currentPage != 0)
                     .animation(.easeInOut)
                 // Country Summary Page Two
-                VStack(alignment: .center, spacing: 80) {
-                    TitleAndDescriptionView(viewModel: titleViewModel2)
-                        .padding([.top], 120)
+                let titleViewModel2 = TitleAndDescriptionView.ViewModel(title: "Your emissions",
+                                                                        description: "Calculating your personal footprint is done automatically and it will be compared to average levels in your area.")
 
-                    Circle()
-                        .foregroundColor(.black)
-                        .frame(width: 165, height: 165, alignment: .center)
-                        .shadow(color: Color.black.opacity(0.5), radius: 24, x: 0, y: 12)
-                        .background(
-                            Circle()
-                                .foregroundColor(IMColors.blueishGray)
-                                .frame(width: 240, height: 240, alignment: .center)
-                                .offset(x: 0, y: 25))
-                        .overlay(
-                            VStack {
-                                Text("Your footprint")
-                                    .font(.title3)
-                                    .bold()
-                                    .foregroundColor(.white)
-                            }
-                        )
-
-                    VStack(alignment: .center, spacing: 0, content: {
-                        Text("8.2 tons of CO2")
-                            .font(.subheadline)
-                            .bold()
-                        Text("EU Average per capita")
-                            .font(.subheadline)
-                    })
-
-                }.isHidden(currentPage != 1)
+                let circleViewModel = CircleInCircleView.ViewModel(circleTitle: "Footprint", circleSubtitle: "", circleColor: Color.primary, circleUndertextTitle: "8.2 tons of CO2", circleUndertextSubTitle: "EU Average per capita")
+                CircleInCircleView(titleViewModel: titleViewModel2, viewModel: circleViewModel).isHidden(currentPage != 1)
                     .animation(.easeInOut)
             }
             Spacer()

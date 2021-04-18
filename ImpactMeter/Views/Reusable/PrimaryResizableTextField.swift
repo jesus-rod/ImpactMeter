@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct PrimarySuffixableTextView: View {
+struct PrimarySuffixableTextField: View {
     let viewModel: ViewModel
     @Binding var currentText: String
     let keyboardType: UIKeyboardType
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text(viewModel.topPlaceholder)
                 .font(.footnote)
                 .fontWeight(.semibold)
@@ -24,14 +24,14 @@ struct PrimarySuffixableTextView: View {
                                 suffixText: viewModel.stickyText) { (updatedText) in
                 // If needed do something here with the updated text
             }
-            .frame(height: 45, alignment: .topLeading)
+            .frame(height: 24, alignment: .topLeading)
         }
         .padding([.horizontal], 24)
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea(SafeAreaRegions.keyboard)
     }
 }
 
-extension PrimarySuffixableTextView {
+extension PrimarySuffixableTextField {
     struct ViewModel {
         let topPlaceholder: String
         let bottomPlaceholder: String
@@ -41,8 +41,8 @@ extension PrimarySuffixableTextView {
 
 struct PrimaryResizableTextView_Preview: PreviewProvider {
     static var previews: some View {
-        let textViewVm = PrimarySuffixableTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country", stickyText: "sqm")
-        PrimarySuffixableTextView(viewModel: textViewVm, currentText: .constant(""), keyboardType: .webSearch)
+        let textViewVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country", stickyText: "sqm")
+        PrimarySuffixableTextField(viewModel: textViewVm, currentText: .constant(""), keyboardType: .webSearch)
             .previewDevice("iPhone 11")
     }
 }
