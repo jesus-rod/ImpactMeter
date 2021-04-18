@@ -21,15 +21,11 @@ struct PrimarySuffixableTextView: View {
 
             SuffixableTextField(placeholderText: viewModel.bottomPlaceholder,
                                 text: $currentText,
-                                suffixText: viewModel.stickyText) { (changed) in
-                print("this work? \(changed)")
+                                suffixText: viewModel.stickyText) { (updatedText) in
+                // If needed do something here with the updated text
             }
             .frame(height: 45, alignment: .topLeading)
-        }.onChange(of: currentText, perform: { (value) in
-            print("Something changed")
-        })
-
-
+        }
         .padding([.horizontal], 24)
         .edgesIgnoringSafeArea(.all)
     }

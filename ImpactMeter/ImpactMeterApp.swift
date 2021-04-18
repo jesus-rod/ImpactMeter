@@ -10,10 +10,13 @@ import SwiftUI
 @main
 struct ImpactMeterApp: App {
     @StateObject var user = User()
+    @StateObject var carbonTrackingData = CarbonTrackingData()
 
     var body: some Scene {
         WindowGroup {
-            StartupCoordinator().environmentObject(user)
+            StartupCoordinator()
+                .environmentObject(user)
+                .environmentObject(carbonTrackingData)
         }
     }
 }

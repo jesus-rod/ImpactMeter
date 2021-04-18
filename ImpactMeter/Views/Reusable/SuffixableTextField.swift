@@ -7,25 +7,22 @@
 
 import SwiftUI
 
+class ModifiedTextField: UITextField {
 
-//class ModifiedTextField: UITextField {
-//
-//    let placeholderLength: Int
-//
-//    init(placeholderLength: Int) {
-//        self.placeholderLength = placeholderLength
-//        super.init(frame: CGRect.zero)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-//        false
-//    }
-//
-//}
+    let placeholderLength: Int
+
+    init(placeholderLength: Int) {
+        self.placeholderLength = placeholderLength
+        super.init(frame: CGRect.zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool { false }
+
+}
 
 // A textfield that supports a suffix that the user can't edit
 struct SuffixableTextField: UIViewRepresentable {
@@ -76,9 +73,6 @@ struct SuffixableTextField: UIViewRepresentable {
         attributedString.append(suffix)
 
         modifiedTf.attributedText = attributedString
-
-        //        textField.becomeFirstResponder()
-
         modifiedTf.delegate = context.coordinator
 
         return modifiedTf
@@ -100,21 +94,12 @@ struct SuffixableTextField: UIViewRepresentable {
         }
 
         @objc func textFieldDidChange(_ textField: UITextField) {
-//            print("value is \(text)")
-            print("value is --> \(textField.text)")
-            print("value is \(parent.text)")
-
             let updatedValue = textField.text ?? ""
-            parent.text = "VERGANO"
-
-            DispatchQueue.main.async {
-//                self.parent._text.wrappedValue = textField.text ?? ""
-            }
+            parent.text = updatedValue
             self.parent.onEditingChanged(updatedValue)
         }
 
         func textFieldDidBeginEditing(_ textField: UITextField) {
-
             if textField.text == "This many\(parent.suffixText)" {
 
                 // Delete the placeholder text and keep the suffix only

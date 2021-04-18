@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SizeOfPropertyScreen: View {
-    @Binding var squareMeters: String
+    @State var squareMeters: String = ""
     @State private var goToNextScreen: Bool = false
 
     var body: some View {
@@ -51,6 +51,6 @@ struct SizeOfPropertyScreen: View {
 
 struct NumberOfPeopleScreen_Previews: PreviewProvider {
     static var previews: some View {
-        SizeOfPropertyScreen(squareMeters: .constant(""))
+        SizeOfPropertyScreen()
     }
 }

@@ -30,7 +30,7 @@ struct YearOfPropertyScreen: View {
 
             TileWallView(viewModel: tileWallVm, selectedValue: $selectedYear, selectedUnderlyingValue: $selectedYearToStore)
 
-            NavigationLink(destination: Text("the next one"), isActive: $goToNextScreen, label: { EmptyView() })
+            NavigationLink(destination: Text("the next intro"), isActive: $goToNextScreen, label: { EmptyView() })
         }.onChange(of: selectedYear) { _ in
             // Store selected year
             print("underlying value is", selectedYearToStore)
