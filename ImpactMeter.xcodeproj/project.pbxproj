@@ -20,6 +20,8 @@
 		9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */; };
 		9564B409262C0A630074A98A /* UtilityTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */; };
 		9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B40D262C53360074A98A /* CircleInCircleView.swift */; };
+		9564B415262CA80C0074A98A /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B414262CA80C0074A98A /* TipView.swift */; };
+		9564B418262CACEA0074A98A /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B417262CACEA0074A98A /* RichText.swift */; };
 		9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAAD25FE236D000F1A61 /* View+isHidden.swift */; };
 		9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */; };
 		956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E5A3225EC21990029E59A /* ImpactMeterApp.swift */; };
@@ -62,6 +64,8 @@
 		9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfPropertyScreen.swift; sourceTree = "<group>"; };
 		9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTrackingScreen.swift; sourceTree = "<group>"; };
 		9564B40D262C53360074A98A /* CircleInCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInCircleView.swift; sourceTree = "<group>"; };
+		9564B414262CA80C0074A98A /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
+		9564B417262CACEA0074A98A /* RichText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichText.swift; sourceTree = "<group>"; };
 		9566AAAD25FE236D000F1A61 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescriptionView.swift; sourceTree = "<group>"; };
 		956E5A2F25EC21990029E59A /* ImpactMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImpactMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +144,8 @@
 				954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */,
 				954D32F726295C04008E8B41 /* PrimaryButton.swift */,
 				9564B40D262C53360074A98A /* CircleInCircleView.swift */,
+				9564B414262CA80C0074A98A /* TipView.swift */,
+				9564B417262CACEA0074A98A /* RichText.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				95F8C3C9262344B200070784 /* PeopleInHouseScreen.swift in Sources */,
 				95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */,
 				95DACDA5260738B00026EEE4 /* Colors.swift in Sources */,
+				9564B418262CACEA0074A98A /* RichText.swift in Sources */,
 				95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */,
 				954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */,
 				9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */,
@@ -383,6 +390,7 @@
 				95DACDB1260784700026EEE4 /* Country.swift in Sources */,
 				95BA32242608D01F007CAF4F /* FlexibleView.swift in Sources */,
 				9543505E26078D80001DA4D5 /* CountryInputView.swift in Sources */,
+				9564B415262CA80C0074A98A /* TipView.swift in Sources */,
 				956E5A3525EC21990029E59A /* StartupCoordinator.swift in Sources */,
 				95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */,
 				95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */,
