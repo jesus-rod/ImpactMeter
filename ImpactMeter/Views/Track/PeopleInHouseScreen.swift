@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import NavigationStack
 
 struct PeopleInHouseScreen: View {
     @EnvironmentObject var carbonTrackingData: CarbonTrackingData
@@ -28,7 +29,7 @@ struct PeopleInHouseScreen: View {
             let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo, tileThree, tileFour, tileFive])
             TileWallView(viewModel: tileWallVm, selectedValue: $selectedCountry, selectedUnderlyingValue: $selectedPeepsInHouse)
 
-            NavigationLink(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
+            PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
         }.onChange(of: selectedCountry) { _ in
             // Store value of peeps in da house
             print("underlying value is", selectedPeepsInHouse)
@@ -36,7 +37,7 @@ struct PeopleInHouseScreen: View {
             // Go to next tracking onboarding screen
             goToNextScreen.toggle()
         }.navigationBarTitle("")
-        .navigationBarHidden(true)
+
     }
 }
 

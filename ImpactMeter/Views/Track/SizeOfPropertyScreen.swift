@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct SizeOfPropertyScreen: View {
     @State var squareMeters: String = ""
@@ -23,7 +24,7 @@ struct SizeOfPropertyScreen: View {
             PrimaryButton(title: "Confirm", action: {
                 validateProperty(withSize: squareMeters)
             })
-            NavigationLink(destination: YearOfPropertyScreen(),
+            PushView(destination: YearOfPropertyScreen(),
                            isActive: $goToNextScreen,
                            label: { EmptyView() })
 
@@ -31,7 +32,6 @@ struct SizeOfPropertyScreen: View {
             print("le val \(value)")
         }
         .navigationBarTitle("")
-        .navigationBarHidden(true)
     }
 
     private func validateProperty(withSize propertySize: String) {

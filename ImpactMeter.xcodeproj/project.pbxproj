@@ -22,6 +22,9 @@
 		9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B40D262C53360074A98A /* CircleInCircleView.swift */; };
 		9564B415262CA80C0074A98A /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B414262CA80C0074A98A /* TipView.swift */; };
 		9564B418262CACEA0074A98A /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B417262CACEA0074A98A /* RichText.swift */; };
+		9564B41B262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B41A262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift */; };
+		9564B41E262EE9B70074A98A /* TrackNewActivityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B41D262EE9B70074A98A /* TrackNewActivityScreen.swift */; };
+		9564B422262F109F0074A98A /* NavigationStack in Frameworks */ = {isa = PBXBuildFile; productRef = 9564B421262F109F0074A98A /* NavigationStack */; };
 		9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAAD25FE236D000F1A61 /* View+isHidden.swift */; };
 		9566AAB325FE25FF000F1A61 /* TitleAndDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */; };
 		956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956E5A3225EC21990029E59A /* ImpactMeterApp.swift */; };
@@ -66,6 +69,8 @@
 		9564B40D262C53360074A98A /* CircleInCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInCircleView.swift; sourceTree = "<group>"; };
 		9564B414262CA80C0074A98A /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		9564B417262CACEA0074A98A /* RichText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichText.swift; sourceTree = "<group>"; };
+		9564B41A262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTrackingSummaryScreen.swift; sourceTree = "<group>"; };
+		9564B41D262EE9B70074A98A /* TrackNewActivityScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackNewActivityScreen.swift; sourceTree = "<group>"; };
 		9566AAAD25FE236D000F1A61 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		9566AAB225FE25FF000F1A61 /* TitleAndDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndDescriptionView.swift; sourceTree = "<group>"; };
 		956E5A2F25EC21990029E59A /* ImpactMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImpactMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +106,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95BA322C2609C53D007CAF4F /* Introspect in Frameworks */,
+				9564B422262F109F0074A98A /* NavigationStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,11 +240,13 @@
 			isa = PBXGroup;
 			children = (
 				95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */,
+				9564B41D262EE9B70074A98A /* TrackNewActivityScreen.swift */,
 				95F8C3C526233D6300070784 /* TrackIntroTiles.swift */,
 				95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */,
 				95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */,
 				9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */,
 				9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */,
+				9564B41A262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift */,
 			);
 			path = Track;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 			name = ImpactMeter;
 			packageProductDependencies = (
 				95BA322B2609C53D007CAF4F /* Introspect */,
+				9564B421262F109F0074A98A /* NavigationStack */,
 			);
 			productName = ImpactMeter;
 			productReference = 956E5A2F25EC21990029E59A /* ImpactMeter.app */;
@@ -293,6 +302,7 @@
 			mainGroup = 956E5A2625EC21980029E59A;
 			packageReferences = (
 				95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */,
 			);
 			productRefGroup = 956E5A3025EC21990029E59A /* Products */;
 			projectDirPath = "";
@@ -379,6 +389,7 @@
 				95DACDA9260772880026EEE4 /* TileView.swift in Sources */,
 				954D32EF26294D5C008E8B41 /* SuffixableTextField.swift in Sources */,
 				95F0DE9F2611A5C80087B3F7 /* TrackIntro.swift in Sources */,
+				9564B41B262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift in Sources */,
 				956E5A4325EC21A90029E59A /* WelcomeScreen.swift in Sources */,
 				954D32F5262950C5008E8B41 /* String+Length.swift in Sources */,
 				95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */,
@@ -393,6 +404,7 @@
 				9564B415262CA80C0074A98A /* TipView.swift in Sources */,
 				956E5A3525EC21990029E59A /* StartupCoordinator.swift in Sources */,
 				95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */,
+				9564B41E262EE9B70074A98A /* TrackNewActivityScreen.swift in Sources */,
 				95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */,
 				9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */,
 				954D32F226294F6D008E8B41 /* PrimaryResizableTextField.swift in Sources */,
@@ -602,6 +614,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matteopuc/swiftui-navigation-stack.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 		95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -613,6 +633,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9564B421262F109F0074A98A /* NavigationStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */;
+			productName = NavigationStack;
+		};
 		95BA322B2609C53D007CAF4F /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;

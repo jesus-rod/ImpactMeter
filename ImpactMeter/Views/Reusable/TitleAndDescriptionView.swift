@@ -25,7 +25,7 @@ struct TitleAndDescriptionView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }.frame(maxWidth: .infinity,
                 alignment: .leading)
-        .padding(.top, 42)
+        .padding(.top, 0)
     }
 }
 

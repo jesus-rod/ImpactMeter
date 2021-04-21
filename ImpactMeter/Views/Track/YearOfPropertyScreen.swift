@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct YearOfPropertyScreen: View {
 
@@ -30,7 +31,7 @@ struct YearOfPropertyScreen: View {
 
             TileWallView(viewModel: tileWallVm, selectedValue: $selectedYear, selectedUnderlyingValue: $selectedYearToStore)
 
-            NavigationLink(destination: UtilityTrackingScreen(), isActive: $goToNextScreen, label: { EmptyView() })
+            PushView(destination: UtilityTrackingScreen(), isActive: $goToNextScreen, label: { EmptyView() })
         }.onChange(of: selectedYear) { _ in
             // Store selected year
             print("underlying value is", selectedYearToStore)
@@ -38,7 +39,6 @@ struct YearOfPropertyScreen: View {
             // Go to next tracking onboarding screen
             goToNextScreen.toggle()
         }.navigationBarTitle("")
-         .navigationBarHidden(true)
     }
 }
 
