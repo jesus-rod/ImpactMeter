@@ -15,30 +15,28 @@ struct TrackNewActivityScreen: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Track new activity 🌿", description: "")
-        VStack(alignment: .leading, spacing: 42) {
-            TitleAndDescriptionView(viewModel: titleVm)
+        AppScreen(showBackButton: true) {
+            VStack(alignment: .leading, spacing: 42) {
+                TitleAndDescriptionView(viewModel: titleVm)
 
-            let tileOne = TileView<AnyHashable>.ViewModel(text: "Travel", emoji: "✈️", underylingValue: AnyHashable(1))
-            let tileTwo = TileView<AnyHashable>.ViewModel(text: "Utilities", emoji: "🚰", underylingValue: AnyHashable(2))
+                let tileOne = TileView<AnyHashable>.ViewModel(text: "Travel", emoji: "✈️", underylingValue: AnyHashable(1))
+                let tileTwo = TileView<AnyHashable>.ViewModel(text: "Utilities", emoji: "🚰", underylingValue: AnyHashable(2))
 
-            let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo])
-            TileWallView(viewModel: tileWallVm, selectedValue: $selectedCountry, selectedUnderlyingValue: $selectedPeepsInHouse)
+                let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo])
+                TileWallView(viewModel: tileWallVm, selectedValue: $selectedCountry, selectedUnderlyingValue: $selectedPeepsInHouse)
 
-            PushView(destination: PeopleInHouseScreen(), isActive: $goToNextScreen, label: { EmptyView() })
-        }.onChange(of: selectedCountry) { _ in
-            // Store value of peeps in da house
-            print("underlying value is", selectedPeepsInHouse)
-        //            carbonTrackingData.peepsInHouse = selectedPeepsInHouse.base as? Int ?? 0
-            // Go to next tracking onboarding screen
-            goToNextScreen.toggle()
+                PushView(destination: PeopleInHouseScreen(), isActive: $goToNextScreen, label: { EmptyView() })
+            }.onChange(of: selectedCountry) { _ in
+                // Store value of peeps in da house
+                print("underlying value is", selectedPeepsInHouse)
+            //            carbonTrackingData.peepsInHouse = selectedPeepsInHouse.base as? Int ?? 0
+                // Go to next tracking onboarding screen
+                goToNextScreen.toggle()
+            }
         }
     }
 
 }
-
-//.sheet(isPresented: $goToNextScreen, content: { () -> View in
-//
-//}).navigationBarTitle("")
 
 struct TrackNewActivityScreen_Previews: PreviewProvider {
     static var previews: some View {

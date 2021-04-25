@@ -9,9 +9,17 @@ import SwiftUI
 
 struct PrimaryButton: View {
 
-    @State private var wasButtonAnimated: Bool = false
     let title: String
-    let action:  (() -> Void)
+    @Binding var isDisabled: Bool
+    let action: (() -> Void)
+
+    @State private var wasButtonAnimated: Bool = false
+
+    init(title: String, isDisabled: Binding<Bool> = .constant(false), action: @escaping (() -> Void)) {
+        self.title = title
+        _isDisabled = isDisabled
+        self.action = action
+    }
 
     var body: some View {
         Button(action: {
@@ -31,6 +39,7 @@ struct PrimaryButton: View {
                 })
                 .animation(.easeInOut)
                 .offset(x: 0, y: wasButtonAnimated ? 0 : 150)
+                .disabled(isDisabled)
         })
     }
 }

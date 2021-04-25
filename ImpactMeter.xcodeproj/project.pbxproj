@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951ADA8A26354A06008EEDB6 /* ImpactMeter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 951ADA8826354A06008EEDB6 /* ImpactMeter.xcdatamodeld */; };
+		951ADA8E26354B32008EEDB6 /* Activity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ADA8C26354B32008EEDB6 /* Activity+CoreDataClass.swift */; };
+		951ADA8F26354B32008EEDB6 /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ADA8D26354B32008EEDB6 /* Activity+CoreDataProperties.swift */; };
+		951ADA932635547C008EEDB6 /* AppScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ADA922635547C008EEDB6 /* AppScreen.swift */; };
 		9543505E26078D80001DA4D5 /* CountryInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543505D26078D80001DA4D5 /* CountryInputView.swift */; };
 		954350722607A722001DA4D5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954350712607A722001DA4D5 /* User.swift */; };
 		9543FB68260F959F0017C023 /* WelcomingWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB67260F959F0017C023 /* WelcomingWords.swift */; };
 		9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6A260F9DDC0017C023 /* CountrySummary.swift */; };
 		9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6E260FA2C80017C023 /* IMPageControl.swift */; };
+		95474B9026356526000A5653 /* Publishers+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474B8F26356526000A5653 /* Publishers+Keyboard.swift */; };
+		95474B9326357434000A5653 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474B9226357434000A5653 /* KeyboardAdaptive.swift */; };
 		954D32EA26280FE7008E8B41 /* CarbonTrackingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */; };
 		954D32EF26294D5C008E8B41 /* SuffixableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */; };
 		954D32F226294F6D008E8B41 /* PrimaryResizableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */; };
@@ -54,11 +60,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		951ADA8926354A06008EEDB6 /* ImpactMeter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImpactMeter.xcdatamodel; sourceTree = "<group>"; };
+		951ADA8C26354B32008EEDB6 /* Activity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Activity+CoreDataClass.swift"; path = "ImpactMeter/CoreData/Activity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		951ADA8D26354B32008EEDB6 /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Activity+CoreDataProperties.swift"; path = "ImpactMeter/CoreData/Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		951ADA922635547C008EEDB6 /* AppScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreen.swift; sourceTree = "<group>"; };
 		9543505D26078D80001DA4D5 /* CountryInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInputView.swift; sourceTree = "<group>"; };
 		954350712607A722001DA4D5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9543FB67260F959F0017C023 /* WelcomingWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomingWords.swift; sourceTree = "<group>"; };
 		9543FB6A260F9DDC0017C023 /* CountrySummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySummary.swift; sourceTree = "<group>"; };
 		9543FB6E260FA2C80017C023 /* IMPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMPageControl.swift; sourceTree = "<group>"; };
+		95474B8F26356526000A5653 /* Publishers+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+Keyboard.swift"; sourceTree = "<group>"; };
+		95474B9226357434000A5653 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonTrackingData.swift; sourceTree = "<group>"; };
 		954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixableTextField.swift; sourceTree = "<group>"; };
 		954D32F126294F6D008E8B41 /* PrimaryResizableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryResizableTextField.swift; sourceTree = "<group>"; };
@@ -113,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		951ADA8726354884008EEDB6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				951ADA8826354A06008EEDB6 /* ImpactMeter.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		954350802607DCA4001DA4D5 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,8 +172,18 @@
 				9564B40D262C53360074A98A /* CircleInCircleView.swift */,
 				9564B414262CA80C0074A98A /* TipView.swift */,
 				9564B417262CACEA0074A98A /* RichText.swift */,
+				951ADA922635547C008EEDB6 /* AppScreen.swift */,
+				95474B9226357434000A5653 /* KeyboardAdaptive.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		95474B8E26356512000A5653 /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				95474B8F26356526000A5653 /* Publishers+Keyboard.swift */,
+			);
+			path = Publishers;
 			sourceTree = "<group>";
 		};
 		9566AAAB25FE2332000F1A61 /* Extensions */ = {
@@ -170,6 +200,8 @@
 		956E5A2625EC21980029E59A = {
 			isa = PBXGroup;
 			children = (
+				951ADA8C26354B32008EEDB6 /* Activity+CoreDataClass.swift */,
+				951ADA8D26354B32008EEDB6 /* Activity+CoreDataProperties.swift */,
 				956E5A3125EC21990029E59A /* ImpactMeter */,
 				956E5A3025EC21990029E59A /* Products */,
 			);
@@ -186,6 +218,8 @@
 		956E5A3125EC21990029E59A /* ImpactMeter */ = {
 			isa = PBXGroup;
 			children = (
+				95474B8E26356512000A5653 /* Publishers */,
+				951ADA8726354884008EEDB6 /* CoreData */,
 				956E5A3225EC21990029E59A /* ImpactMeterApp.swift */,
 				95F0DE9326106F0D0087B3F7 /* MainTabView.swift */,
 				95DACDAF260784430026EEE4 /* Models */,
@@ -371,18 +405,23 @@
 			files = (
 				95F8C3CC2623753B00070784 /* SizeOfPropertyScreen.swift in Sources */,
 				95F0DE982610FFCA0087B3F7 /* DashboardSummaryView.swift in Sources */,
+				951ADA8F26354B32008EEDB6 /* Activity+CoreDataProperties.swift in Sources */,
 				9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */,
 				954350722607A722001DA4D5 /* User.swift in Sources */,
+				951ADA8E26354B32008EEDB6 /* Activity+CoreDataClass.swift in Sources */,
 				9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */,
 				95F0DE9B261100510087B3F7 /* CircleWithText.swift in Sources */,
 				95F0DE87260FBD030087B3F7 /* Onboarding.swift in Sources */,
 				9543FB68260F959F0017C023 /* WelcomingWords.swift in Sources */,
 				95F8C3C626233D6300070784 /* TrackIntroTiles.swift in Sources */,
 				95F8C3C9262344B200070784 /* PeopleInHouseScreen.swift in Sources */,
+				95474B9026356526000A5653 /* Publishers+Keyboard.swift in Sources */,
 				95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */,
 				95DACDA5260738B00026EEE4 /* Colors.swift in Sources */,
 				9564B418262CACEA0074A98A /* RichText.swift in Sources */,
+				951ADA932635547C008EEDB6 /* AppScreen.swift in Sources */,
 				95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */,
+				95474B9326357434000A5653 /* KeyboardAdaptive.swift in Sources */,
 				954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */,
 				9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */,
 				956E5A4725ECCAAB0029E59A /* PageManager.swift in Sources */,
@@ -402,6 +441,7 @@
 				95BA32242608D01F007CAF4F /* FlexibleView.swift in Sources */,
 				9543505E26078D80001DA4D5 /* CountryInputView.swift in Sources */,
 				9564B415262CA80C0074A98A /* TipView.swift in Sources */,
+				951ADA8A26354A06008EEDB6 /* ImpactMeter.xcdatamodeld in Sources */,
 				956E5A3525EC21990029E59A /* StartupCoordinator.swift in Sources */,
 				95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */,
 				9564B41E262EE9B70074A98A /* TrackNewActivityScreen.swift in Sources */,
@@ -644,6 +684,19 @@
 			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		951ADA8826354A06008EEDB6 /* ImpactMeter.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				951ADA8926354A06008EEDB6 /* ImpactMeter.xcdatamodel */,
+			);
+			currentVersion = 951ADA8926354A06008EEDB6 /* ImpactMeter.xcdatamodel */;
+			path = ImpactMeter.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 956E5A2725EC21980029E59A /* Project object */;
 }

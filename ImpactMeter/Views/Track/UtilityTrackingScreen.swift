@@ -24,27 +24,29 @@ struct UtilityTrackingScreen: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Which utility would you like to track?", description: "")
-        VStack(alignment: .leading, spacing: 42) {
-            TitleAndDescriptionView(viewModel: titleVm)
+        AppScreen(showBackButton: true) {
+            VStack(alignment: .leading, spacing: 42) {
+                TitleAndDescriptionView(viewModel: titleVm)
 
-            let tileOne = TileView<AnyHashable>.ViewModel(text: "Water", emoji: "💧", underylingValue: AnyHashable(Utilities.water))
-            let tileTwo = TileView<AnyHashable>.ViewModel(text: "Electricity", emoji: "⚡️", underylingValue: AnyHashable(Utilities.electricity))
-            let tileThree = TileView<AnyHashable>.ViewModel(text: "Gas", emoji: "🔥", underylingValue: AnyHashable(Utilities.gas))
+                let tileOne = TileView<AnyHashable>.ViewModel(text: "Water", emoji: "💧", underylingValue: AnyHashable(Utilities.water))
+                let tileTwo = TileView<AnyHashable>.ViewModel(text: "Electricity", emoji: "⚡️", underylingValue: AnyHashable(Utilities.electricity))
+                let tileThree = TileView<AnyHashable>.ViewModel(text: "Gas", emoji: "🔥", underylingValue: AnyHashable(Utilities.gas))
 
-            let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo, tileThree])
+                let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo, tileThree])
 
-            TileWallView(viewModel: tileWallVm,
-                         selectedValue: $selectedUtility,
-                         selectedUnderlyingValue: $selectedUtilityToStore)
+                TileWallView(viewModel: tileWallVm,
+                             selectedValue: $selectedUtility,
+                             selectedUnderlyingValue: $selectedUtilityToStore)
 
-            PushView(destination: UtilityTrackingView(), isActive: $goToNextScreen, label: { EmptyView() })
-        }.onChange(of: selectedUtility) { _ in
-            // Store selected year
-            print("underlying value is", selectedUtilityToStore)
-//            carbonTrackingData. = selectedYear
-            // Go to next tracking onboarding screen
-            goToNextScreen = true
-        }.navigationBarTitle("")
+                PushView(destination: UtilityTrackingView(), isActive: $goToNextScreen, label: { EmptyView() })
+            }.onChange(of: selectedUtility) { _ in
+                // Store selected year
+                print("underlying value is", selectedUtilityToStore)
+    //            carbonTrackingData. = selectedYear
+                // Go to next tracking onboarding screen
+                goToNextScreen = true
+            }
+        }
     }
 }
 
@@ -55,23 +57,25 @@ struct UtilityTrackingView: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How much electricity does your household consume?", description: "")
+        AppScreen(showBackButton: true) {
+            VStack(alignment: .leading, spacing: 24) {
+                TitleAndDescriptionView(viewModel: titleVm)
 
-        VStack(alignment: .leading, spacing: 24) {
-            TitleAndDescriptionView(viewModel: titleVm)
+                let suffixTvVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Consumption", bottomPlaceholder: "This many", stickyText: "kWh")
+                PrimarySuffixableTextField(viewModel: suffixTvVm, currentText: $utilityText, keyboardType: .phonePad)
 
-            let suffixTvVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Consumption", bottomPlaceholder: "This many", stickyText: "kWh")
-            PrimarySuffixableTextField(viewModel: suffixTvVm, currentText: $utilityText, keyboardType: .phonePad)
+                Spacer()
 
-            Spacer()
+                PushView(destination: UtilityTrackingSummaryScreen(),
+                               isActive: $goToNextScreen,
+                               label: { Spacer() })
 
-            PrimaryButton(title: "Confirm", action: {
-                validateUtility(withSize: utilityText)
-            })
-
-            PushView(destination: UtilityTrackingSummaryScreen(),
-                           isActive: $goToNextScreen,
-                           label: { EmptyView() })
-        }.navigationBarTitle("")
+                PrimaryButton(title: "Confirm") {
+                    validateUtility(withSize: utilityText)
+                }
+                .keyboardAdaptive()
+            }
+        }
     }
 
     private func validateUtility(withSize size: String) {

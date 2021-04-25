@@ -45,7 +45,9 @@ struct TrackIntro: View {
 
         }.fullScreenCover(isPresented: $beginTracking) {
             NavigationStackView {
-                TrackNewActivityScreen()
+                AppScreen {
+                    TrackNewActivityScreen()
+                }
             }
         }
     }
