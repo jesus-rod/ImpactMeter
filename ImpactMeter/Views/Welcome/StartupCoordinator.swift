@@ -12,7 +12,7 @@ struct StartupCoordinator: View {
     @State private var titleOpacity = 0.0
     @State private var isShowingSplash: Bool = true
     @State private var onboardingStarted = false
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: LegacyUser
 
     var body: some View {
         VStack(alignment: .leading) {

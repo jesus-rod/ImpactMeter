@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CountryInputView: View {
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: LegacyUser
     private let allCountries: [Country] = CountriesGenerator().getCountries()
 
     let titleViewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",

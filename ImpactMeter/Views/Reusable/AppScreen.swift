@@ -25,7 +25,7 @@ struct AppScreen<Content>: View where Content: View {
         }
     }
 
-    private struct BackButton: View {
+    struct BackButton: View {
         var body: some View {
             VStack {
                 HStack {

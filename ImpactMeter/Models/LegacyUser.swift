@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class User: ObservableObject {
+class LegacyUser: ObservableObject {
     private let defaults = UserDefaults.standard
     private let finishedOnboardingKey: String = "finishedOnboarding"
     private let finishedTrackingOnboardingKey: String = "finishedTrackingOnboarding"

@@ -30,7 +30,6 @@ struct SizeOfPropertyScreen: View {
                 PrimaryButton(title: "Confirm", isDisabled: $isPrimaryButtonEnabled, action: {
                     validateProperty(withSize: squareMeters)
                 })
-//                .padding(.bottom, 0)
                 .keyboardAdaptive()
             }.onChange(of: squareMeters) { (value) in
                 print("le val \(value)")

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Onboarding: View {
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: LegacyUser
 
     var body: some View {
         if user.shouldShowCountrySummary {

@@ -57,7 +57,6 @@ struct RichText: View {
     }
 }
 
-
 extension String {
 
     /// Parses the input text and returns a collection of rich text elements.
@@ -65,7 +64,7 @@ extension String {
     ///
     /// - Returns: A collection of rich text elements.
     func parseRichTextElements() -> [RichText.Element] {
-        //swiftlint:disable force_try
+        // swiftlint:disable force_try
         let regex = try! NSRegularExpression(pattern: "\\*{1}(.*?)\\*{1}")
         let range = NSRange(location: 0, length: count)
 

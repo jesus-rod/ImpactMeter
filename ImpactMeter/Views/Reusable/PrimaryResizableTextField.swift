@@ -22,6 +22,7 @@ struct PrimarySuffixableTextField: View {
             SuffixableTextField(placeholderText: viewModel.bottomPlaceholder,
                                 text: $currentText,
                                 suffixText: viewModel.stickyText) { (updatedText) in
+                print("updated text", updatedText)
                 // If needed do something here with the updated text
             }
             .frame(height: 24, alignment: .topLeading)

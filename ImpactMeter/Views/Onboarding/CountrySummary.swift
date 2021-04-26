@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CountrySummary: View {
     private let pageCount: Int = 2
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: LegacyUser
     @State private var currentPage = 0
     @State private var wasButtonAnimated = false
 
