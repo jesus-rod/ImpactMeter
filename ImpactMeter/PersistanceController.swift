@@ -7,11 +7,15 @@
 
 import CoreData
 
-struct PersitanceController {
+struct PersistanceController {
 
-    static let shared = PersitanceController()
+    static let shared = PersistanceController()
 
     let container: NSPersistentContainer
+
+    var user: User {
+        return User(context: container.viewContext)
+    }
 
     init() {
         // The name below must match the name of the xcdatamodeld file 🤦🏻‍♂️
@@ -24,7 +28,7 @@ struct PersitanceController {
         }
     }
 
-    func save(completion: @escaping (Error?) -> Void  = { _ in}) {
+    func save(completion: @escaping (Error?) -> Void = { _ in}) {
         let context = container.viewContext
         if context.hasChanges {
             do {

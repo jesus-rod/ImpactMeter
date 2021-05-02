@@ -65,7 +65,6 @@ struct UtilityTrackingView: View {
                 PrimarySuffixableTextField(viewModel: suffixTvVm, currentText: $utilityText, keyboardType: .phonePad)
 
                 Spacer()
-
                 PushView(destination: UtilityTrackingSummaryScreen(),
                                isActive: $goToNextScreen,
                                label: { Spacer() })

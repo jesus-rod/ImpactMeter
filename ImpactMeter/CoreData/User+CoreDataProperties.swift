@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  ImpactMeter
 //
-//  Created by Jesus Rodriguez on 25.04.21.
+//  Created by Jesus Rodriguez on 02.05.21.
 //
 //
 
@@ -16,13 +16,13 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var peepsInHouse: Int16
-    @NSManaged public var propertySize: String?
-    @NSManaged public var country: Int16
-    @NSManaged public var id: UUID?
+    @NSManaged public var country: String?
+    @NSManaged public var id: String?
+    @NSManaged public var peepsInHouse: Int64
+    @NSManaged public var propertySize: Int64
 
 }
 
-extension User: Identifiable {
+extension User : Identifiable {
 
 }

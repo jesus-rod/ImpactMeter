@@ -12,7 +12,7 @@ struct ImpactMeterApp: App {
     @StateObject var user = LegacyUser()
     @StateObject var carbonTrackingData = CarbonTrackingData()
 
-    let persistenceController = PersitanceController.shared
+    let persistenceController = PersistanceController.shared
 
     @Environment(\.scenePhase) var scenePhase
 

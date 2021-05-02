@@ -65,10 +65,9 @@ struct PeopleInHouseScreen: View {
     @State private var selectedPeepsInHouseValue = AnyHashable(0)
 
     // Object Context
-    @Environment(\.managedObjectContext) var moc
+//    @Environment(\.managedObjectContext) var moc
     // Fetch our user
-    @FetchRequest(entity: User.entity(), sortDescriptors: [])
-    var users: FetchedResults<User>
+    @FetchRequest(entity: User.entity(), sortDescriptors: []) var users: FetchedResults<User>
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How many people live in your household?", description: "The information you enter here will only be used to calculate your electricity, gas and water usage. No information will be shared.")
@@ -83,25 +82,40 @@ struct PeopleInHouseScreen: View {
             }.onChange(of: selectedPeepsString) { _ in
                 // Store value of peeps in da house
                 print("underlying value is", selectedPeepsInHouseValue)
-                let peepsInHouse = selectedPeepsInHouseValue.base as? Int ?? 1
-                let user = User(context: moc)
-                user.peepsInHouse = Int16(peepsInHouse)
 
-                do {
-                    try self.moc.save()
-                } catch {
-                    print("Can't save this user!")
-                }
+
+                persistPeopleInHouse()
 
                 // Go to next tracking onboarding screen
-                goToNextScreen.toggle()
+                skipThisScreen()
             }.onAppear {
                 print("# of Users found \(users.count)")
                 print("Check if user has stored size of property")
-                print(users.first?.peepsInHouse ?? "Not found (peepsInHouse)")
+
+                if let previousResponse = users.first?.peepsInHouse {
+                    // User has already chosen how many people live in their house
+                    // Should skip this screen
+                    print("He previously chose \(previousResponse)")
+                    //skipThisScreen()
+                } else {
+                    // User has not chosen how many people live in their house
+                    print("Not found (peepsInHouse)")
+                }
+
             }
         }
 
+    }
+
+    private func skipThisScreen() {
+        goToNextScreen = true
+    }
+
+    private func persistPeopleInHouse() {
+        let peepsInHouse = selectedPeepsInHouseValue.base as? Int ?? 1
+        let user = PersistanceController.shared.user
+        user.peepsInHouse = Int64(peepsInHouse)
+        PersistanceController.shared.save()
     }
 }
 
