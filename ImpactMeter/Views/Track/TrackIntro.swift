@@ -49,6 +49,10 @@ struct TrackIntro: View {
                     TrackNewActivityScreen()
                 }
             }
+        }.onAppear {
+            let user = PersistanceController.shared.fetchUser()
+            print("--------")
+            print(user)
         }
     }
 }

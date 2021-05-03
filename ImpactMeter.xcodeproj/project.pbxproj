@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950A4409263EEFDD00417639 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 950A4408263EEFDD00417639 /* SwiftyBeaver */; };
+		950A440C263EF1D900417639 /* LoggingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950A440B263EF1D900417639 /* LoggingController.swift */; };
+		950A4410263F006100417639 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950A440E263F006100417639 /* User+CoreDataClass.swift */; };
+		950A4411263F006100417639 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950A440F263F006100417639 /* User+CoreDataProperties.swift */; };
 		951ADA8A26354A06008EEDB6 /* ImpactMeter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 951ADA8826354A06008EEDB6 /* ImpactMeter.xcdatamodeld */; };
 		951ADA932635547C008EEDB6 /* AppScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ADA922635547C008EEDB6 /* AppScreen.swift */; };
 		9543505E26078D80001DA4D5 /* CountryInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543505D26078D80001DA4D5 /* CountryInputView.swift */; };
@@ -16,8 +20,6 @@
 		9543FB6F260FA2C80017C023 /* IMPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9543FB6E260FA2C80017C023 /* IMPageControl.swift */; };
 		95474B9026356526000A5653 /* Publishers+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474B8F26356526000A5653 /* Publishers+Keyboard.swift */; };
 		95474B9326357434000A5653 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474B9226357434000A5653 /* KeyboardAdaptive.swift */; };
-		95474BA12635DD03000A5653 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474B9F2635DD03000A5653 /* User+CoreDataClass.swift */; };
-		95474BA22635DD03000A5653 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474BA02635DD03000A5653 /* User+CoreDataProperties.swift */; };
 		95474BA52635E010000A5653 /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95474BA42635E010000A5653 /* PersistanceController.swift */; };
 		954D32EA26280FE7008E8B41 /* CarbonTrackingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */; };
 		954D32EF26294D5C008E8B41 /* SuffixableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */; };
@@ -61,6 +63,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		950A440B263EF1D900417639 /* LoggingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingController.swift; sourceTree = "<group>"; };
+		950A440E263F006100417639 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		950A440F263F006100417639 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		951ADA8926354A06008EEDB6 /* ImpactMeter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImpactMeter.xcdatamodel; sourceTree = "<group>"; };
 		951ADA922635547C008EEDB6 /* AppScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreen.swift; sourceTree = "<group>"; };
 		9543505D26078D80001DA4D5 /* CountryInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInputView.swift; sourceTree = "<group>"; };
@@ -70,8 +75,6 @@
 		9543FB6E260FA2C80017C023 /* IMPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMPageControl.swift; sourceTree = "<group>"; };
 		95474B8F26356526000A5653 /* Publishers+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+Keyboard.swift"; sourceTree = "<group>"; };
 		95474B9226357434000A5653 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
-		95474B9F2635DD03000A5653 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "ImpactMeter/CoreData/User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		95474BA02635DD03000A5653 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "ImpactMeter/CoreData/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		95474BA42635E010000A5653 /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		954D32E926280FE7008E8B41 /* CarbonTrackingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonTrackingData.swift; sourceTree = "<group>"; };
 		954D32EE26294D5C008E8B41 /* SuffixableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixableTextField.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 			files = (
 				95BA322C2609C53D007CAF4F /* Introspect in Frameworks */,
 				9564B422262F109F0074A98A /* NavigationStack in Frameworks */,
+				950A4409263EEFDD00417639 /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +206,9 @@
 		956E5A2625EC21980029E59A = {
 			isa = PBXGroup;
 			children = (
-				95474B9F2635DD03000A5653 /* User+CoreDataClass.swift */,
-				95474BA02635DD03000A5653 /* User+CoreDataProperties.swift */,
+				950A440E263F006100417639 /* User+CoreDataClass.swift */,
+				950A440F263F006100417639 /* User+CoreDataProperties.swift */,
+				950A440B263EF1D900417639 /* LoggingController.swift */,
 				956E5A3125EC21990029E59A /* ImpactMeter */,
 				956E5A3025EC21990029E59A /* Products */,
 			);
@@ -309,6 +314,7 @@
 			packageProductDependencies = (
 				95BA322B2609C53D007CAF4F /* Introspect */,
 				9564B421262F109F0074A98A /* NavigationStack */,
+				950A4408263EEFDD00417639 /* SwiftyBeaver */,
 			);
 			productName = ImpactMeter;
 			productReference = 956E5A2F25EC21990029E59A /* ImpactMeter.app */;
@@ -340,6 +346,7 @@
 			packageReferences = (
 				95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */,
+				950A4407263EEFDD00417639 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 			);
 			productRefGroup = 956E5A3025EC21990029E59A /* Products */;
 			projectDirPath = "";
@@ -414,13 +421,13 @@
 				95F0DE9B261100510087B3F7 /* CircleWithText.swift in Sources */,
 				95F0DE87260FBD030087B3F7 /* Onboarding.swift in Sources */,
 				9543FB68260F959F0017C023 /* WelcomingWords.swift in Sources */,
+				950A4411263F006100417639 /* User+CoreDataProperties.swift in Sources */,
 				95F8C3C626233D6300070784 /* TrackIntroTiles.swift in Sources */,
 				95F8C3C9262344B200070784 /* PeopleInHouseScreen.swift in Sources */,
 				95474B9026356526000A5653 /* Publishers+Keyboard.swift in Sources */,
 				95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */,
 				95DACDA5260738B00026EEE4 /* Colors.swift in Sources */,
 				9564B418262CACEA0074A98A /* RichText.swift in Sources */,
-				95474BA12635DD03000A5653 /* User+CoreDataClass.swift in Sources */,
 				951ADA932635547C008EEDB6 /* AppScreen.swift in Sources */,
 				95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */,
 				95474B9326357434000A5653 /* KeyboardAdaptive.swift in Sources */,
@@ -433,6 +440,7 @@
 				95F0DE9F2611A5C80087B3F7 /* TrackIntro.swift in Sources */,
 				9564B41B262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift in Sources */,
 				956E5A4325EC21A90029E59A /* WelcomeScreen.swift in Sources */,
+				950A4410263F006100417639 /* User+CoreDataClass.swift in Sources */,
 				954D32F5262950C5008E8B41 /* String+Length.swift in Sources */,
 				95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */,
 				9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */,
@@ -449,8 +457,8 @@
 				95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */,
 				9564B41E262EE9B70074A98A /* TrackNewActivityScreen.swift in Sources */,
 				95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */,
-				95474BA22635DD03000A5653 /* User+CoreDataProperties.swift in Sources */,
 				9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */,
+				950A440C263EF1D900417639 /* LoggingController.swift in Sources */,
 				954D32F226294F6D008E8B41 /* PrimaryResizableTextField.swift in Sources */,
 				956E5A3325EC21990029E59A /* ImpactMeterApp.swift in Sources */,
 			);
@@ -658,6 +666,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		950A4407263EEFDD00417639 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.3;
+			};
+		};
 		9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/matteopuc/swiftui-navigation-stack.git";
@@ -677,6 +693,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		950A4408263EEFDD00417639 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950A4407263EEFDD00417639 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
 		9564B421262F109F0074A98A /* NavigationStack */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */;

@@ -103,11 +103,11 @@ struct SizeOfPropertyScreen: View {
     }
 
     private func saveSizeOfProperty(_ size: Int, completion: @escaping () -> Void) {
-        let user = PersistanceController.shared.user
+        let user = PersistanceController.shared.fetchUser()
         user.propertySize = Int64(size)
         PersistanceController.shared.save { error in
             if let err = error {
-                print("there was an error saving size of property")
+                print("there was an error saving size of property \(err.localizedDescription)")
                 return
             }
             completion()

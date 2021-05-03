@@ -82,10 +82,8 @@ struct PeopleInHouseScreen: View {
             }.onChange(of: selectedPeepsString) { _ in
                 // Store value of peeps in da house
                 print("underlying value is", selectedPeepsInHouseValue)
-
-
-                persistPeopleInHouse()
-
+                let peepsInHouse = selectedPeepsInHouseValue.base as? Int ?? 1
+                persistPeopleInHouse(numOfPeople: peepsInHouse)
                 // Go to next tracking onboarding screen
                 skipThisScreen()
             }.onAppear {
@@ -96,7 +94,7 @@ struct PeopleInHouseScreen: View {
                     // User has already chosen how many people live in their house
                     // Should skip this screen
                     print("He previously chose \(previousResponse)")
-                    //skipThisScreen()
+                    // skipThisScreen()
                 } else {
                     // User has not chosen how many people live in their house
                     print("Not found (peepsInHouse)")
@@ -111,10 +109,9 @@ struct PeopleInHouseScreen: View {
         goToNextScreen = true
     }
 
-    private func persistPeopleInHouse() {
-        let peepsInHouse = selectedPeepsInHouseValue.base as? Int ?? 1
-        let user = PersistanceController.shared.user
-        user.peepsInHouse = Int64(peepsInHouse)
+    private func persistPeopleInHouse(numOfPeople: Int) {
+        let user = PersistanceController.shared.fetchUser()
+        user.peepsInHouse = Int64(numOfPeople)
         PersistanceController.shared.save()
     }
 }

@@ -20,6 +20,7 @@ extension User {
     @NSManaged public var id: String?
     @NSManaged public var peepsInHouse: Int64
     @NSManaged public var propertySize: Int64
+    @NSManaged public var houseYear: String?
 
 }
 

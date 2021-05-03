@@ -36,10 +36,24 @@ struct YearOfPropertyScreen: View {
             }.onChange(of: selectedYear) { _ in
                 // Store selected year
                 print("underlying value is", selectedYearToStore)
-                carbonTrackingData.yearOfHouse = selectedYear
-                // Go to next tracking onboarding screen
-                goToNextScreen.toggle()
+
+                saveYearOfProperty(selectedYear, completion: {
+                    goToNextScreen.toggle()
+                })
+
             }
+        }
+    }
+
+    private func saveYearOfProperty(_ yearOfProperty: String, completion: @escaping () -> Void) {
+        let user = PersistanceController.shared.fetchUser()
+        user.houseYear = yearOfProperty
+        PersistanceController.shared.save { error in
+            if let err = error {
+                print("there was an error saving size of property \(err.localizedDescription)")
+                return
+            }
+            completion()
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ImpactMeterApp: App {
+
     @StateObject var user = LegacyUser()
     @StateObject var carbonTrackingData = CarbonTrackingData()
 
