@@ -27,6 +27,7 @@ class ModifiedTextField: UITextField {
 // A textfield that supports a suffix that the user can't edit
 struct SuffixableTextField: UIViewRepresentable {
 
+    private let maximumLength = 12
     let placeholderText: String
     @Binding var text: String {
         didSet {
@@ -34,7 +35,7 @@ struct SuffixableTextField: UIViewRepresentable {
         }
     }
     let suffixText: String
-    let modifiedTf = UITextField() // ModifiedTextField(placeholderLength: 3)
+    let modifiedTf = UITextField()
     let onEditingChanged: (String) -> Void
 
     private let usedFont: UIFont = UIFont.boldSystemFont(ofSize: 24)
@@ -121,7 +122,7 @@ struct SuffixableTextField: UIViewRepresentable {
         /// dont allow to change the last part (sticky text at the end)
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-            let maximumLength: Int = 7
+            let maximumLength: Int = parent.maximumLength
             let placeholderLength: Int = parent.suffixText.count
 
             // This makes the new text black.

@@ -23,7 +23,7 @@ struct CountryInputView: View {
         let tilesVm: [TileView<AnyHashable>.ViewModel] = filteredCountries.map { country in
             TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: AnyHashable(country.name))
         }
-        return TileWallView.ViewModel(tiles: tilesVm)
+        return TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
     }
 
     var body: some View {
@@ -32,7 +32,7 @@ struct CountryInputView: View {
                 .padding([.top], 80)
             PrimaryTextView(viewModel: textInputViewModel, currentText: $user.country, keyboardType: .webSearch)
                 .padding([.top], 44)
-            TileWallView(viewModel: makeCountryTilewall(), selectedValue: $user.country, selectedUnderlyingValue: .constant(""))
+            TileWallView(viewModel: makeCountryTilewall(), selectedString: $user.country, selectedUnderlyingValue: .constant(""))
                 .padding([.top], 24)
             Spacer()
         }

@@ -49,8 +49,8 @@ enum PeopleOptions: Int, CaseIterable {
 
 struct PeopleInHouseScreen: View {
 
-    private var options: [TileView<AnyHashable>.ViewModel<AnyHashable>] {
-        var categories = [TileView<AnyHashable>.ViewModel<AnyHashable>]()
+    private var options: [TileView<AnyHashable>.ViewModel] {
+        var categories = [TileView<AnyHashable>.ViewModel]()
         PeopleOptions.allCases.forEach { option in
             let tile = TileView<AnyHashable>.ViewModel(text: option.displayText, emoji: option.emoji, underylingValue: AnyHashable(option.rawValue))
             categories.append(tile)
@@ -58,15 +58,9 @@ struct PeopleInHouseScreen: View {
         return categories
     }
 
-    @EnvironmentObject var carbonTrackingData: CarbonTrackingData
-
     @State private var selectedPeepsString: String = ""
     @State private var goToNextScreen: Bool = false
     @State private var selectedPeepsInHouseValue = AnyHashable(0)
-
-    // Object Context
-//    @Environment(\.managedObjectContext) var moc
-    // Fetch our user
     @FetchRequest(entity: User.entity(), sortDescriptors: []) var users: FetchedResults<User>
 
     var body: some View {
@@ -76,7 +70,7 @@ struct PeopleInHouseScreen: View {
                 TitleAndDescriptionView(viewModel: titleVm)
 
                 let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: options)
-                TileWallView(viewModel: tileWallVm, selectedValue: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
+                TileWallView(viewModel: tileWallVm, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
 
                 PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
             }.onChange(of: selectedPeepsString) { _ in

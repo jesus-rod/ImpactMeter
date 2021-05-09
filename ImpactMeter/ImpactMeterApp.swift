@@ -11,7 +11,6 @@ import SwiftUI
 struct ImpactMeterApp: App {
 
     @StateObject var user = LegacyUser()
-    @StateObject var carbonTrackingData = CarbonTrackingData()
 
     let persistenceController = PersistanceController.shared
 
@@ -21,7 +20,6 @@ struct ImpactMeterApp: App {
         WindowGroup {
             StartupCoordinator()
                 .environmentObject(user)
-                .environmentObject(carbonTrackingData)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }.onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {

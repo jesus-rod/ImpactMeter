@@ -31,8 +31,8 @@ struct TrackNewActivityScreen: View {
     @State private var selectedPeepsInHouse = AnyHashable(0)
 
     // Categories hardcoded
-    private var trackingCategories: [TileView<AnyHashable>.ViewModel<AnyHashable>] {
-        var categories = [TileView<AnyHashable>.ViewModel<AnyHashable>]()
+    private var trackingCategories: [TileView<AnyHashable>.ViewModel] {
+        var categories = [TileView<AnyHashable>.ViewModel]()
         TrackingCategory.allCases.forEach { category in
             let tile = TileView<AnyHashable>.ViewModel(text: category.rawValue.capitalized, emoji: category.emoji, underylingValue: AnyHashable(1))
             categories.append(tile)
@@ -54,7 +54,7 @@ struct TrackNewActivityScreen: View {
                     TitleAndDescriptionView(viewModel: titleVm)
 
                     let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: trackingCategories)
-                    TileWallView(viewModel: tileWallVm, selectedValue: $selectedCountry, selectedUnderlyingValue: $selectedPeepsInHouse)
+                    TileWallView(viewModel: tileWallVm, selectedString: $selectedCountry, selectedUnderlyingValue: $selectedPeepsInHouse)
 
                     PushView(destination: PeopleInHouseScreen(), isActive: $goToNextScreen, label: { EmptyView() })
                 }.onChange(of: selectedCountry) { _ in

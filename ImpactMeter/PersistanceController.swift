@@ -83,7 +83,7 @@ struct PersistanceController {
     }
 
     // Careful - Only call this if you are sure what you are doing
-    func wipeAllUsers() {
+    private func wipeAllUsers() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         let context = container.viewContext
@@ -93,5 +93,15 @@ struct PersistanceController {
         } catch let error as NSError {
             log.error("error deleting everything \(error.localizedDescription)")
         }
+    }
+
+    @discardableResult func addTrackedActivity(amount: Int, trackActivity: Trackable) -> TrackActivity {
+        let activity = TrackActivity(context: container.viewContext)
+        activity.amount = Int64(amount)
+        activity.name = trackActivity.storageKey
+        activity.unit = trackActivity.unit
+        activity.type = trackActivity.type.rawValue
+        save()
+        return activity
     }
 }

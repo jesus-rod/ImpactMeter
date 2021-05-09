@@ -10,17 +10,9 @@ import NavigationStack
 
 struct UtilityTrackingScreen: View {
 
-    enum Utilities: String {
-        case water
-        case electricity
-        case gas
-        case unknown
-    }
-
-    @EnvironmentObject var carbonTrackingData: CarbonTrackingData
-    @State private var selectedUtility: String = Utilities.unknown.rawValue
+    @State private var selectedUtility = Utility.unknown.rawValue
     @State private var goToNextScreen: Bool = false
-    @State private var selectedUtilityToStore = AnyHashable(Utilities.unknown)
+    @State private var selectedUtilityToStore = Utility.unknown
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Which utility would you like to track?", description: "")
@@ -28,22 +20,19 @@ struct UtilityTrackingScreen: View {
             VStack(alignment: .leading, spacing: 42) {
                 TitleAndDescriptionView(viewModel: titleVm)
 
-                let tileOne = TileView<AnyHashable>.ViewModel(text: "Water", emoji: "💧", underylingValue: AnyHashable(Utilities.water))
-                let tileTwo = TileView<AnyHashable>.ViewModel(text: "Electricity", emoji: "⚡️", underylingValue: AnyHashable(Utilities.electricity))
-                let tileThree = TileView<AnyHashable>.ViewModel(text: "Gas", emoji: "🔥", underylingValue: AnyHashable(Utilities.gas))
+                let tileOne = TileView<Utility>.ViewModel(text: "Water", emoji: "💧", underylingValue: (Utility.water))
+                let tileTwo = TileView<Utility>.ViewModel(text: "Electricity", emoji: "⚡️", underylingValue: (Utility.electricity))
+                let tileThree = TileView<Utility>.ViewModel(text: "Gas", emoji: "🔥", underylingValue: (Utility.gas))
 
-                let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo, tileThree])
+                let tileWallVm = TileWallView<Utility>.ViewModel(tiles: [tileOne, tileTwo, tileThree])
 
                 TileWallView(viewModel: tileWallVm,
-                             selectedValue: $selectedUtility,
+                             selectedString: $selectedUtility,
                              selectedUnderlyingValue: $selectedUtilityToStore)
 
-                PushView(destination: UtilityTrackingView(), isActive: $goToNextScreen, label: { EmptyView() })
-            }.onChange(of: selectedUtility) { _ in
-                // Store selected year
+                PushView(destination: UtilityTrackingView(utility: selectedUtilityToStore), isActive: $goToNextScreen, label: { EmptyView() })
+            }.onChange(of: selectedUtilityToStore) { _ in
                 print("underlying value is", selectedUtilityToStore)
-    //            carbonTrackingData. = selectedYear
-                // Go to next tracking onboarding screen
                 goToNextScreen = true
             }
         }
@@ -53,32 +42,48 @@ struct UtilityTrackingScreen: View {
 struct UtilityTrackingView: View {
 
     @State var utilityText: String = ""
-    @State var goToNextScreen: Bool = false
+    @State private var goToNextScreen: Bool = false
+    @EnvironmentObject private var navigationStack: NavigationStack
+    @Environment(\.presentationMode) var presentationMode
+
+    @State private var summaryItem: SummaryItem?
+
+    let utility: Utility
 
     var body: some View {
-        let titleVm = TitleAndDescriptionView.ViewModel(title: "How much electricity does your household consume?", description: "")
+        let titleVm = TitleAndDescriptionView.ViewModel(title: "How much \(utility.displayText) does your household consume?", description: "")
         AppScreen(showBackButton: true) {
             VStack(alignment: .leading, spacing: 24) {
                 TitleAndDescriptionView(viewModel: titleVm)
 
-                let suffixTvVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Consumption", bottomPlaceholder: "This many", stickyText: "kWh")
+                let suffixTvVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Consumption", bottomPlaceholder: "This many", stickyText: utility.unit)
                 PrimarySuffixableTextField(viewModel: suffixTvVm, currentText: $utilityText, keyboardType: .phonePad)
 
                 Spacer()
-                PushView(destination: UtilityTrackingSummaryScreen(),
-                               isActive: $goToNextScreen,
-                               label: { Spacer() })
 
                 PrimaryButton(title: "Confirm") {
-                    validateUtility(withSize: utilityText)
-                }
-                .keyboardAdaptive()
+                    validateUtility(with: utilityText)
+                }.keyboardAdaptive()
             }
-        }
+        }.sheet(item: $summaryItem, onDismiss: {
+            presentationMode.wrappedValue.dismiss()
+        }, content: { detailInfo in
+            UtilityTrackingSummaryScreen(utility: utility, item: detailInfo)
+        })
     }
 
-    private func validateUtility(withSize size: String) {
+    private func validateUtility(with value: String) {
+        storeActivity(utility: utility, storedValue: value)
+        summaryItem = SummaryItem(valueToShow: value)
         goToNextScreen = true
+    }
+
+    private func storeActivity(utility: Utility, storedValue: String) {
+        let amount = storedValue.components(separatedBy: " ")
+        let firstPart = amount.first ?? ""
+        // convert first part to Integer
+        let amountIntegerValue = Int(firstPart) ?? 0
+        PersistanceController.shared.addTrackedActivity(amount: amountIntegerValue, trackActivity: utility)
     }
 }
 

@@ -10,7 +10,6 @@ import NavigationStack
 
 struct YearOfPropertyScreen: View {
 
-    @EnvironmentObject var carbonTrackingData: CarbonTrackingData
     @State private var selectedYear: String = ""
     @State private var goToNextScreen: Bool = false
     @State private var selectedYearToStore = AnyHashable(0)
@@ -30,7 +29,7 @@ struct YearOfPropertyScreen: View {
 
                 let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: [tileOne, tileTwo, tileThree, tileFour, tileFive, tileSix])
 
-                TileWallView(viewModel: tileWallVm, selectedValue: $selectedYear, selectedUnderlyingValue: $selectedYearToStore)
+                TileWallView(viewModel: tileWallVm, selectedString: $selectedYear, selectedUnderlyingValue: $selectedYearToStore)
 
                 PushView(destination: UtilityTrackingScreen(), isActive: $goToNextScreen, label: { EmptyView() })
             }.onChange(of: selectedYear) { _ in

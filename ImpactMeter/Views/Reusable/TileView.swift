@@ -7,20 +7,16 @@
 
 import SwiftUI
 
-extension TileView: Hashable {
-    static func == (lhs: TileView<T>, rhs: TileView<T>) -> Bool {
-        lhs.viewModel == rhs.viewModel &&
-            lhs.selectedTag == rhs.selectedTag
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(selectedTag)
-        hasher.combine(selectedUnderlyingValue)
-    }
-}
-
 struct TileView<T: Hashable>: View {
-    let viewModel: ViewModel<T>
+
+    struct ViewModel: Hashable {
+        let identifier = UUID()
+        let text: String
+        let emoji: String
+        let underylingValue: T
+    }
+
+    let viewModel: ViewModel
     @Binding var selectedTag: String
     @State var isSelected: Bool
     @Binding var selectedUnderlyingValue: T
@@ -53,19 +49,6 @@ struct TileView<T: Hashable>: View {
     private func deselectTag() {
         selectedTag = ""
         isSelected = false
-    }
-}
-
-extension TileView {
-    struct ViewModel<T: Hashable>: Hashable {
-        static func == (lhs: TileView.ViewModel<T>, rhs: TileView.ViewModel<T>) -> Bool {
-            lhs.identifier == rhs.identifier
-        }
-
-        let identifier = UUID()
-        let text: String
-        let emoji: String
-        let underylingValue: T
     }
 }
 

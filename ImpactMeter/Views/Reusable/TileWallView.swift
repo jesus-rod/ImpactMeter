@@ -8,16 +8,29 @@
 import SwiftUI
 
 struct TileWallView<T: Hashable>: View {
+
+    struct ViewModel {
+        let tiles: [TileView<T>.ViewModel]
+    }
+
     let viewModel: ViewModel
-    @Binding var selectedValue: String
+    @Binding var selectedString: String
     @Binding var selectedUnderlyingValue: T
 
-    let selectionType: SelectionType = .single
-
-    enum SelectionType {
-        case single
-        case multiple
+    internal init(viewModel: TileWallView<T>.ViewModel,
+                  selectedString: Binding<String>,
+                  selectedUnderlyingValue: Binding<T>) {
+        self.viewModel = viewModel
+        self._selectedString = selectedString
+        self._selectedUnderlyingValue = selectedUnderlyingValue
     }
+
+//    let selectionType: SelectionType = .single
+//
+//    enum SelectionType {
+//        case single
+//        case multiple
+//    }
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -27,7 +40,7 @@ struct TileWallView<T: Hashable>: View {
                 alignment: .leading
             ) { tileInfo in
                 TileView(viewModel: tileInfo,
-                         selectedTag: $selectedValue,
+                         selectedTag: $selectedString,
                          isSelected: isSelected(tileText: tileInfo.text),
                          selectedUnderlyingValue: $selectedUnderlyingValue)
             }
@@ -37,13 +50,7 @@ struct TileWallView<T: Hashable>: View {
     }
 
     private func isSelected(tileText: String) -> Bool {
-        return selectedValue == tileText
-    }
-}
-
-extension TileWallView {
-    struct ViewModel {
-        let tiles: [TileView<T>.ViewModel<T>]
+        return selectedString == tileText
     }
 }
 
@@ -54,6 +61,6 @@ struct TileWallView_Previews: PreviewProvider {
             TileView<AnyHashable>.ViewModel(text: country.name, emoji: country.flag, underylingValue: AnyHashable(country.name))
         }
         let tileWallViewModel = TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
-        TileWallView(viewModel: tileWallViewModel, selectedValue: .constant(""), selectedUnderlyingValue: .constant(""))
+        TileWallView(viewModel: tileWallViewModel, selectedString: .constant(""), selectedUnderlyingValue: .constant(""))
     }
 }
