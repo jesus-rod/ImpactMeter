@@ -20,6 +20,7 @@ struct PersistanceController {
         let context = container.viewContext
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchRequest.fetchBatchSize = 2
         fetchRequest.predicate = NSPredicate(format: "id = %@", userId)
 
         do {
