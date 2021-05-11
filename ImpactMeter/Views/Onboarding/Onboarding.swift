@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct Onboarding: View {
-    @EnvironmentObject var user: LegacyUser
 
     var body: some View {
-        if user.shouldShowCountrySummary {
-            CountrySummary()
-        } else {
-            CountryInputView()
-        }
+        CountryInputView(showBackButton: false)
     }
 }
 

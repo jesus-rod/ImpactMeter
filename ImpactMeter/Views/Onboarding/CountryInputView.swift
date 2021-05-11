@@ -6,41 +6,56 @@
 //
 
 import SwiftUI
+import NavigationStack
+import Combine
 
 struct CountryInputView: View {
+
+    let showBackButton: Bool
+
     @EnvironmentObject var user: LegacyUser
-    private let allCountries: [Country] = CountriesGenerator().getCountries()
 
-    let titleViewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",
+    private let titleViewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",
                                                            description: "This is to determine the average for your region. None of your personal data will be shared.")
-    let textInputViewModel = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
+    private let textInputViewModel = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
 
-    private func makeCountryTilewall() -> TileWallView<AnyHashable>.ViewModel {
-        let filteredCountries = allCountries.filter {
-            $0.name.contains(user.country)
-        }
-
-        let tilesVm: [TileView<AnyHashable>.ViewModel] = filteredCountries.map { country in
-            TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: AnyHashable(country.name))
-        }
-        return TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
-    }
+    @State private var selectedCountry: String = ""
+    @State private var searchQuery: String = ""
+//    @Published private var searchQuery = ""
+//    private var searchCancellable: AnyCancellable?
+//    @State private var shouldShowCountrySummary: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            TitleAndDescriptionView(viewModel: titleViewModel)
-                .padding([.top], 80)
-            PrimaryTextView(viewModel: textInputViewModel, currentText: $user.country, keyboardType: .webSearch)
-                .padding([.top], 44)
-            TileWallView(viewModel: makeCountryTilewall(), selectedString: $user.country, selectedUnderlyingValue: .constant(""))
-                .padding([.top], 24)
-            Spacer()
+        AppScreen(showBackButton: showBackButton) {
+            VStack(alignment: .leading, spacing: 0) {
+                TitleAndDescriptionView(viewModel: titleViewModel)
+                PrimaryTextView(viewModel: textInputViewModel, currentText: $searchQuery, keyboardType: .webSearch)
+                    .padding([.top], 44)
+                TileWallView(viewModel: makeCountryTilewall(), selectedString: $user.country, selectedUnderlyingValue: $selectedCountry)
+                    .padding([.top], 24)
+                Spacer()
+            }.onChange(of: selectedCountry) { _ in
+//                shouldShowCountrySummary = true
+//                PushView(destination: CountrySummary(), isActive: self.$shouldShowCountrySummary, label: { EmptyView() })
+            }.keyboardAdaptive()
         }
+    }
+
+    private func makeCountryTilewall() -> TileWallView<String>.ViewModel {
+        let allCountries = CountriesGenerator().getCountries()
+        let filteredCountries = allCountries.filter { country in
+            country.name.contains(searchQuery)
+        }
+
+        let tilesVm: [TileView<String>.ViewModel] = filteredCountries.map { country in
+            TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: country.name)
+        }
+        return TileWallView<String>.ViewModel(tiles: tilesVm)
     }
 }
 
 struct CountryInputView_Previews: PreviewProvider {
     static var previews: some View {
-        CountryInputView()
+        CountryInputView(showBackButton: true)
     }
 }

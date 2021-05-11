@@ -14,7 +14,6 @@ class LegacyUser: ObservableObject {
     private let finishedTrackingOnboardingKey: String = "finishedTrackingOnboarding"
 
     init() {
-        print("are we skipping ONBOARDING?")
         print(ProcessInfo.processInfo.environment["shouldSkipOnboarding"] ?? "Fix this after MVP yo")
         if ProcessInfo.processInfo.environment["shouldSkipOnboarding"] == "YES" {
             didFinishOnboarding = true

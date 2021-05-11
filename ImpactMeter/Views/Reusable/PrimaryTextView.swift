@@ -25,7 +25,6 @@ struct PrimaryTextView: View {
                     print("new text is", $currentText)
                 } onCommit: {
                     print("done tapped")
-
                 }.font(Font.system(size: 24, weight: .bold, design: .default))
                 .foregroundColor(.primary)
                 .keyboardType(keyboardType)

@@ -26,8 +26,9 @@ struct TrackNewActivityScreen: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var selectedCountry: String = ""
+    @State private var selectedActivity: String = ""
     @State private var goToNextScreen: Bool = false
+    @State private var isShowingSettings: Bool = false
     @State private var selectedPeepsInHouse = AnyHashable(0)
 
     // Categories hardcoded
@@ -51,18 +52,24 @@ struct TrackNewActivityScreen: View {
             }
             AppScreen {
                 VStack(alignment: .leading, spacing: 42) {
-                    TitleAndDescriptionView(viewModel: titleVm)
-
+                    VStack {
+                        TitleAndDescriptionView(viewModel: titleVm)
+                        Button(action: {
+                            isShowingSettings = true
+                        }, label: {
+                            LinkImageView()
+                                .offset(y: -20)
+                        })
+                    }
                     let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: trackingCategories)
-                    TileWallView(viewModel: tileWallVm, selectedString: $selectedCountry, selectedUnderlyingValue: $selectedPeepsInHouse)
+                    TileWallView(viewModel: tileWallVm, selectedString: $selectedActivity, selectedUnderlyingValue: $selectedPeepsInHouse)
 
                     PushView(destination: PeopleInHouseScreen(), isActive: $goToNextScreen, label: { EmptyView() })
-                }.onChange(of: selectedCountry) { _ in
-                    // Store value of peeps in da house
+
+                    PushView(destination: SettingsView(), isActive: $isShowingSettings) { EmptyView() }
+                }.onChange(of: selectedActivity) { _ in
                     print("underlying value is", selectedPeepsInHouse)
-                //            carbonTrackingData.peepsInHouse = selectedPeepsInHouse.base as? Int ?? 0
-                    // Go to next tracking onboarding screen
-                    goToNextScreen.toggle()
+                    goToNextScreen = true
                 }
             }
 
