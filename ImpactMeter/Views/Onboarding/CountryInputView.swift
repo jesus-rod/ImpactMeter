@@ -21,9 +21,8 @@ struct CountryInputView: View {
 
     @State private var selectedCountry: String = ""
     @State private var searchQuery: String = ""
-//    @Published private var searchQuery = ""
-//    private var searchCancellable: AnyCancellable?
-//    @State private var shouldShowCountrySummary: Bool = false
+
+    @StateObject private var tileWallVm = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
 
     var body: some View {
         AppScreen(showBackButton: showBackButton) {
@@ -31,27 +30,30 @@ struct CountryInputView: View {
                 TitleAndDescriptionView(viewModel: titleViewModel)
                 PrimaryTextView(viewModel: textInputViewModel, currentText: $searchQuery, keyboardType: .webSearch)
                     .padding([.top], 44)
-                TileWallView(viewModel: makeCountryTilewall(), selectedString: $user.country, selectedUnderlyingValue: $selectedCountry)
+                TileWallView(viewModel: tileWallVm, selectedString: $user.country, selectedUnderlyingValue: $selectedCountry)
                     .padding([.top], 24)
                 Spacer()
-            }.onChange(of: selectedCountry) { _ in
+            }.onChange(of: searchQuery) { countryInputText in
+                updateCountryTilewall(with: countryInputText)
 //                shouldShowCountrySummary = true
 //                PushView(destination: CountrySummary(), isActive: self.$shouldShowCountrySummary, label: { EmptyView() })
             }.keyboardAdaptive()
         }
     }
 
-    private func makeCountryTilewall() -> TileWallView<String>.ViewModel {
-        let allCountries = CountriesGenerator().getCountries()
+    private func updateCountryTilewall(with countryInput: String) {
+         let allCountries = CountriesGenerator().getCountries()
         let filteredCountries = allCountries.filter { country in
-            country.name.contains(searchQuery)
+            country.name.lowercased().contains(countryInput.lowercased())
         }
 
-        let tilesVm: [TileView<String>.ViewModel] = filteredCountries.map { country in
+        let updatedTiles: [TileView<String>.ViewModel] = filteredCountries.map { country in
             TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: country.name)
         }
-        return TileWallView<String>.ViewModel(tiles: tilesVm)
+
+        tileWallVm.tiles = updatedTiles
     }
+
 }
 
 struct CountryInputView_Previews: PreviewProvider {

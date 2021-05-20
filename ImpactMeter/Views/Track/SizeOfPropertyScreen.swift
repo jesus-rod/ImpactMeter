@@ -39,7 +39,6 @@ struct SizeOfPropertyScreen: View {
                 .keyboardAdaptive()
             }.onChange(of: squareMeters) { (    value) in
                 print("le val \(value)")
-                //updatePrimaryButtonState(withSize: value)
             }.onAppear {
                 print("# of Users found \(users.count)")
                 print("Check if user has stored size of property")

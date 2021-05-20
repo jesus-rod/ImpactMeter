@@ -6,11 +6,25 @@
 //
 
 import SwiftUI
+import Combine
 
 struct TileWallView<T: Hashable>: View {
 
-    struct ViewModel {
-        let tiles: [TileView<T>.ViewModel]
+    class ViewModel: ObservableObject {
+        @Published var tiles = [TileView<T>.ViewModel]()
+        @Published var validatedTiles = [TileView<T>.ViewModel]()
+        private var cancellablePipeline: AnyCancellable?
+
+        init(tiles: [TileView<T>.ViewModel]) {
+
+            cancellablePipeline = $tiles
+                .removeDuplicates()
+                .debounce(for: 0.3, scheduler: RunLoop.main)
+                .sink { [unowned self] value in
+                    self.validatedTiles = value
+                }
+        }
+
     }
 
     let viewModel: ViewModel
@@ -25,17 +39,10 @@ struct TileWallView<T: Hashable>: View {
         self._selectedUnderlyingValue = selectedUnderlyingValue
     }
 
-//    let selectionType: SelectionType = .single
-//
-//    enum SelectionType {
-//        case single
-//        case multiple
-//    }
-
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             FlexibleView(
-                data: viewModel.tiles,
+                data: viewModel.validatedTiles,
                 spacing: 10,
                 alignment: .leading
             ) { tileInfo in
