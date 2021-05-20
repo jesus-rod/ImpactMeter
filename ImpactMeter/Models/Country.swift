@@ -10,22 +10,25 @@ import Foundation
 struct Country {
     let name: String
     let flag: String
+    let code: String
 }
 
 struct CountriesGenerator {
     func getCountries() -> [Country] {
         var countries: [Country] = []
-
         for code in NSLocale.isoCountryCodes as [String] {
-            let countryId = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            guard let countryName = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: countryId) else { continue }
-            countries.append(Country(name: countryName, flag: emojiFlag(for: code)))
+            guard let countryName = countryName(for: code) else { continue }
+            countries.append(Country(name: countryName, flag: countryFlag(for: code), code: code))
         }
-
         return countries
     }
 
-    private func emojiFlag(for countryCode: String) -> String {
+    func countryName(for countryCode: String) -> String? {
+        let countryId = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: countryCode])
+        return NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: countryId)
+    }
+
+    func countryFlag(for countryCode: String) -> String {
         let base: UInt32 = 127_397
         var finalEmojiFlag = ""
         for val in countryCode.uppercased().unicodeScalars {

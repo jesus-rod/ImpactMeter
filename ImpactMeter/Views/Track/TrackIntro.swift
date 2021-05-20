@@ -14,6 +14,7 @@ struct TrackIntro: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Track your first activity", description: "Your footprint is currently not displaying anything because you haven’t tracked any activity yet.")
+
         VStack(alignment: .leading, spacing: 88) {
             TitleAndDescriptionView(viewModel: titleVm)
                 .multilineTextAlignment(.leading)

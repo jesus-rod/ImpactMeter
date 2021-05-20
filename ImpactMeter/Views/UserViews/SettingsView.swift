@@ -20,13 +20,21 @@ struct SettingsView: View {
                 TitleAndDescriptionView(viewModel: titleVm)
 
                 // Location
-                let locationVm = SettingsSection.ViewModel(icon: "🇬🇧", title: "Current Location", text: "England", action: {
+                // User country
+                let user = PersistanceController.shared.fetchUser()
+                let userCountry = CountriesGenerator().countryName(for: user.country ?? "US") ?? "--"
+                let userFlag = CountriesGenerator().countryFlag(for: user.country ?? "US")
+                let locationVm = SettingsSection.ViewModel(icon: userFlag, title: "Current Location", text: userCountry, action: {
                     shouldShowCountrySelection = true
                 })
 
                 // Household
-                let householdVm = SettingsSection.ViewModel(icon: "🔌", title: "Household Properties", text: "2 People, 52m", action: {
-                    shouldShowCountrySelection = true
+                let userHouseSize = user.propertySize
+                let userPeepsInHouse = user.peepsInHouse
+                let peopleOrPersonText = userPeepsInHouse > 1 ? "People" : "Person"
+                let houseHoldText = "\(userPeepsInHouse) \(peopleOrPersonText), \(userHouseSize) sqm"
+                let householdVm = SettingsSection.ViewModel(icon: "🔌", title: "Household Properties", text: houseHoldText, action: {
+                    shouldShowHouseholdSelection = true
                 })
 
                 VStack(alignment: .leading, spacing: 48) {
@@ -37,6 +45,7 @@ struct SettingsView: View {
                 Spacer()
 
                 PushView(destination: CountryInputView(showBackButton: true), isActive: $shouldShowCountrySelection, label: { EmptyView() })
+                PushView(destination: PeopleInHouseScreen(), isActive: $shouldShowHouseholdSelection, label: { EmptyView() })
             })
         }
     }

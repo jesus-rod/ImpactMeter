@@ -22,6 +22,8 @@ struct CountryInputView: View {
     @State private var selectedCountry: String = ""
     @State private var searchQuery: String = ""
 
+    @State private var isShowingCountrySummary: Bool = false
+
     @StateObject private var tileWallVm = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
 
     var body: some View {
@@ -33,27 +35,46 @@ struct CountryInputView: View {
                 TileWallView(viewModel: tileWallVm, selectedString: $user.country, selectedUnderlyingValue: $selectedCountry)
                     .padding([.top], 24)
                 Spacer()
+
+                // Navigation
+                PushView(destination: CountrySummary(), isActive: $isShowingCountrySummary, label: { EmptyView() })
             }.onChange(of: searchQuery) { countryInputText in
                 updateCountryTilewall(with: countryInputText)
-//                shouldShowCountrySummary = true
-//                PushView(destination: CountrySummary(), isActive: self.$shouldShowCountrySummary, label: { EmptyView() })
+            }.onChange(of: selectedCountry) { value in
+                LoggingController.shared.log.info("User selected \(value)")
+
+                saveCountryOfUser(value, completion: {
+                    // Add some loading here
+                    isShowingCountrySummary = true
+                })
             }.keyboardAdaptive()
         }
     }
 
     private func updateCountryTilewall(with countryInput: String) {
-         let allCountries = CountriesGenerator().getCountries()
+        let allCountries = CountriesGenerator().getCountries()
         let filteredCountries = allCountries.filter { country in
             country.name.lowercased().contains(countryInput.lowercased())
         }
 
         let updatedTiles: [TileView<String>.ViewModel] = filteredCountries.map { country in
-            TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: country.name)
+            TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: country.code)
         }
 
         tileWallVm.tiles = updatedTiles
     }
 
+    private func saveCountryOfUser(_ country: String, completion: @escaping () -> Void) {
+        let user = PersistanceController.shared.fetchUser()
+        user.country = country
+        PersistanceController.shared.save { error in
+            if let err = error {
+                print("there was an error saving the country of the user \(err.localizedDescription)")
+                return
+            }
+            completion()
+        }
+    }
 }
 
 struct CountryInputView_Previews: PreviewProvider {

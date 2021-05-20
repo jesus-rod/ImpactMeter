@@ -16,10 +16,9 @@ struct TileWallView<T: Hashable>: View {
         private var cancellablePipeline: AnyCancellable?
 
         init(tiles: [TileView<T>.ViewModel]) {
-
             cancellablePipeline = $tiles
-                .removeDuplicates()
-                .debounce(for: 0.3, scheduler: RunLoop.main)
+//                .removeDuplicates()
+//                .debounce(for: 0.3, scheduler: RunLoop.main)
                 .sink { [unowned self] value in
                     self.validatedTiles = value
                 }

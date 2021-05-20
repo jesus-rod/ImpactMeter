@@ -29,17 +29,18 @@ struct TrackNewActivityScreen: View {
     @State private var selectedActivity: String = ""
     @State private var goToNextScreen: Bool = false
     @State private var isShowingSettings: Bool = false
-    @State private var selectedPeepsInHouse = AnyHashable(0)
 
-    // Categories hardcoded
-    private var trackingCategories: [TileView<AnyHashable>.ViewModel] {
-        var categories = [TileView<AnyHashable>.ViewModel]()
+    // Categories hardcoded 
+    static func makeTrackingCategories() -> [TileView<String>.ViewModel] {
+        var categories = [TileView<String>.ViewModel]()
         TrackingCategory.allCases.forEach { category in
-            let tile = TileView<AnyHashable>.ViewModel(text: category.rawValue.capitalized, emoji: category.emoji, underylingValue: AnyHashable(1))
+            let tile = TileView<String>.ViewModel(text: category.rawValue.capitalized, emoji: category.emoji, underylingValue: category.rawValue)
             categories.append(tile)
         }
         return categories
     }
+
+    @ObservedObject private var activitiesTileWallViewModel = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Track new activity 🌿", description: "")
@@ -61,15 +62,16 @@ struct TrackNewActivityScreen: View {
                                 .offset(y: -20)
                         })
                     }
-                    let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: trackingCategories)
-                    TileWallView(viewModel: tileWallVm, selectedString: $selectedActivity, selectedUnderlyingValue: $selectedPeepsInHouse)
 
+                    TileWallView(viewModel: activitiesTileWallViewModel, selectedString: $selectedActivity, selectedUnderlyingValue: $selectedActivity)
+
+                    // Pushing Views (Navigation)
                     PushView(destination: PeopleInHouseScreen(), isActive: $goToNextScreen, label: { EmptyView() })
-
                     PushView(destination: SettingsView(), isActive: $isShowingSettings) { EmptyView() }
                 }.onChange(of: selectedActivity) { _ in
-                    print("underlying value is", selectedPeepsInHouse)
                     goToNextScreen = true
+                }.onAppear {
+                    activitiesTileWallViewModel.tiles = TrackNewActivityScreen.makeTrackingCategories()
                 }
             }
 

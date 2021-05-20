@@ -23,9 +23,7 @@ struct PageManager<Content: View>: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                self.content.frame(width: geometry.size.width,
-                                   height: geometry.size.height)
-
+                self.content.frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
             }.frame(width: geometry.size.width, height: geometry.size.height, alignment: .leading)
                 .contentShape(Rectangle())
                 .gesture(
