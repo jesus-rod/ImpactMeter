@@ -9,11 +9,18 @@ import SwiftUI
 
 struct TileView<T: Hashable>: View {
 
-    struct ViewModel: Hashable {
+    struct ViewModel: Hashable, Equatable {
         let identifier = UUID()
         let text: String
         let emoji: String
         let underylingValue: T
+
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            return
+                lhs.text == rhs.text &&
+                lhs.emoji == rhs.emoji &&
+                lhs.underylingValue == rhs.underylingValue
+        }
     }
 
     let viewModel: ViewModel

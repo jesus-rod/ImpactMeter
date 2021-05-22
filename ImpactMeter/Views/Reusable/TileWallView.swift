@@ -17,13 +17,12 @@ struct TileWallView<T: Hashable>: View {
 
         init(tiles: [TileView<T>.ViewModel]) {
             cancellablePipeline = $tiles
-//                .removeDuplicates()
-//                .debounce(for: 0.3, scheduler: RunLoop.main)
+                .removeDuplicates()
+                .debounce(for: 0.3, scheduler: RunLoop.main)
                 .sink { [unowned self] value in
                     self.validatedTiles = value
                 }
         }
-
     }
 
     let viewModel: ViewModel
@@ -50,7 +49,7 @@ struct TileWallView<T: Hashable>: View {
                          isSelected: isSelected(tileText: tileInfo.text),
                          selectedUnderlyingValue: $selectedUnderlyingValue)
             }
-        }.padding([.leading, .trailing, .bottom], 16)
+        }.padding([.horizontal, .bottom], 16)
             .frame(maxWidth: .infinity,
                    alignment: .leading)
     }
