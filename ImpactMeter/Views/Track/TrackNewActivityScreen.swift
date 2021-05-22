@@ -43,7 +43,7 @@ struct TrackNewActivityScreen: View {
     @ObservedObject private var activitiesTileWallViewModel = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
 
     var body: some View {
-        let titleVm = TitleAndDescriptionView.ViewModel(title: "Track new activity 🌿", description: "")
+        let titleVm = TitleAndDescriptionView.ViewModel(title: "Track new activity 🌿")
         VStack(alignment: HorizontalAlignment.leading, spacing: 0) {
             Button {
                 presentationMode.wrappedValue.dismiss()
@@ -59,7 +59,6 @@ struct TrackNewActivityScreen: View {
                             isShowingSettings = true
                         }, label: {
                             LinkImageView()
-                                .offset(y: -20)
                         })
                     }
 

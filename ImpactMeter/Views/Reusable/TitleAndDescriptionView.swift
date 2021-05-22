@@ -18,11 +18,13 @@ struct TitleAndDescriptionView: View {
                 .padding([.leading, .trailing], 24)
                 .padding([.top], 12)
                 .fixedSize(horizontal: false, vertical: true)
-            Text(viewModel.description)
-                .font(.subheadline)
-                .multilineTextAlignment(.leading)
-                .padding([.leading, .trailing], 24)
-                .fixedSize(horizontal: false, vertical: true)
+            if let description = viewModel.description {
+                Text(description)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.leading)
+                    .padding([.leading, .trailing], 24)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }.frame(maxWidth: .infinity,
                 alignment: .leading)
         .padding(.top, 0)
@@ -31,9 +33,16 @@ struct TitleAndDescriptionView: View {
 
 extension TitleAndDescriptionView {
     struct ViewModel {
+        internal init(title: String, description: String? = nil) {
+            self.title = title
+            self.description = description
+        }
+
         let title: String
-        let description: String
+        let description: String?
     }
+
+
 }
 
 // Preview
