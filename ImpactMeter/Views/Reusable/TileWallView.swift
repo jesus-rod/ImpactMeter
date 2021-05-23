@@ -7,12 +7,13 @@
 
 import SwiftUI
 import Combine
+import Collections
 
 struct TileWallView<T: Hashable>: View {
 
     class ViewModel: ObservableObject {
-        @Published var tiles = Set<TileView<T>.ViewModel>()
-        @Published var validatedTiles = Set<TileView<T>.ViewModel>()
+        @Published var tiles = OrderedSet<TileView<T>.ViewModel>()
+        @Published var validatedTiles = OrderedSet<TileView<T>.ViewModel>()
         private var cancellablePipeline: AnyCancellable?
 
         init(tiles: [TileView<T>.ViewModel], shouldDebounce: Bool = false) {

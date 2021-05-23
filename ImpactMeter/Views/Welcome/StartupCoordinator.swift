@@ -33,7 +33,7 @@ struct StartupCoordinator: View {
                         .frame(alignment: .leading)
                         .opacity(titleOpacity)
                 }
-                .padding([.leading, .trailing], 24)
+                .padding([.horizontal], 24)
             } else if user.didFinishOnboarding {
                 MainTabView()
             } else if !isShowingSplash && !onboardingStarted {

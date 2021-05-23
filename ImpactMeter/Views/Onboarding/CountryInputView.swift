@@ -8,6 +8,7 @@
 import SwiftUI
 import NavigationStack
 import Combine
+import Collections
 
 struct CountryInputView: View {
 
@@ -24,7 +25,7 @@ struct CountryInputView: View {
 
     let router: CountrySettingsRouter
 
-    @StateObject private var tileWallVm = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
+    @StateObject private var tileWallVm = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel](), shouldDebounce: true)
 
     var body: some View {
         AppScreen(showBackButton: showBackButton) {
@@ -59,7 +60,7 @@ struct CountryInputView: View {
             TileView.ViewModel(text: country.name, emoji: country.flag, underlyingValue: country.code)
         }
 
-        tileWallVm.tiles = Set(updatedTiles.map { $0 })
+        tileWallVm.tiles = OrderedSet(updatedTiles.map { $0 })
     }
 
     private func saveCountryOfUser(_ country: String, completion: @escaping () -> Void) {

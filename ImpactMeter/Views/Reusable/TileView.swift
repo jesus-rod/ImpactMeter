@@ -36,7 +36,7 @@ struct TileView<T: Hashable>: View {
                 .fontWeight(.semibold)
                 .foregroundColor(isSelected ? .white : .black)
             Text(viewModel.emoji)
-        }.padding([.leading, .trailing], 10)
+        }.padding([.horizontal], 10)
             .padding([.top, .bottom], 8)
             .background(RoundedRectangle(cornerRadius: 10).foregroundColor(isSelected ? .blue : IMColors.blueishGray))
             .onTapGesture(perform: {

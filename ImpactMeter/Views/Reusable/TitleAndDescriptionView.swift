@@ -15,14 +15,14 @@ struct TitleAndDescriptionView: View {
             Text(viewModel.title)
                 .font(.largeTitle).bold()
                 .multilineTextAlignment(.leading)
-                .padding([.leading, .trailing], 24)
+                .padding([.horizontal], 24)
                 .padding([.top], 12)
                 .fixedSize(horizontal: false, vertical: true)
             if let description = viewModel.description {
                 Text(description)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
-                    .padding([.leading, .trailing], 24)
+                    .padding([.horizontal], 24)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }.frame(maxWidth: .infinity,

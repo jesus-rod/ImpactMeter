@@ -8,6 +8,7 @@
 import Combine
 import SwiftUI
 import NavigationStack
+import Collections
 
 enum PeopleOptions: Int, CaseIterable {
     case one = 1
@@ -47,38 +48,32 @@ enum PeopleOptions: Int, CaseIterable {
     }
 }
 
+
 struct PeopleInHouseScreen: View {
 
-    private var options: Set<TileView<Int>.ViewModel> {
-        Set(PeopleOptions
+    private var options: OrderedSet<TileView<Int>.ViewModel> {
+        OrderedSet(PeopleOptions
                 .allCases
                 .map { TileView<Int>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue) })
     }
 
     @State private var selectedPeepsString: String = ""
-    @State private var goToNextScreen: Bool = false
     @State private var selectedPeepsInHouseValue = 0
 
     @ObservedObject private var peepsInHouseTileWallViewModel = TileWallView<Int>.ViewModel(tiles: [TileView<Int>.ViewModel]())
 
     let router: HouseSettingsRouter
+    let shouldShowBackButton: Bool
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How many people live in your household?", description: "The information you enter here will only be used to calculate your electricity, gas and water usage. No information will be shared.")
-        AppScreen(showBackButton: true) {
+        AppScreen(showBackButton: shouldShowBackButton) {
             VStack(alignment: .leading, spacing: 42) {
                 TitleAndDescriptionView(viewModel: titleVm)
-
                 TileWallView(viewModel: peepsInHouseTileWallViewModel, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
-
-                //                PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
             }.onChange(of: selectedPeepsString) { _ in
-
-                print("underlying value is", selectedPeepsInHouseValue)
-
                 persistPeopleInHouse(numOfPeople: selectedPeepsInHouseValue)
-                //                 Go to next tracking onboarding screen
-                router.toHouseSize()
+                router.toHouseSize(router: router)
             }.onAppear {
                 peepsInHouseTileWallViewModel.tiles = options
             }
@@ -96,6 +91,6 @@ struct PeopleInHouseScreen: View {
 
 struct PeopleInHouseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleInHouseScreen(router: HouseSettingsRouter(navStack: NavigationStack()))
+        PeopleInHouseScreen(router: HouseSettingsRouter(navStack: NavigationStack()), shouldShowBackButton: true)
     }
 }

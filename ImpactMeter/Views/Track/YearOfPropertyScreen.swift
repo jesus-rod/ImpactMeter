@@ -7,9 +7,10 @@
 
 import SwiftUI
 import NavigationStack
+import Collections
 
 enum PropertyYearOptions: String, TileOptions {
-    case yearRangeOne = "2000-2020"
+    case yearRangeOne = "2000-2021"
     case yearRangeTwo = "1980-2000"
     case yearRangeThree = "1960-1980"
     case yearRangeFour = "1940-1960"
@@ -17,20 +18,7 @@ enum PropertyYearOptions: String, TileOptions {
     case yearRangeSix = "Pre 1920"
 
     var displayText: String {
-        switch self {
-        case .yearRangeOne:
-            return "1 Person"
-        case .yearRangeTwo:
-            return "2 People"
-        case .yearRangeThree:
-            return "3 People"
-        case .yearRangeFour:
-            return "4 People"
-        case .yearRangeFive:
-            return "5 People"
-        case .yearRangeSix:
-            return "6 People"
-        }
+        return rawValue
     }
 
     var emoji: String {
@@ -56,8 +44,8 @@ struct YearOfPropertyScreen: View {
     @State private var selectedYear: String = ""
     @State private var selectedYearToStore = ""
 
-    private var options: Set<TileView<String>.ViewModel> {
-        Set(PropertyYearOptions.allCases.map { TileView<String>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue) })
+    private var options: OrderedSet<TileView<String>.ViewModel> {
+        OrderedSet(PropertyYearOptions.allCases.map { TileView<String>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue) })
     }
 
     @ObservedObject private var yearOfPropertyTileWallViewModel = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())

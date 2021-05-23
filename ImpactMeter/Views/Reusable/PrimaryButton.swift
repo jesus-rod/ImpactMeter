@@ -30,7 +30,7 @@ struct PrimaryButton: View {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, minHeight: 48)
                 .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.blue))
-                .padding([.leading, .trailing], 24)
+                .padding([.horizontal], 24)
                 .onAppear(perform: {
                     wasButtonAnimated.toggle()
                 })

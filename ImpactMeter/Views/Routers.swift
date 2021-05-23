@@ -15,12 +15,12 @@ class HouseSettingsRouter {
         self.navStack = navStack
     }
 
-    func toHouseSize() {
-        self.navStack.push(SizeOfPropertyScreen(router: self))
+    func toHouseSize(router: HouseSettingsRouter) {
+        navStack.push(SizeOfPropertyScreen(router: router))
     }
 
-    func toHouseYear() {
-        self.navStack.push(YearOfPropertyScreen(router: self))
+    func toHouseYear(router: HouseSettingsRouter) {
+        navStack.push(YearOfPropertyScreen(router: router))
     }
 
     func popBackToSettings() {

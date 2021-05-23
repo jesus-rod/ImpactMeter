@@ -17,9 +17,12 @@ struct SettingsView: View {
 
     @ObservedObject var user = PersistanceController.shared.fetchUser()
 
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
-        NavigationStackView(navigationStack: navigationStack) {
-            AppScreen(showBackButton: true) {
+
+        AppScreen(showBackButton: true) {
+            NavigationStackView(navigationStack: navigationStack) {
                 VStack(alignment: .leading, spacing: 42, content: {
                     let titleVm = TitleAndDescriptionView.ViewModel(title: "Your personal settings", description: "")
                     TitleAndDescriptionView(viewModel: titleVm)
@@ -50,11 +53,11 @@ struct SettingsView: View {
 
                     Spacer()
 
-                    PushView(destination: CountryInputView(showBackButton: true,
+                    PushView(destination: CountryInputView(showBackButton: false,
                                                            router: CountrySettingsRouter(navStack: navigationStack)),
                              isActive: $shouldShowCountrySelection,
                              label: { EmptyView() })
-                    PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack)),
+                    PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack), shouldShowBackButton: false),
                              isActive: $shouldShowHouseholdSelection, label: { EmptyView() })
                 })
             }

@@ -28,6 +28,9 @@
 		95556C792656D1C100C3F862 /* CircleOverCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C782656D1C100C3F862 /* CircleOverCircleView.swift */; };
 		95556C7F265A209D00C3F862 /* TileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C7E265A209D00C3F862 /* TileOptions.swift */; };
 		95556C82265A2D3C00C3F862 /* Routers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C81265A2D3C00C3F862 /* Routers.swift */; };
+		95556C88265A480100C3F862 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 95556C87265A480100C3F862 /* OrderedCollections */; };
+		95556C8A265A480100C3F862 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 95556C89265A480100C3F862 /* DequeModule */; };
+		95556C8C265A480100C3F862 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 95556C8B265A480100C3F862 /* Collections */; };
 		9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */; };
 		9564B409262C0A630074A98A /* UtilityTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */; };
 		9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B40D262C53360074A98A /* CircleInCircleView.swift */; };
@@ -136,8 +139,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95556C8C265A480100C3F862 /* Collections in Frameworks */,
 				95BA322C2609C53D007CAF4F /* Introspect in Frameworks */,
 				9564B422262F109F0074A98A /* NavigationStack in Frameworks */,
+				95556C8A265A480100C3F862 /* DequeModule in Frameworks */,
+				95556C88265A480100C3F862 /* OrderedCollections in Frameworks */,
 				950A4409263EEFDD00417639 /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +366,9 @@
 				95BA322B2609C53D007CAF4F /* Introspect */,
 				9564B421262F109F0074A98A /* NavigationStack */,
 				950A4408263EEFDD00417639 /* SwiftyBeaver */,
+				95556C87265A480100C3F862 /* OrderedCollections */,
+				95556C89265A480100C3F862 /* DequeModule */,
+				95556C8B265A480100C3F862 /* Collections */,
 			);
 			productName = ImpactMeter;
 			productReference = 956E5A2F25EC21990029E59A /* ImpactMeter.app */;
@@ -392,6 +401,7 @@
 				95BA322A2609C53D007CAF4F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */,
 				950A4407263EEFDD00417639 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				95556C86265A480100C3F862 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 956E5A3025EC21990029E59A /* Products */;
 			projectDirPath = "";
@@ -726,6 +736,14 @@
 				minimumVersion = 1.9.3;
 			};
 		};
+		95556C86265A480100C3F862 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.0.2;
+			};
+		};
 		9564B420262F109F0074A98A /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/matteopuc/swiftui-navigation-stack.git";
@@ -749,6 +767,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 950A4407263EEFDD00417639 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		95556C87265A480100C3F862 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95556C86265A480100C3F862 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		95556C89265A480100C3F862 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95556C86265A480100C3F862 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		95556C8B265A480100C3F862 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95556C86265A480100C3F862 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
 		};
 		9564B421262F109F0074A98A /* NavigationStack */ = {
 			isa = XCSwiftPackageProductDependency;

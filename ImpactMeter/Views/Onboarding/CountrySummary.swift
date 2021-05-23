@@ -36,7 +36,7 @@ struct CountrySummary: View {
                     let circleViewModel = CircleInCircleView.ViewModel(circleTitle: "Footprint", circleSubtitle: "", circleColor: Color.primary, circleUndertextTitle: "8.2 tons of CO2", circleUndertextSubTitle: "EU Average per capita")
                     CircleInCircleView(titleViewModel: titleViewModel2, viewModel: circleViewModel).isHidden(currentPage != 1)
                         .animation(.easeInOut)
-                }//.background(Color.red)
+                } // .background(Color.red)
                 Spacer()
                 // Page Control
                 IMPageControl(currentPage: $currentPage)

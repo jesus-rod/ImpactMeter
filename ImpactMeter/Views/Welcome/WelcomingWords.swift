@@ -37,7 +37,7 @@ struct WelcomingWords: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.blue))
-                            .padding([.leading, .trailing], 24)
+                            .padding([.horizontal], 24)
                             .onAppear(perform: {
                                 wasButtonAnimated.toggle()
                             })

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NavigationStack
+import Collections
 
 enum TrackingCategory: String, CaseIterable {
     case travel
@@ -33,8 +34,8 @@ struct TrackNewActivityScreen: View {
     @State private var isShowingSettings: Bool = false
 
     // Categories hardcoded 
-    private var trackingCategories: Set<TileView<String>.ViewModel> {
-        return Set(TrackingCategory.allCases
+    private var trackingCategories: OrderedSet<TileView<String>.ViewModel> {
+        return OrderedSet(TrackingCategory.allCases
                     .map { TileView<String>.ViewModel(text: $0.rawValue.capitalized, emoji: $0.emoji, underlyingValue: $0.rawValue) })
     }
 
@@ -63,7 +64,7 @@ struct TrackNewActivityScreen: View {
                     TileWallView(viewModel: activitiesTileWallViewModel, selectedString: $selectedActivity, selectedUnderlyingValue: $selectedActivity)
 
                     // Pushing Views (Navigation)
-                    PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack)), isActive: $goToNextScreen, label: { EmptyView() })
+                    PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack), shouldShowBackButton: true), isActive: $goToNextScreen, label: { EmptyView() })
                     PushView(destination: SettingsView(), isActive: $isShowingSettings) { EmptyView() }
                 }.onChange(of: selectedActivity) { _ in
                     goToNextScreen = true

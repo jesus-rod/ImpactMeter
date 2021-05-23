@@ -66,7 +66,7 @@ struct SizeOfPropertyScreen: View {
         let input = isInputValid(propertySize: propertySize)
         if input.isValid {
             saveSizeOfProperty(input.integerValue, completion: {
-                router.toHouseYear()
+                router.toHouseYear(router: router)
             })
             return
         }

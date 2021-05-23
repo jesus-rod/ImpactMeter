@@ -38,7 +38,7 @@ struct TrackIntro: View {
                                     .frame(width: 24, height: 24, alignment: .center)
                             )
                     }
-                    .padding([.leading, .trailing], 24)
+                    .padding([.horizontal], 24)
                     .padding([.bottom], 20)
                 }
 

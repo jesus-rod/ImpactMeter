@@ -14,13 +14,13 @@ struct DashboardSummaryView: View {
             VStack(alignment: .leading) {
                 DashboardSummaryHeader()
                     .padding([.bottom], 30)
-                    .padding([.leading, .trailing], 24)
+                    .padding([.horizontal], 24)
 
                 Text("Categories")
                     .font(.title3).bold()
                     .multilineTextAlignment(.leading)
                     .padding([.bottom], 24)
-                    .padding([.leading, .trailing], 24)
+                    .padding([.horizontal], 24)
                 SummaryList()
                     .padding([.bottom], 16)
             }
@@ -89,7 +89,7 @@ struct SummaryList: View {
             }
             Divider()
 
-        }.padding([.leading, .trailing], 24)
+        }.padding([.horizontal], 24)
     }
 }
 
