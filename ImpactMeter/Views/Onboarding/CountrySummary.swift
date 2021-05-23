@@ -48,7 +48,6 @@ struct CountrySummary: View {
                             router.popBackToSettings()
                         }.padding(.top, 24)
                     }
-
                 }
 
             }.padding([.bottom], 24)

@@ -11,8 +11,8 @@ import Combine
 struct TileWallView<T: Hashable>: View {
 
     class ViewModel: ObservableObject {
-        @Published var tiles = [TileView<T>.ViewModel]()
-        @Published var validatedTiles = [TileView<T>.ViewModel]()
+        @Published var tiles = Set<TileView<T>.ViewModel>()
+        @Published var validatedTiles = Set<TileView<T>.ViewModel>()
         private var cancellablePipeline: AnyCancellable?
 
         init(tiles: [TileView<T>.ViewModel], shouldDebounce: Bool = false) {

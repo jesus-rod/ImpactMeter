@@ -51,11 +51,9 @@ struct UtilityTrackingScreen: View {
     @State private var goToNextScreen: Bool = false
     @State private var selectedUtilityToStore = Utility.unknown
 
-    private var options: [TileView<Utility>.ViewModel] {
-        return UtilityOptions
-            .allCases
-            .map { [TileView<Utility>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.utility)] }
-            .reduce([TileView<Utility>.ViewModel](), +)
+    private var options: Set<TileView<Utility>.ViewModel> {
+        return Set(UtilityOptions.allCases
+                .map { TileView<Utility>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.utility) })
     }
 
     @ObservedObject private var utilitiesTileWallViewModel = TileWallView<Utility>.ViewModel(tiles: [TileView<Utility>.ViewModel]())

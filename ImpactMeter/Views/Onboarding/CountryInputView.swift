@@ -59,7 +59,7 @@ struct CountryInputView: View {
             TileView.ViewModel(text: country.name, emoji: country.flag, underlyingValue: country.code)
         }
 
-        tileWallVm.tiles = updatedTiles
+        tileWallVm.tiles = Set(updatedTiles.map { $0 })
     }
 
     private func saveCountryOfUser(_ country: String, completion: @escaping () -> Void) {

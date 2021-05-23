@@ -28,7 +28,6 @@ class HouseSettingsRouter {
     }
 }
 
-
 class CountrySettingsRouter {
 
     private let navStack: NavigationStack

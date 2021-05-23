@@ -49,11 +49,10 @@ enum PeopleOptions: Int, CaseIterable {
 
 struct PeopleInHouseScreen: View {
 
-    private var options: [TileView<Int>.ViewModel] {
-        return PeopleOptions
-            .allCases
-            .map { [TileView<Int>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue)] }
-            .reduce([TileView<Int>.ViewModel](), +)
+    private var options: Set<TileView<Int>.ViewModel> {
+        Set(PeopleOptions
+                .allCases
+                .map { TileView<Int>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue) })
     }
 
     @State private var selectedPeepsString: String = ""
@@ -72,13 +71,13 @@ struct PeopleInHouseScreen: View {
 
                 TileWallView(viewModel: peepsInHouseTileWallViewModel, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
 
-//                PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
+                //                PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
             }.onChange(of: selectedPeepsString) { _ in
 
                 print("underlying value is", selectedPeepsInHouseValue)
 
                 persistPeopleInHouse(numOfPeople: selectedPeepsInHouseValue)
-//                 Go to next tracking onboarding screen
+                //                 Go to next tracking onboarding screen
                 router.toHouseSize()
             }.onAppear {
                 peepsInHouseTileWallViewModel.tiles = options
@@ -95,13 +94,8 @@ struct PeopleInHouseScreen: View {
 
 }
 
-//struct PeopleInHouseScreen_Previews: PreviewProvider {
-//
-//
-//    static var previews: some View {
-//        let navigationStack: NavigationStack
-//                NavigationStackView(navigationStack: navigationStack) {
-//                    PeopleInHouseScreen(router: HouseSettingsRouter(navStack: <#NavigationStack#>))
-//                }
-//    }
-//}
+struct PeopleInHouseScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        PeopleInHouseScreen(router: HouseSettingsRouter(navStack: NavigationStack()))
+    }
+}

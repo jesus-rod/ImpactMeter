@@ -91,8 +91,8 @@ struct SizeOfPropertyScreen: View {
     }
 }
 
-//struct NumberOfPeopleScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SizeOfPropertyScreen()
-//    }
-//}
+struct NumberOfPeopleScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        SizeOfPropertyScreen(router: HouseSettingsRouter(navStack: NavigationStack()))
+    }
+}

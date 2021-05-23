@@ -9,9 +9,7 @@ import SwiftUI
 
 struct CircleOverCircleView: View {
 
-
     let titleViewModel: TitleAndDescriptionView.ViewModel
-
     let viewModel: ViewModel
 
     struct ViewModel {

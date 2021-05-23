@@ -33,13 +33,9 @@ struct TrackNewActivityScreen: View {
     @State private var isShowingSettings: Bool = false
 
     // Categories hardcoded 
-    private var trackingCategories: [TileView<String>.ViewModel] {
-        var categories = [TileView<String>.ViewModel]()
-        TrackingCategory.allCases.forEach { category in
-            let tile = TileView<String>.ViewModel(text: category.rawValue.capitalized, emoji: category.emoji, underlyingValue: category.rawValue)
-            categories.append(tile)
-        }
-        return categories
+    private var trackingCategories: Set<TileView<String>.ViewModel> {
+        return Set(TrackingCategory.allCases
+                    .map { TileView<String>.ViewModel(text: $0.rawValue.capitalized, emoji: $0.emoji, underlyingValue: $0.rawValue) })
     }
 
     @ObservedObject private var activitiesTileWallViewModel = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())

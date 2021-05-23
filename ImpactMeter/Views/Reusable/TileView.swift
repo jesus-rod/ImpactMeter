@@ -15,13 +15,13 @@ struct TileView<T: Hashable>: View {
         let emoji: String
         let underlyingValue: T
 
-        // The UUID is recreated and therefore must be excluded from equality comparison
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            return
-                lhs.text == rhs.text &&
-                lhs.emoji == rhs.emoji &&
-                lhs.underlyingValue == rhs.underlyingValue
-        }
+//        // The UUID is recreated and therefore must be excluded from equality comparison
+//        static func == (lhs: Self, rhs: Self) -> Bool {
+//            return
+//                lhs.text == rhs.text &&
+//                lhs.emoji == rhs.emoji &&
+//                lhs.underlyingValue == rhs.underlyingValue
+//        }
     }
 
     let viewModel: ViewModel

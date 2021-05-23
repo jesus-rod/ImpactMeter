@@ -15,6 +15,8 @@ struct SettingsView: View {
 
     let navigationStack: NavigationStack = NavigationStack()
 
+    @ObservedObject var user = PersistanceController.shared.fetchUser()
+
     var body: some View {
         NavigationStackView(navigationStack: navigationStack) {
             AppScreen(showBackButton: true) {
@@ -24,7 +26,7 @@ struct SettingsView: View {
 
                     // Location
                     // User country
-                    let user = PersistanceController.shared.fetchUser()
+
                     let userCountry = CountriesGenerator().countryName(for: user.country ?? "US") ?? "--"
                     let userFlag = CountriesGenerator().countryFlag(for: user.country ?? "US")
                     let locationVm = SettingsSection.ViewModel(icon: userFlag, title: "Current Location", text: userCountry, action: {
@@ -56,6 +58,8 @@ struct SettingsView: View {
                              isActive: $shouldShowHouseholdSelection, label: { EmptyView() })
                 })
             }
+        }.onAppear {
+
         }
 
     }

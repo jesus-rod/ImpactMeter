@@ -56,11 +56,8 @@ struct YearOfPropertyScreen: View {
     @State private var selectedYear: String = ""
     @State private var selectedYearToStore = ""
 
-    private var options: [TileView<String>.ViewModel] {
-        return PropertyYearOptions
-            .allCases
-            .map { [TileView<String>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue)] }
-            .reduce([TileView<String>.ViewModel](), +)
+    private var options: Set<TileView<String>.ViewModel> {
+        Set(PropertyYearOptions.allCases.map { TileView<String>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue) })
     }
 
     @ObservedObject private var yearOfPropertyTileWallViewModel = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
@@ -72,20 +69,7 @@ struct YearOfPropertyScreen: View {
         AppScreen(showBackButton: true) {
             VStack(alignment: .leading, spacing: 42) {
                 TitleAndDescriptionView(viewModel: titleVm)
-
-                let tileOne = TileView<String>.ViewModel(text: "2000-2020", emoji: "👶", underlyingValue: ("2000-2020"))
-                let tileTwo = TileView<String>.ViewModel(text: "1980-2000", emoji: "🏠", underlyingValue: ("1980-2000"))
-                let tileThree = TileView<String>.ViewModel(text: "1960-1980", emoji: "🏙", underlyingValue: ("1960-1980"))
-                let tileFour = TileView<String>.ViewModel(text: "1940-1960", emoji: "⛲️", underlyingValue: ("1940-1960"))
-                let tileFive = TileView<String>.ViewModel(text: "1920-1940", emoji: "🏰", underlyingValue: ("1920-1940"))
-                let tileSix = TileView<String>.ViewModel(text: "Pre 1920", emoji: "🏛", underlyingValue: ("Pre 1920"))
-
-                let tileWallVm = TileWallView<String>.ViewModel(tiles: [tileOne, tileTwo, tileThree, tileFour, tileFive, tileSix])
-
                 TileWallView(viewModel: yearOfPropertyTileWallViewModel, selectedString: $selectedYear, selectedUnderlyingValue: $selectedYearToStore)
-
-                
-                //PushView(destination: UtilityTrackingScreen(), isActive: $goToNextScreen, label: { EmptyView() })
             }.onChange(of: selectedYear) { _ in
                 // Store selected year
                 print("underlying value is", selectedYearToStore)

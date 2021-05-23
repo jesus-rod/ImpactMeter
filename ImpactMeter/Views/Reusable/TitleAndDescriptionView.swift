@@ -41,8 +41,6 @@ extension TitleAndDescriptionView {
         let title: String
         let description: String?
     }
-
-
 }
 
 // Preview
