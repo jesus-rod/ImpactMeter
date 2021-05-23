@@ -11,6 +11,7 @@ import NavigationStack
 struct TrackIntro: View {
 
     @State private var beginTracking = false
+    let navigationStack: NavigationStack = NavigationStack()
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Track your first activity", description: "Your footprint is currently not displaying anything because you haven’t tracked any activity yet.")
@@ -45,7 +46,7 @@ struct TrackIntro: View {
             .ignoresSafeArea(edges: .all)
 
         }.fullScreenCover(isPresented: $beginTracking) {
-            NavigationStackView {
+            NavigationStackView(navigationStack: navigationStack) {
                 AppScreen {
                     TrackNewActivityScreen()
                 }

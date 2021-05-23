@@ -26,15 +26,17 @@ struct TrackNewActivityScreen: View {
 
     @Environment(\.presentationMode) var presentationMode
 
+    let navigationStack: NavigationStack = NavigationStack()
+
     @State private var selectedActivity: String = ""
     @State private var goToNextScreen: Bool = false
     @State private var isShowingSettings: Bool = false
 
     // Categories hardcoded 
-    static func makeTrackingCategories() -> [TileView<String>.ViewModel] {
+    private var trackingCategories: [TileView<String>.ViewModel] {
         var categories = [TileView<String>.ViewModel]()
         TrackingCategory.allCases.forEach { category in
-            let tile = TileView<String>.ViewModel(text: category.rawValue.capitalized, emoji: category.emoji, underylingValue: category.rawValue)
+            let tile = TileView<String>.ViewModel(text: category.rawValue.capitalized, emoji: category.emoji, underlyingValue: category.rawValue)
             categories.append(tile)
         }
         return categories
@@ -65,12 +67,12 @@ struct TrackNewActivityScreen: View {
                     TileWallView(viewModel: activitiesTileWallViewModel, selectedString: $selectedActivity, selectedUnderlyingValue: $selectedActivity)
 
                     // Pushing Views (Navigation)
-                    PushView(destination: PeopleInHouseScreen(), isActive: $goToNextScreen, label: { EmptyView() })
+                    PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack)), isActive: $goToNextScreen, label: { EmptyView() })
                     PushView(destination: SettingsView(), isActive: $isShowingSettings) { EmptyView() }
                 }.onChange(of: selectedActivity) { _ in
                     goToNextScreen = true
                 }.onAppear {
-                    activitiesTileWallViewModel.tiles = TrackNewActivityScreen.makeTrackingCategories()
+                    activitiesTileWallViewModel.tiles = trackingCategories
                 }
             }
 

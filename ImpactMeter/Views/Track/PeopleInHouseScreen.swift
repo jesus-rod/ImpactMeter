@@ -49,19 +49,20 @@ enum PeopleOptions: Int, CaseIterable {
 
 struct PeopleInHouseScreen: View {
 
-    private var options: [TileView<AnyHashable>.ViewModel] {
-        var categories = [TileView<AnyHashable>.ViewModel]()
-        PeopleOptions.allCases.forEach { option in
-            let tile = TileView<AnyHashable>.ViewModel(text: option.displayText, emoji: option.emoji, underylingValue: AnyHashable(option.rawValue))
-            categories.append(tile)
-        }
-        return categories
+    private var options: [TileView<Int>.ViewModel] {
+        return PeopleOptions
+            .allCases
+            .map { [TileView<Int>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.rawValue)] }
+            .reduce([TileView<Int>.ViewModel](), +)
     }
 
     @State private var selectedPeepsString: String = ""
     @State private var goToNextScreen: Bool = false
-    @State private var selectedPeepsInHouseValue = AnyHashable(0)
-    @FetchRequest(entity: User.entity(), sortDescriptors: []) var users: FetchedResults<User>
+    @State private var selectedPeepsInHouseValue = 0
+
+    @ObservedObject private var peepsInHouseTileWallViewModel = TileWallView<Int>.ViewModel(tiles: [TileView<Int>.ViewModel]())
+
+    let router: HouseSettingsRouter
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How many people live in your household?", description: "The information you enter here will only be used to calculate your electricity, gas and water usage. No information will be shared.")
@@ -69,38 +70,21 @@ struct PeopleInHouseScreen: View {
             VStack(alignment: .leading, spacing: 42) {
                 TitleAndDescriptionView(viewModel: titleVm)
 
-                let tileWallVm = TileWallView<AnyHashable>.ViewModel(tiles: options)
-                TileWallView(viewModel: tileWallVm, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
+                TileWallView(viewModel: peepsInHouseTileWallViewModel, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
 
-                PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
+//                PushView(destination: SizeOfPropertyScreen(), isActive: $goToNextScreen, label: { EmptyView() })
             }.onChange(of: selectedPeepsString) { _ in
-                // Store value of peeps in da house
+
                 print("underlying value is", selectedPeepsInHouseValue)
-                let peepsInHouse = selectedPeepsInHouseValue.base as? Int ?? 1
-                persistPeopleInHouse(numOfPeople: peepsInHouse)
-                // Go to next tracking onboarding screen
-                skipThisScreen()
+
+                persistPeopleInHouse(numOfPeople: selectedPeepsInHouseValue)
+//                 Go to next tracking onboarding screen
+                router.toHouseSize()
             }.onAppear {
-                print("# of Users found \(users.count)")
-                print("Check if user has stored size of property")
-
-                if let previousResponse = users.first?.peepsInHouse {
-                    // User has already chosen how many people live in their house
-                    // Should skip this screen
-                    print("He previously chose \(previousResponse)")
-                    // skipThisScreen()
-                } else {
-                    // User has not chosen how many people live in their house
-                    print("Not found (peepsInHouse)")
-                }
-
+                peepsInHouseTileWallViewModel.tiles = options
             }
         }
 
-    }
-
-    private func skipThisScreen() {
-        goToNextScreen = true
     }
 
     private func persistPeopleInHouse(numOfPeople: Int) {
@@ -108,10 +92,16 @@ struct PeopleInHouseScreen: View {
         user.peepsInHouse = Int64(numOfPeople)
         PersistanceController.shared.save()
     }
+
 }
 
-struct PeopleInHouseScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        PeopleInHouseScreen()
-    }
-}
+//struct PeopleInHouseScreen_Previews: PreviewProvider {
+//
+//
+//    static var previews: some View {
+//        let navigationStack: NavigationStack
+//                NavigationStackView(navigationStack: navigationStack) {
+//                    PeopleInHouseScreen(router: HouseSettingsRouter(navStack: <#NavigationStack#>))
+//                }
+//    }
+//}

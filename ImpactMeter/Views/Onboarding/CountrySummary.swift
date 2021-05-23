@@ -13,7 +13,8 @@ struct CountrySummary: View {
     @EnvironmentObject var user: LegacyUser
     @State private var currentPage = 0
     @State private var wasButtonAnimated = false
-    @Environment(\.presentationMode) var presentationMode
+
+    let router: CountrySettingsRouter
 
     var body: some View {
         AppScreen {
@@ -44,7 +45,7 @@ struct CountrySummary: View {
                 if currentPage == pageCount - 1 {
                     PopView(destination: .root) {
                         PrimaryButton(title: "Got it") {
-                            presentationMode.wrappedValue.dismiss()
+                            router.popBackToSettings()
                         }.padding(.top, 24)
                     }
 
@@ -58,6 +59,6 @@ struct CountrySummary: View {
 
 struct CountrySummary_Previews: PreviewProvider {
     static var previews: some View {
-        CountrySummary()
+        CountrySummary(router: CountrySettingsRouter(navStack: NavigationStack()))
     }
 }

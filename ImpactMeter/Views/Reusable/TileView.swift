@@ -13,13 +13,14 @@ struct TileView<T: Hashable>: View {
         let identifier = UUID()
         let text: String
         let emoji: String
-        let underylingValue: T
+        let underlyingValue: T
 
+        // The UUID is recreated and therefore must be excluded from equality comparison
         static func == (lhs: Self, rhs: Self) -> Bool {
             return
                 lhs.text == rhs.text &&
                 lhs.emoji == rhs.emoji &&
-                lhs.underylingValue == rhs.underylingValue
+                lhs.underlyingValue == rhs.underlyingValue
         }
     }
 
@@ -47,7 +48,7 @@ struct TileView<T: Hashable>: View {
 
                 print("Selected", viewModel.text)
                 selectedTag = viewModel.text
-                selectedUnderlyingValue = viewModel.underylingValue
+                selectedUnderlyingValue = viewModel.underlyingValue
                 isSelected = selectedTag == viewModel.text
                 print("is it Active? \(isSelected)")
             })
@@ -61,7 +62,7 @@ struct TileView<T: Hashable>: View {
 
 struct TileView_Previews: PreviewProvider {
     static var previews: some View {
-        let tileViewVm = TileView<String>.ViewModel(text: "Netherlands", emoji: "🇳🇱", underylingValue: "Netherlands")
+        let tileViewVm = TileView<String>.ViewModel(text: "Netherlands", emoji: "🇳🇱", underlyingValue: "Netherlands")
         TileView(viewModel: tileViewVm, selectedTag: .constant(""), isSelected: false, selectedUnderlyingValue: .constant(""))
     }
 }

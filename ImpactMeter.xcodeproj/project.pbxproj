@@ -26,6 +26,8 @@
 		954D32F5262950C5008E8B41 /* String+Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F4262950C5008E8B41 /* String+Length.swift */; };
 		954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D32F726295C04008E8B41 /* PrimaryButton.swift */; };
 		95556C792656D1C100C3F862 /* CircleOverCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C782656D1C100C3F862 /* CircleOverCircleView.swift */; };
+		95556C7F265A209D00C3F862 /* TileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C7E265A209D00C3F862 /* TileOptions.swift */; };
+		95556C82265A2D3C00C3F862 /* Routers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C81265A2D3C00C3F862 /* Routers.swift */; };
 		9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */; };
 		9564B409262C0A630074A98A /* UtilityTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */; };
 		9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B40D262C53360074A98A /* CircleInCircleView.swift */; };
@@ -86,6 +88,8 @@
 		954D32F4262950C5008E8B41 /* String+Length.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Length.swift"; sourceTree = "<group>"; };
 		954D32F726295C04008E8B41 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		95556C782656D1C100C3F862 /* CircleOverCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOverCircleView.swift; sourceTree = "<group>"; };
+		95556C7E265A209D00C3F862 /* TileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileOptions.swift; sourceTree = "<group>"; };
+		95556C81265A2D3C00C3F862 /* Routers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routers.swift; sourceTree = "<group>"; };
 		9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfPropertyScreen.swift; sourceTree = "<group>"; };
 		9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTrackingScreen.swift; sourceTree = "<group>"; };
 		9564B40D262C53360074A98A /* CircleInCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInCircleView.swift; sourceTree = "<group>"; };
@@ -211,6 +215,14 @@
 			path = Circles;
 			sourceTree = "<group>";
 		};
+		95556C7D265A208B00C3F862 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				95556C7E265A209D00C3F862 /* TileOptions.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		9566AAAB25FE2332000F1A61 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +258,7 @@
 		956E5A3125EC21990029E59A /* ImpactMeter */ = {
 			isa = PBXGroup;
 			children = (
+				95556C7D265A208B00C3F862 /* Protocols */,
 				95474B8E26356512000A5653 /* Publishers */,
 				951ADA8726354884008EEDB6 /* CoreData */,
 				956E5A3225EC21990029E59A /* ImpactMeterApp.swift */,
@@ -281,6 +294,7 @@
 		95DACD9F26072EBC0026EEE4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				95556C81265A2D3C00C3F862 /* Routers.swift */,
 				95C481662649AC9D00705054 /* UserViews */,
 				95F0DE9D2611A5AE0087B3F7 /* Track */,
 				95F0DE962610FFB30087B3F7 /* Dashboard */,
@@ -458,6 +472,7 @@
 				95474B9026356526000A5653 /* Publishers+Keyboard.swift in Sources */,
 				95C481682649ACC100705054 /* LinkImageView.swift in Sources */,
 				95DACDA226072EFA0026EEE4 /* PrimaryTextView.swift in Sources */,
+				95556C7F265A209D00C3F862 /* TileOptions.swift in Sources */,
 				95DACDA5260738B00026EEE4 /* Colors.swift in Sources */,
 				95C481522647D11B00705054 /* Utility.swift in Sources */,
 				9564B418262CACEA0074A98A /* RichText.swift in Sources */,
@@ -487,6 +502,7 @@
 				95DACDB1260784700026EEE4 /* Country.swift in Sources */,
 				95BA32242608D01F007CAF4F /* FlexibleView.swift in Sources */,
 				9543505E26078D80001DA4D5 /* CountryInputView.swift in Sources */,
+				95556C82265A2D3C00C3F862 /* Routers.swift in Sources */,
 				9564B415262CA80C0074A98A /* TipView.swift in Sources */,
 				951ADA8A26354A06008EEDB6 /* ImpactMeter.xcdatamodeld in Sources */,
 				956E5A3525EC21990029E59A /* StartupCoordinator.swift in Sources */,

@@ -11,14 +11,10 @@ import Combine
 
 struct SizeOfPropertyScreen: View {
     @State var squareMeters: String = ""
-    @State private var goToNextScreen: Bool = false
     @State private var isPrimaryButtonEnabled: Bool = false
     @State private var shouldShowValidationAlert: Bool = false
 
-    // Object Context
-    @Environment(\.managedObjectContext) var moc
-    // Fetch our user
-    @FetchRequest(entity: User.entity(), sortDescriptors: []) var users: FetchedResults<User>
+    let router: HouseSettingsRouter
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How big is the property?", description: "")
@@ -29,9 +25,6 @@ struct SizeOfPropertyScreen: View {
                 PrimarySuffixableTextField(viewModel: textViewVm, currentText: $squareMeters, keyboardType: .numberPad)
 
                 Spacer()
-                PushView(destination: YearOfPropertyScreen(),
-                               isActive: $goToNextScreen,
-                               label: { Spacer() })
 
                 PrimaryButton(title: "Confirm", isDisabled: $isPrimaryButtonEnabled, action: {
                     validateProperty(withSize: squareMeters)
@@ -40,18 +33,6 @@ struct SizeOfPropertyScreen: View {
             }.onChange(of: squareMeters) { (    value) in
                 print("le val \(value)")
             }.onAppear {
-                print("# of Users found \(users.count)")
-                print("Check if user has stored size of property")
-
-                if let previousResponse = users.first?.peepsInHouse {
-                    // User has already chosen how many people live in their house
-                    // Should skip this screen
-                    print("He previously chose \(previousResponse)")
-//                    skipThisScreen()
-                } else {
-                    // User has not chosen how many people live in their house
-                    print("Not found (peepsInHouse)")
-                }
 
             }
             .alert(isPresented: $shouldShowValidationAlert) { () -> Alert in
@@ -85,7 +66,7 @@ struct SizeOfPropertyScreen: View {
         let input = isInputValid(propertySize: propertySize)
         if input.isValid {
             saveSizeOfProperty(input.integerValue, completion: {
-                skipThisScreen()
+                router.toHouseYear()
             })
             return
         }
@@ -95,10 +76,6 @@ struct SizeOfPropertyScreen: View {
     private func showValidationAlert() {
         shouldShowValidationAlert = true
 
-    }
-
-    private func skipThisScreen() {
-        goToNextScreen = true
     }
 
     private func saveSizeOfProperty(_ size: Int, completion: @escaping () -> Void) {
@@ -114,8 +91,8 @@ struct SizeOfPropertyScreen: View {
     }
 }
 
-struct NumberOfPeopleScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SizeOfPropertyScreen()
-    }
-}
+//struct NumberOfPeopleScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SizeOfPropertyScreen()
+//    }
+//}

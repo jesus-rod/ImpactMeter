@@ -13,41 +13,51 @@ struct SettingsView: View {
     @State private var shouldShowCountrySelection = false
     @State private var shouldShowHouseholdSelection = false
 
+    let navigationStack: NavigationStack = NavigationStack()
+
     var body: some View {
-        AppScreen(showBackButton: true) {
-            VStack(alignment: .leading, spacing: 42, content: {
-                let titleVm = TitleAndDescriptionView.ViewModel(title: "Your personal settings", description: "")
-                TitleAndDescriptionView(viewModel: titleVm)
+        NavigationStackView(navigationStack: navigationStack) {
+            AppScreen(showBackButton: true) {
+                VStack(alignment: .leading, spacing: 42, content: {
+                    let titleVm = TitleAndDescriptionView.ViewModel(title: "Your personal settings", description: "")
+                    TitleAndDescriptionView(viewModel: titleVm)
 
-                // Location
-                // User country
-                let user = PersistanceController.shared.fetchUser()
-                let userCountry = CountriesGenerator().countryName(for: user.country ?? "US") ?? "--"
-                let userFlag = CountriesGenerator().countryFlag(for: user.country ?? "US")
-                let locationVm = SettingsSection.ViewModel(icon: userFlag, title: "Current Location", text: userCountry, action: {
-                    shouldShowCountrySelection = true
+                    // Location
+                    // User country
+                    let user = PersistanceController.shared.fetchUser()
+                    let userCountry = CountriesGenerator().countryName(for: user.country ?? "US") ?? "--"
+                    let userFlag = CountriesGenerator().countryFlag(for: user.country ?? "US")
+                    let locationVm = SettingsSection.ViewModel(icon: userFlag, title: "Current Location", text: userCountry, action: {
+                        shouldShowCountrySelection = true
+                    })
+
+                    // Household
+                    let userHouseSize = user.propertySize
+                    let userPeepsInHouse = user.peepsInHouse
+                    let peopleOrPersonText = userPeepsInHouse > 1 ? "People" : "Person"
+                    let houseHoldText = "\(userPeepsInHouse) \(peopleOrPersonText), \(userHouseSize) sqm"
+
+                    let householdVm = SettingsSection.ViewModel(icon: "🔌", title: "Household Properties", text: houseHoldText, action: {
+                        shouldShowHouseholdSelection = true
+                    })
+
+                    VStack(alignment: .leading, spacing: 48) {
+                        SettingsSection(viewModel: locationVm)
+                        SettingsSection(viewModel: householdVm)
+                    }
+
+                    Spacer()
+
+                    PushView(destination: CountryInputView(showBackButton: true,
+                                                           router: CountrySettingsRouter(navStack: navigationStack)),
+                             isActive: $shouldShowCountrySelection,
+                             label: { EmptyView() })
+                    PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack)),
+                             isActive: $shouldShowHouseholdSelection, label: { EmptyView() })
                 })
-
-                // Household
-                let userHouseSize = user.propertySize
-                let userPeepsInHouse = user.peepsInHouse
-                let peopleOrPersonText = userPeepsInHouse > 1 ? "People" : "Person"
-                let houseHoldText = "\(userPeepsInHouse) \(peopleOrPersonText), \(userHouseSize) sqm"
-                let householdVm = SettingsSection.ViewModel(icon: "🔌", title: "Household Properties", text: houseHoldText, action: {
-                    shouldShowHouseholdSelection = true
-                })
-
-                VStack(alignment: .leading, spacing: 48) {
-                    SettingsSection(viewModel: locationVm)
-                    SettingsSection(viewModel: householdVm)
-                }
-
-                Spacer()
-
-                PushView(destination: CountryInputView(showBackButton: true), isActive: $shouldShowCountrySelection, label: { EmptyView() })
-                PushView(destination: PeopleInHouseScreen(), isActive: $shouldShowHouseholdSelection, label: { EmptyView() })
-            })
+            }
         }
+
     }
 }
 

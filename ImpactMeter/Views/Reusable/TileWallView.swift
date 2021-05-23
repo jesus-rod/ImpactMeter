@@ -15,17 +15,17 @@ struct TileWallView<T: Hashable>: View {
         @Published var validatedTiles = [TileView<T>.ViewModel]()
         private var cancellablePipeline: AnyCancellable?
 
-        init(tiles: [TileView<T>.ViewModel]) {
+        init(tiles: [TileView<T>.ViewModel], shouldDebounce: Bool = false) {
             cancellablePipeline = $tiles
                 .removeDuplicates()
-                .debounce(for: 0.3, scheduler: RunLoop.main)
+                .debounce(for: shouldDebounce ? 0.3 : 0, scheduler: RunLoop.main)
                 .sink { [unowned self] value in
                     self.validatedTiles = value
                 }
         }
     }
 
-    let viewModel: ViewModel
+    @ObservedObject private var viewModel: ViewModel
     @Binding var selectedString: String
     @Binding var selectedUnderlyingValue: T
 
@@ -63,7 +63,7 @@ struct TileWallView_Previews: PreviewProvider {
     static var previews: some View {
         let countries = CountriesGenerator().getCountries()
         let tilesVm = countries.map { country in
-            TileView<AnyHashable>.ViewModel(text: country.name, emoji: country.flag, underylingValue: AnyHashable(country.name))
+            TileView<AnyHashable>.ViewModel(text: country.name, emoji: country.flag, underlyingValue: AnyHashable(country.name))
         }
         let tileWallViewModel = TileWallView<AnyHashable>.ViewModel(tiles: tilesVm)
         TileWallView(viewModel: tileWallViewModel, selectedString: .constant(""), selectedUnderlyingValue: .constant(""))

@@ -8,11 +8,57 @@
 import SwiftUI
 import NavigationStack
 
+enum UtilityOptions: String, TileOptions {
+    case water
+    case electricity
+    case gas
+
+    var displayText: String {
+        switch self {
+        case .water:
+            return "Water"
+        case .electricity:
+            return "Electricity"
+        case .gas:
+            return "Gas"
+        }
+    }
+
+    var emoji: String {
+        switch self {
+        case .water: return "💧"
+        case .electricity: return "⚡️"
+        case .gas: return "🔥"
+        }
+    }
+
+    var utility: Utility {
+        switch self {
+        case .water:
+            return .water
+        case .electricity:
+            return .electricity
+        case .gas:
+            return .gas
+        }
+    }
+
+}
+
 struct UtilityTrackingScreen: View {
 
     @State private var selectedUtility = Utility.unknown.rawValue
     @State private var goToNextScreen: Bool = false
     @State private var selectedUtilityToStore = Utility.unknown
+
+    private var options: [TileView<Utility>.ViewModel] {
+        return UtilityOptions
+            .allCases
+            .map { [TileView<Utility>.ViewModel(text: $0.displayText, emoji: $0.emoji, underlyingValue: $0.utility)] }
+            .reduce([TileView<Utility>.ViewModel](), +)
+    }
+
+    @ObservedObject private var utilitiesTileWallViewModel = TileWallView<Utility>.ViewModel(tiles: [TileView<Utility>.ViewModel]())
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Which utility would you like to track?", description: "")
@@ -20,13 +66,7 @@ struct UtilityTrackingScreen: View {
             VStack(alignment: .leading, spacing: 42) {
                 TitleAndDescriptionView(viewModel: titleVm)
 
-                let tileOne = TileView<Utility>.ViewModel(text: "Water", emoji: "💧", underylingValue: (Utility.water))
-                let tileTwo = TileView<Utility>.ViewModel(text: "Electricity", emoji: "⚡️", underylingValue: (Utility.electricity))
-                let tileThree = TileView<Utility>.ViewModel(text: "Gas", emoji: "🔥", underylingValue: (Utility.gas))
-
-                let tileWallVm = TileWallView<Utility>.ViewModel(tiles: [tileOne, tileTwo, tileThree])
-
-                TileWallView(viewModel: tileWallVm,
+                TileWallView(viewModel: utilitiesTileWallViewModel,
                              selectedString: $selectedUtility,
                              selectedUnderlyingValue: $selectedUtilityToStore)
 
@@ -34,6 +74,8 @@ struct UtilityTrackingScreen: View {
             }.onChange(of: selectedUtilityToStore) { _ in
                 print("underlying value is", selectedUtilityToStore)
                 goToNextScreen = true
+            }.onAppear {
+                utilitiesTileWallViewModel.tiles = options
             }
         }
     }

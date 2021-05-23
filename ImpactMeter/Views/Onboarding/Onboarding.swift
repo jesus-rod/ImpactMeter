@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct Onboarding: View {
 
     var body: some View {
-        CountryInputView(showBackButton: false)
+        // this will break ⬇️ fix using a NavigationStackView
+        CountryInputView(showBackButton: false, router: CountrySettingsRouter(navStack: NavigationStack()))
     }
 }
 

@@ -22,7 +22,7 @@ struct CountryInputView: View {
     @State private var selectedCountry: String = ""
     @State private var searchQuery: String = ""
 
-    @State private var isShowingCountrySummary: Bool = false
+    let router: CountrySettingsRouter
 
     @StateObject private var tileWallVm = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
 
@@ -36,8 +36,6 @@ struct CountryInputView: View {
                     .padding([.top], 24)
                 Spacer()
 
-                // Navigation
-                PushView(destination: CountrySummary(), isActive: $isShowingCountrySummary, label: { EmptyView() })
             }.onChange(of: searchQuery) { countryInputText in
                 updateCountryTilewall(with: countryInputText)
             }.onChange(of: selectedCountry) { value in
@@ -45,7 +43,7 @@ struct CountryInputView: View {
 
                 saveCountryOfUser(value, completion: {
                     // Add some loading here
-                    isShowingCountrySummary = true
+                    router.toCountrySummary()
                 })
             }.keyboardAdaptive()
         }
@@ -58,7 +56,7 @@ struct CountryInputView: View {
         }
 
         let updatedTiles: [TileView<String>.ViewModel] = filteredCountries.map { country in
-            TileView.ViewModel(text: country.name, emoji: country.flag, underylingValue: country.code)
+            TileView.ViewModel(text: country.name, emoji: country.flag, underlyingValue: country.code)
         }
 
         tileWallVm.tiles = updatedTiles
@@ -79,6 +77,6 @@ struct CountryInputView: View {
 
 struct CountryInputView_Previews: PreviewProvider {
     static var previews: some View {
-        CountryInputView(showBackButton: true)
+        CountryInputView(showBackButton: true, router: CountrySettingsRouter(navStack: NavigationStack()))
     }
 }
