@@ -32,10 +32,10 @@ struct PrimaryButton: View {
                 .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.blue))
                 .padding([.horizontal], 24)
                 .onAppear(perform: {
-                    wasButtonAnimated.toggle()
+                    wasButtonAnimated = true
                 })
                 .onDisappear(perform: {
-                    wasButtonAnimated.toggle()
+                    wasButtonAnimated = false
                 })
                 .animation(.easeInOut)
                 .offset(x: 0, y: wasButtonAnimated ? 0 : 150)

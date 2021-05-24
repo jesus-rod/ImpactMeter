@@ -48,7 +48,6 @@ enum PeopleOptions: Int, CaseIterable {
     }
 }
 
-
 struct PeopleInHouseScreen: View {
 
     private var options: OrderedSet<TileView<Int>.ViewModel> {
@@ -63,22 +62,20 @@ struct PeopleInHouseScreen: View {
     @ObservedObject private var peepsInHouseTileWallViewModel = TileWallView<Int>.ViewModel(tiles: [TileView<Int>.ViewModel]())
 
     let router: HouseSettingsRouter
-    let shouldShowBackButton: Bool
 
     var body: some View {
-        let titleVm = TitleAndDescriptionView.ViewModel(title: "How many people live in your household?", description: "The information you enter here will only be used to calculate your electricity, gas and water usage. No information will be shared.")
-        AppScreen(showBackButton: shouldShowBackButton) {
-            VStack(alignment: .leading, spacing: 42) {
-                TitleAndDescriptionView(viewModel: titleVm)
-                TileWallView(viewModel: peepsInHouseTileWallViewModel, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
-            }.onChange(of: selectedPeepsString) { _ in
-                persistPeopleInHouse(numOfPeople: selectedPeepsInHouseValue)
-                router.toHouseSize(router: router)
-            }.onAppear {
-                peepsInHouseTileWallViewModel.tiles = options
-            }
-        }
-
+		let titleVm = TitleAndDescriptionView.ViewModel(title: "How many people live in your household?", description: "The information you enter here will only be used to calculate your electricity, gas and water usage. No information will be shared.")
+		AppScreen(.withBackButton) {
+			VStack(alignment: .leading, spacing: 42) {
+				TitleAndDescriptionView(viewModel: titleVm)
+				TileWallView(viewModel: peepsInHouseTileWallViewModel, selectedString: $selectedPeepsString, selectedUnderlyingValue: $selectedPeepsInHouseValue)
+			}.onChange(of: selectedPeepsString) { _ in
+				persistPeopleInHouse(numOfPeople: selectedPeepsInHouseValue)
+				router.toHouseSize(router: router)
+			}.onAppear {
+				peepsInHouseTileWallViewModel.tiles = options
+			}
+		}
     }
 
     private func persistPeopleInHouse(numOfPeople: Int) {
@@ -91,6 +88,6 @@ struct PeopleInHouseScreen: View {
 
 struct PeopleInHouseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleInHouseScreen(router: HouseSettingsRouter(navStack: NavigationStack()), shouldShowBackButton: true)
+        PeopleInHouseScreen(router: HouseSettingsRouter(navStack: NavigationStack()))
     }
 }

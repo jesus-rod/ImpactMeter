@@ -7,6 +7,19 @@
 
 import NavigationStack
 
+struct NavigationIds {
+	static let settingsViewId = "settings_push_id"
+}
+
+class ActivityTrackingRouter {
+
+    private let navStack: NavigationStack
+
+    init(navStack: NavigationStack) {
+        self.navStack = navStack
+    }
+}
+
 class HouseSettingsRouter {
 
     private let navStack: NavigationStack
@@ -24,7 +37,7 @@ class HouseSettingsRouter {
     }
 
     func popBackToSettings() {
-        self.navStack.pop(to: .root)
+		self.navStack.pop(to: .view(withId: NavigationIds.settingsViewId))
     }
 }
 
@@ -36,11 +49,15 @@ class CountrySettingsRouter {
         self.navStack = navStack
     }
 
-    func toCountrySummary() {
-        self.navStack.push(CountrySummary(router: self))
+	fileprivate func extractedFunc() -> CountrySummary {
+		return CountrySummary(router: self)
+	}
+
+	func toCountrySummary() {
+		self.navStack.push(extractedFunc())
     }
 
     func popBackToSettings() {
-        self.navStack.pop(to: .root)
+		self.navStack.pop(to: .view(withId: NavigationIds.settingsViewId))
     }
 }

@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct MainTabView: View {
+
     @State var selectedTab = 1
+
     var body: some View {
         TabView(selection: $selectedTab) {
             // Screen one
-            TrackIntro().tabItem {
+			TrackIntroOrTrackingScreen().tabItem {
                 selectedTab == 1 ? Image("PlusActive") : Image("Plus")
             }.tag(1)
             // Screen Two
@@ -29,6 +32,17 @@ struct MainTabView: View {
             }.tag(3)
         }.accentColor(.primary)
     }
+
+	struct TrackIntroOrTrackingScreen: View {
+		let navigationStack: NavigationStack = NavigationStack()
+		var body: some View {
+			if !LegacyUser.shared.hasTrackedActivities {
+				TrackNewActivityScreen(navigationStack: navigationStack, screenType: .regular)
+			} else {
+				TrackIntro(navigationStack: navigationStack)
+			}
+		}
+	}
 }
 
 struct MainTabView_Previews: PreviewProvider {

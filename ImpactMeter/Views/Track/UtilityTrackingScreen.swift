@@ -61,7 +61,7 @@ struct UtilityTrackingScreen: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Which utility would you like to track?", description: "")
-        AppScreen(showBackButton: true) {
+        AppScreen(.withBackButton) {
             VStack(alignment: .leading, spacing: 42) {
                 TitleAndDescriptionView(viewModel: titleVm)
 
@@ -93,7 +93,7 @@ struct UtilityTrackingView: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How much \(utility.displayText) does your household consume?", description: "")
-        AppScreen(showBackButton: true) {
+        AppScreen(.withBackButton) {
             VStack(alignment: .leading, spacing: 24) {
                 TitleAndDescriptionView(viewModel: titleVm)
 

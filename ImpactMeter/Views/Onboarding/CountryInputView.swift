@@ -12,12 +12,10 @@ import Collections
 
 struct CountryInputView: View {
 
-    let showBackButton: Bool
-
     @EnvironmentObject var user: LegacyUser
 
     private let titleViewModel = TitleAndDescriptionView.ViewModel(title: "Where do you live right now?",
-                                                           description: "This is to determine the average for your region. None of your personal data will be shared.")
+                                                                   description: "This is to determine the average for your region. None of your personal data will be shared.")
     private let textInputViewModel = PrimaryTextView.ViewModel(topPlaceholder: "Your location", bottomPlaceholder: "Country")
 
     @State private var selectedCountry: String = ""
@@ -28,26 +26,26 @@ struct CountryInputView: View {
     @StateObject private var tileWallVm = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel](), shouldDebounce: true)
 
     var body: some View {
-        AppScreen(showBackButton: showBackButton) {
-            VStack(alignment: .leading, spacing: 0) {
-                TitleAndDescriptionView(viewModel: titleViewModel)
-                PrimaryTextView(viewModel: textInputViewModel, currentText: $searchQuery, keyboardType: .webSearch)
-                    .padding([.top], 44)
-                TileWallView(viewModel: tileWallVm, selectedString: $user.country, selectedUnderlyingValue: $selectedCountry)
-                    .padding([.top], 24)
-                Spacer()
+		AppScreen(.withBackButton) {
+			VStack(alignment: .leading, spacing: 0) {
+				TitleAndDescriptionView(viewModel: titleViewModel)
+				PrimaryTextView(viewModel: textInputViewModel, currentText: $searchQuery, keyboardType: .webSearch)
+					.padding([.top], 44)
+				TileWallView(viewModel: tileWallVm, selectedString: $selectedCountry, selectedUnderlyingValue: $selectedCountry)
+					.padding([.top], 24)
+				Spacer()
 
-            }.onChange(of: searchQuery) { countryInputText in
-                updateCountryTilewall(with: countryInputText)
-            }.onChange(of: selectedCountry) { value in
-                LoggingController.shared.log.info("User selected \(value)")
+			}.onChange(of: searchQuery) { countryInputText in
+				updateCountryTilewall(with: countryInputText)
+			}.onChange(of: selectedCountry) { value in
+				LoggingController.shared.log.info("User selected \(value)")
 
-                saveCountryOfUser(value, completion: {
-                    // Add some loading here
-                    router.toCountrySummary()
-                })
-            }.keyboardAdaptive()
-        }
+				saveCountryOfUser(value, completion: {
+					// Add some loading here
+					router.toCountrySummary()
+				})
+			}.keyboardAdaptive()
+		}
     }
 
     private func updateCountryTilewall(with countryInput: String) {
@@ -78,6 +76,6 @@ struct CountryInputView: View {
 
 struct CountryInputView_Previews: PreviewProvider {
     static var previews: some View {
-        CountryInputView(showBackButton: true, router: CountrySettingsRouter(navStack: NavigationStack()))
+        CountryInputView(router: CountrySettingsRouter(navStack: NavigationStack()))
     }
 }

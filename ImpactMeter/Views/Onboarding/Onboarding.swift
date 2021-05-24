@@ -12,7 +12,7 @@ struct Onboarding: View {
 
     var body: some View {
         // this will break ⬇️ fix using a NavigationStackView
-        CountryInputView(showBackButton: false, router: CountrySettingsRouter(navStack: NavigationStack()))
+        CountryInputView(router: CountrySettingsRouter(navStack: NavigationStack()))
     }
 }
 

@@ -18,28 +18,25 @@ struct SizeOfPropertyScreen: View {
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "How big is the property?", description: "")
-        AppScreen(showBackButton: true) {
-            VStack(alignment: .leading, spacing: 42) {
-                TitleAndDescriptionView(viewModel: titleVm)
-                let textViewVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Size", bottomPlaceholder: "This many", stickyText: "m²")
-                PrimarySuffixableTextField(viewModel: textViewVm, currentText: $squareMeters, keyboardType: .numberPad)
+		AppScreen(.withBackButton) {
+			VStack(alignment: .leading, spacing: 42) {
+				TitleAndDescriptionView(viewModel: titleVm)
+				let textViewVm = PrimarySuffixableTextField.ViewModel(topPlaceholder: "Size", bottomPlaceholder: "This many", stickyText: "m²")
+				PrimarySuffixableTextField(viewModel: textViewVm, currentText: $squareMeters, keyboardType: .numberPad)
 
-                Spacer()
+				Spacer()
 
-                PrimaryButton(title: "Confirm", isDisabled: $isPrimaryButtonEnabled, action: {
-                    validateProperty(withSize: squareMeters)
-                })
-                .keyboardAdaptive()
-            }.onChange(of: squareMeters) { (    value) in
-                print("le val \(value)")
-            }.onAppear {
-
-            }
-            .alert(isPresented: $shouldShowValidationAlert) { () -> Alert in
-                Alert(title: Text("Invalid size, try again"))
-            }
-
-        }
+				PrimaryButton(title: "Confirm", isDisabled: $isPrimaryButtonEnabled, action: {
+					validateProperty(withSize: squareMeters)
+				}).padding(.bottom, 36)
+				.keyboardAdaptive()
+			}.onChange(of: squareMeters) { (    value) in
+				print("le val \(value)")
+			}
+			.alert(isPresented: $shouldShowValidationAlert) { () -> Alert in
+				Alert(title: Text("Invalid size, try again"))
+			}
+		}
     }
 
     private func isInputValid(propertySize: String) -> (isValid: Bool, integerValue: Int) {

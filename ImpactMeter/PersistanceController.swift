@@ -96,6 +96,8 @@ struct PersistanceController {
         }
     }
 
+    /// TRACKING RELATED
+
     @discardableResult func addTrackedActivity(amount: Int, trackActivity: Trackable) -> TrackActivity {
         let activity = TrackActivity(context: container.viewContext)
         activity.amount = Int64(amount)
@@ -105,4 +107,19 @@ struct PersistanceController {
         save()
         return activity
     }
+
+    func fetchActivities() -> [TrackActivity]? {
+        let context = container.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TrackActivity")
+
+        do {
+            let activities = try context.fetch(fetchRequest)
+            return activities as? [TrackActivity]
+        } catch {
+            print("Error loading activities from Persistance")
+            print(error.localizedDescription)
+        }
+        return nil
+    }
+
 }

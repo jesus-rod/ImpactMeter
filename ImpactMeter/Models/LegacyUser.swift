@@ -13,6 +13,8 @@ class LegacyUser: ObservableObject {
     private let finishedOnboardingKey: String = "finishedOnboarding"
     private let finishedTrackingOnboardingKey: String = "finishedTrackingOnboarding"
 
+	static let shared = LegacyUser()
+
     init() {
         print(ProcessInfo.processInfo.environment["shouldSkipOnboarding"] ?? "Fix this after MVP yo")
         if ProcessInfo.processInfo.environment["shouldSkipOnboarding"] == "YES" {
@@ -28,30 +30,9 @@ class LegacyUser: ObservableObject {
         }
     }
 
-    @Published var country: String = "" {
-        didSet {
-            // Check for validity
-            guard isValidCountry(selectedCountry: country) else {
-                print("Show alert to user for not valid country")
-                return
-            }
-            // Save user country to user/defaults
-            print("Valid country selected, lets save it")
-            shouldShowCountrySummary = true
-        }
-    }
-
-    @Published var peopleInHouse: String = "" {
-        didSet {
-            print("Selected # of people")
-        }
-    }
-
     @Published var didFinishOnboarding: Bool {
         didSet { defaults.set(didFinishOnboarding, forKey: finishedOnboardingKey) }
     }
-
-    @Published var shouldShowCountrySummary: Bool = false
 
     private func isValidCountry(selectedCountry: String) -> Bool {
         let allCountries: [Country] = CountriesGenerator().getCountries()
@@ -63,4 +44,12 @@ class LegacyUser: ObservableObject {
     @Published var didFinishTrackingOnboarding: Bool {
         didSet { defaults.set(didFinishOnboarding, forKey: finishedTrackingOnboardingKey) }
     }
+
+	var hasTrackedActivities: Bool {
+		let activities = PersistanceController.shared.fetchActivities() ?? []
+		if activities.isEmpty {
+			return false
+		}
+		return true
+	}
 }

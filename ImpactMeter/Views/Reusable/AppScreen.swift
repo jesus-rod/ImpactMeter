@@ -8,12 +8,18 @@
 import SwiftUI
 import NavigationStack
 
+enum ScreenType {
+	case fullScreenDismissable
+	case withBackButton
+	case regular
+}
+
 struct AppScreen<Content>: View where Content: View {
-    private let showBackButton: Bool
+	private let screenType: ScreenType
     private let content: Content
 
-    init(showBackButton: Bool = false, content: () -> Content) {
-        self.showBackButton = showBackButton
+	init(_ screenType: ScreenType = .regular, content: () -> Content) {
+        self.screenType = screenType
         self.content = content()
     }
 
@@ -21,7 +27,15 @@ struct AppScreen<Content>: View where Content: View {
         ZStack {
             Color.myAppBgColour.edgesIgnoringSafeArea(.horizontal)
             content.offset(y: 40)
-            if showBackButton { BackButton() }
+			switch screenType {
+			case .fullScreenDismissable:
+				FullScreenDismissBackButton()
+			case .withBackButton:
+				BackButton()
+			case .regular:
+				EmptyView()
+			}
+
         }
     }
 
@@ -39,6 +53,25 @@ struct AppScreen<Content>: View where Content: View {
             }
         }
     }
+
+	struct FullScreenDismissBackButton: View {
+		@Environment(\.presentationMode) var presentationMode
+
+		var body: some View {
+			VStack {
+				HStack {
+					Button {
+						presentationMode.wrappedValue.dismiss()
+					} label: {
+						Image(systemName: "xmark")
+							.modifier(NavigationLinkStyle())
+					}
+					Spacer()
+				}
+				Spacer()
+			}
+		}
+	}
 }
 
 struct NavigationLinkStyle: ViewModifier {

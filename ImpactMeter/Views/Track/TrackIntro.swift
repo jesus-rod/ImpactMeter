@@ -11,7 +11,7 @@ import NavigationStack
 struct TrackIntro: View {
 
     @State private var beginTracking = false
-    let navigationStack: NavigationStack = NavigationStack()
+	let navigationStack: NavigationStack
 
     var body: some View {
         let titleVm = TitleAndDescriptionView.ViewModel(title: "Track your first activity", description: "Your footprint is currently not displaying anything because you haven’t tracked any activity yet.")
@@ -48,13 +48,9 @@ struct TrackIntro: View {
         }.fullScreenCover(isPresented: $beginTracking) {
             NavigationStackView(navigationStack: navigationStack) {
                 AppScreen {
-                    TrackNewActivityScreen()
+					TrackNewActivityScreen(navigationStack: navigationStack, screenType: ScreenType.fullScreenDismissable)
                 }
             }
-        }.onAppear {
-            let user = PersistanceController.shared.fetchUser()
-            print("--------")
-            print(user)
         }
     }
 }
@@ -62,7 +58,7 @@ struct TrackIntro: View {
 struct TrackIntro_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TrackIntro()
+			TrackIntro(navigationStack: NavigationStack())
         }
     }
 }

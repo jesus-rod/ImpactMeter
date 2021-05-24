@@ -22,6 +22,6 @@ extension TrackActivity {
 
 }
 
-extension TrackActivity : Identifiable {
+extension TrackActivity: Identifiable {
 
 }
