@@ -31,6 +31,9 @@
 		95556C88265A480100C3F862 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 95556C87265A480100C3F862 /* OrderedCollections */; };
 		95556C8A265A480100C3F862 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 95556C89265A480100C3F862 /* DequeModule */; };
 		95556C8C265A480100C3F862 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 95556C8B265A480100C3F862 /* Collections */; };
+		95556C90265BEBB000C3F862 /* TravelTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C8F265BEBB000C3F862 /* TravelTrackingScreen.swift */; };
+		95556C93265BECD700C3F862 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C92265BECD700C3F862 /* Travel.swift */; };
+		95556C99265C0F5600C3F862 /* UtilityTrackingInputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95556C98265C0F5600C3F862 /* UtilityTrackingInputScreen.swift */; };
 		9564B406262B451B0074A98A /* YearOfPropertyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */; };
 		9564B409262C0A630074A98A /* UtilityTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */; };
 		9564B40E262C53360074A98A /* CircleInCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564B40D262C53360074A98A /* CircleInCircleView.swift */; };
@@ -93,6 +96,9 @@
 		95556C782656D1C100C3F862 /* CircleOverCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOverCircleView.swift; sourceTree = "<group>"; };
 		95556C7E265A209D00C3F862 /* TileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileOptions.swift; sourceTree = "<group>"; };
 		95556C81265A2D3C00C3F862 /* Routers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routers.swift; sourceTree = "<group>"; };
+		95556C8F265BEBB000C3F862 /* TravelTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTrackingScreen.swift; sourceTree = "<group>"; };
+		95556C92265BECD700C3F862 /* Travel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
+		95556C98265C0F5600C3F862 /* UtilityTrackingInputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTrackingInputScreen.swift; sourceTree = "<group>"; };
 		9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfPropertyScreen.swift; sourceTree = "<group>"; };
 		9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTrackingScreen.swift; sourceTree = "<group>"; };
 		9564B40D262C53360074A98A /* CircleInCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInCircleView.swift; sourceTree = "<group>"; };
@@ -229,6 +235,37 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		95556C9B265C0F9300C3F862 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */,
+				95556C98265C0F5600C3F862 /* UtilityTrackingInputScreen.swift */,
+				9564B41A262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		95556CA0265C0FB900C3F862 /* Travel */ = {
+			isa = PBXGroup;
+			children = (
+				95556C8F265BEBB000C3F862 /* TravelTrackingScreen.swift */,
+			);
+			path = Travel;
+			sourceTree = "<group>";
+		};
+		95556CA2265C0FCC00C3F862 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9564B41D262EE9B70074A98A /* TrackNewActivityScreen.swift */,
+				95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */,
+				95F8C3C526233D6300070784 /* TrackIntroTiles.swift */,
+				95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */,
+				95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */,
+				9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		9566AAAB25FE2332000F1A61 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +354,7 @@
 				95DACDB0260784700026EEE4 /* Country.swift */,
 				954350712607A722001DA4D5 /* LegacyUser.swift */,
 				95C481512647D11B00705054 /* Utility.swift */,
+				95556C92265BECD700C3F862 /* Travel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,14 +370,9 @@
 		95F0DE9D2611A5AE0087B3F7 /* Track */ = {
 			isa = PBXGroup;
 			children = (
-				95F0DE9E2611A5C80087B3F7 /* TrackIntro.swift */,
-				9564B41D262EE9B70074A98A /* TrackNewActivityScreen.swift */,
-				95F8C3C526233D6300070784 /* TrackIntroTiles.swift */,
-				95F8C3C8262344B200070784 /* PeopleInHouseScreen.swift */,
-				95F8C3CB2623753B00070784 /* SizeOfPropertyScreen.swift */,
-				9564B405262B451B0074A98A /* YearOfPropertyScreen.swift */,
-				9564B408262C0A630074A98A /* UtilityTrackingScreen.swift */,
-				9564B41A262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift */,
+				95556CA2265C0FCC00C3F862 /* Settings */,
+				95556CA0265C0FB900C3F862 /* Travel */,
+				95556C9B265C0F9300C3F862 /* Utilities */,
 			);
 			path = Track;
 			sourceTree = "<group>";
@@ -488,6 +521,7 @@
 				9564B418262CACEA0074A98A /* RichText.swift in Sources */,
 				951ADA932635547C008EEDB6 /* AppScreen.swift in Sources */,
 				95BA32272608D045007CAF4F /* _FlexibleView.swift in Sources */,
+				95556C93265BECD700C3F862 /* Travel.swift in Sources */,
 				95474B9326357434000A5653 /* KeyboardAdaptive.swift in Sources */,
 				954D32F826295C04008E8B41 /* PrimaryButton.swift in Sources */,
 				9566AAAE25FE236D000F1A61 /* View+isHidden.swift in Sources */,
@@ -503,6 +537,7 @@
 				9564B41B262EE81B0074A98A /* UtilityTrackingSummaryScreen.swift in Sources */,
 				956E5A4325EC21A90029E59A /* WelcomeScreen.swift in Sources */,
 				950A4410263F006100417639 /* User+CoreDataClass.swift in Sources */,
+				95556C90265BEBB000C3F862 /* TravelTrackingScreen.swift in Sources */,
 				954D32F5262950C5008E8B41 /* String+Length.swift in Sources */,
 				95F0DE9426106F0D0087B3F7 /* MainTabView.swift in Sources */,
 				9543FB6B260F9DDC0017C023 /* CountrySummary.swift in Sources */,
@@ -516,6 +551,7 @@
 				9564B415262CA80C0074A98A /* TipView.swift in Sources */,
 				951ADA8A26354A06008EEDB6 /* ImpactMeter.xcdatamodeld in Sources */,
 				956E5A3525EC21990029E59A /* StartupCoordinator.swift in Sources */,
+				95556C99265C0F5600C3F862 /* UtilityTrackingInputScreen.swift in Sources */,
 				95DACDAD260781810026EEE4 /* TileWallView.swift in Sources */,
 				9564B41E262EE9B70074A98A /* TrackNewActivityScreen.swift in Sources */,
 				95F0DEA22611A6C70087B3F7 /* TrackIntroSquareTile.swift in Sources */,

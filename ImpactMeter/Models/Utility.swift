@@ -7,15 +7,25 @@
 
 import Foundation
 
-enum TrackableType: String {
-    case utility
-    case travel
+enum TrackingCategory: String, CaseIterable {
+	case travel
+	case utility
+
+	var emoji: String {
+		switch self {
+		case .travel:
+			return "✈️"
+		case .utility:
+			return "🚰"
+		}
+	}
 }
+
 protocol Trackable {
     var storageKey: String { get }
     var unit: String { get }
     var displayText: String { get }
-    var type: TrackableType { get }
+    var type: TrackingCategory { get }
 }
 
 enum Utility: String, Hashable, Trackable {
@@ -55,8 +65,8 @@ enum Utility: String, Hashable, Trackable {
         }
     }
 
-    var type: TrackableType {
-        return TrackableType.utility
+    var type: TrackingCategory {
+        return TrackingCategory.utility
     }
 
     func hash(into hasher: inout Hasher) {

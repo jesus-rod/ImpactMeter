@@ -9,37 +9,24 @@ import SwiftUI
 import NavigationStack
 import Collections
 
-enum TrackingCategory: String, CaseIterable {
-    case travel
-    case utility
-
-    var emoji: String {
-        switch self {
-        case .travel:
-            return "✈️"
-        case .utility:
-            return "🚰"
-        }
-    }
-}
-
 struct TrackNewActivityScreen: View {
 
     let navigationStack: NavigationStack
 
-    @State private var selectedActivity: String = ""
+	@State private var selectedString: String = ""
+	@State private var selectedActivity: TrackingCategory = TrackingCategory.utility
     @State private var goToNextScreen: Bool = false
     @State private var isShowingSettings: Bool = false
 
     // Categories hardcoded 
-    private var trackingCategories: OrderedSet<TileView<String>.ViewModel> {
+    private var trackingCategories: OrderedSet<TileView<TrackingCategory>.ViewModel> {
         return OrderedSet(TrackingCategory.allCases
-                            .map { TileView<String>.ViewModel(text: $0.rawValue.capitalized,
+                            .map { TileView<TrackingCategory>.ViewModel(text: $0.rawValue.capitalized,
 															  emoji: $0.emoji,
-															  underlyingValue: $0.rawValue) })
+															  underlyingValue: $0) })
     }
 
-    @ObservedObject private var activitiesTileWallViewModel = TileWallView<String>.ViewModel(tiles: [TileView<String>.ViewModel]())
+    @ObservedObject private var activitiesTileWallViewModel = TileWallView<TrackingCategory>.ViewModel(tiles: [TileView<TrackingCategory>.ViewModel]())
 
 	let screenType: ScreenType
 
@@ -57,13 +44,22 @@ struct TrackNewActivityScreen: View {
 							})
 						}
 
-						TileWallView(viewModel: activitiesTileWallViewModel, selectedString: $selectedActivity, selectedUnderlyingValue: $selectedActivity)
+						TileWallView(viewModel: activitiesTileWallViewModel,
+									 selectedString: $selectedString,
+									 selectedUnderlyingValue: $selectedActivity)
 
 						// Pushing Views (Navigation)
-						PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack)), destinationId: NavigationIds.settingsViewId, isActive: $goToNextScreen, label: { EmptyView() })
+
 						PushView(destination: SettingsView(navigationStack: navigationStack), destinationId: NavigationIds.settingsViewId, isActive: $isShowingSettings) { EmptyView() }
-					}.onChange(of: selectedActivity) { _ in
-						goToNextScreen = true
+					}.onChange(of: selectedString) { newlySelectedActivity in
+						print(newlySelectedActivity)
+						switch selectedActivity {
+						case .travel:
+							navigationStack.push(TravelTrackingScreen(), withId: NavigationIds.travelViewId)
+						case .utility:
+							navigationStack.push(UtilityTrackingScreen(), withId: NavigationIds.utilityViewId)
+//							PushView(destination: PeopleInHouseScreen(router: HouseSettingsRouter(navStack: navigationStack)), destinationId: NavigationIds.settingsViewId, isActive: $goToNextScreen, label: { EmptyView() })
+						}
 					}.onAppear {
 						activitiesTileWallViewModel.tiles = trackingCategories
 					}

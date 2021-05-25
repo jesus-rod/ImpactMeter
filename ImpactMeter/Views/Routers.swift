@@ -9,9 +9,11 @@ import NavigationStack
 
 struct NavigationIds {
 	static let settingsViewId = "settings_push_id"
+	static let travelViewId = "travel_push_id"
+	static let utilityViewId = "utility_push_id"
 }
 
-class ActivityTrackingRouter {
+class FirstTimeActivityTrackingRouter {
 
     private let navStack: NavigationStack
 
